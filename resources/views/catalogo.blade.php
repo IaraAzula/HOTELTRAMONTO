@@ -1,43 +1,46 @@
 @extends('layouts.app')
 
 @section('contenido')
-    <h1 class="mb-4">Nuestras Habitaciones</h1>
+<div class="container py-5">
+    <h1 class="mb-4 text-center text-tramonto">Nuestras Habitaciones</h1>
+    
     <div class="row">
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                    [Imagen Habitación Standard]
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Habitación Standard</h5>
+            <div class="card h-100 shadow-sm">
+                <img src="https://i.postimg.cc/RFYcK5LL/IMG-5733.jpg" class="card-img-top" alt="Habitación Standard" style="height: 200px; object-fit: cover;">
+                
+                <div class="card-body text-center">
+                    <h5 class="card-title text-tramonto">Habitación Standard</h5>
                     <p class="card-text">Cama matrimonial, aire acondicionado y Wi-Fi.</p>
-                    <p class="fw-bold">$45.000 / noche</p>
+                    <p class="fw-bold text-success">$45.000 / noche</p>
+                    <a href="#" class="btn btn-outline-warning btn-sm">Reservar</a>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 mb-4">
-            <div class="card h-100 border-primary">
-                <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                    [Imagen Suite Río]
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Suite Vista al Río</h5>
+            <div class="card h-100 shadow-sm border-warning">
+                <img src="https://i.postimg.cc/tg1wFyhd/IMG-5738.jpg" class="card-img-top" alt="Suite Río" style="height: 200px; object-fit: cover;">
+                
+                <div class="card-body text-center">
+                    <h5 class="card-title text-tramonto">Suite Vista al Río</h5>
                     <p class="card-text">Balcón privado hacia las barrancas y minibar.</p>
-                    <p class="fw-bold">$65.000 / noche</p>
+                    <p class="fw-bold text-success">$65.000 / noche</p>
+                    <a href="#" class="btn btn-warning btn-sm">Reservar</a>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                    [Imagen Pack Aventura]
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Pack Excursión</h5>
+            <div class="card h-100 shadow-sm">
+                <img src="https://i.postimg.cc/qRG7H8zr/IMG-5749.png class="card-img-top" alt="Pack Aventura" style="height: 200px; object-fit: cover;">
+                
+                <div class="card-body text-center">
+                    <h5 class="card-title text-tramonto">Pack Excursión</h5>
                     <p class="card-text">Incluye estadía + día de pesca guiada.</p>
-                    <p class="fw-bold">$90.000 / total</p>
+                    <p class="fw-bold text-success">$90.000 / total</p>
+                    <a href="#" class="btn btn-outline-warning btn-sm">Reservar</a>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    </div> </div> @endsection
