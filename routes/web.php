@@ -13,3 +13,4 @@ Route::view('/contacto', 'contacto')->name('contacto');
 Route::view('/terminos', 'terminos')->name('terminos');
 Route::view('/catalogo', 'catalogo')->name('catalogo');
 Route::view('/consultas', 'consultas')->name('consultas');
+Route::view('/servicios', 'otros')->name('servicios');

@@ -30,7 +30,8 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Habitaciones</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('comercio') }}">Métodos de pago</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('contacto') }}">Contacto</a></li>
-             <li class="nav-item"><a class="nav-link" href="{{ route('consultas') }}">Consultas</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('consultas') }}">Consultas</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('servicios') }}">Servicios</a></li>
             <ul class="navbar-nav ms-auto">
             </ul>
         </div>
