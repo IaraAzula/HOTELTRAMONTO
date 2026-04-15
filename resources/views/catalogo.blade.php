@@ -6,8 +6,8 @@
     
     <div class="row">
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="https://i.postimg.cc/RFYcK5LL/IMG-5733.jpg" class="card-img-top" alt="Habitación Standard" style="height: 200px; object-fit: cover;">
+            <div class="card h-200 shadow-sm">
+                <img src="https://i.postimg.cc/RFYcK5LL/IMG-5733.jpg" class="card-img-top" alt="Habitación Standard" style="height: 300px; object-fit: cover;">
                 
                 <div class="card-body text-center">
                     <h5 class="card-title text-tramonto">Habitación Standard</h5>
@@ -19,26 +19,26 @@
         </div>
 
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-warning">
-                <img src="https://i.postimg.cc/tg1wFyhd/IMG-5738.jpg" class="card-img-top" alt="Suite Río" style="height: 200px; object-fit: cover;">
+            <div class="card h-200 shadow-sm border-warning">
+                <img src="https://i.postimg.cc/tg1wFyhd/IMG-5738.jpg" class="card-img-top" alt="Suite Río" style="height: 300px; object-fit: cover;">
                 
                 <div class="card-body text-center">
                     <h5 class="card-title text-tramonto">Suite Vista al Río</h5>
                     <p class="card-text">Balcón privado hacia las barrancas y minibar.</p>
                     <p class="fw-bold text-success">$65.000 / noche</p>
-                    <a href="#" class="btn btn-warning btn-sm">Reservar</a>
+                    <a href="#" class="btn btn-outline-warning btn-sm">Reservar</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="https://i.postimg.cc/qRG7H8zr/IMG-5749.png class="card-img-top" alt="Pack Aventura" style="height: 200px; object-fit: cover;">
+            <div class="card h-200 shadow-sm">
+                <img src="https://i.postimg.cc/KzSn6MQ6/IMG-5739.jpg class="card-img-top" alt="hab triple" style="height: 300px; object-fit: cover;">
                 
                 <div class="card-body text-center">
-                    <h5 class="card-title text-tramonto">Pack Excursión</h5>
-                    <p class="card-text">Incluye estadía + día de pesca guiada.</p>
-                    <p class="fw-bold text-success">$90.000 / total</p>
+                    <h5 class="card-title text-tramonto">Familiar o Junior Suite</h5>
+                    <p class="card-text">Amplia y cómoda, ideal para familias o grupos.</p>
+                    <p class="fw-bold text-success">$40.000 / total</p>
                     <a href="#" class="btn btn-outline-warning btn-sm">Reservar</a>
                 </div>
             </div>
