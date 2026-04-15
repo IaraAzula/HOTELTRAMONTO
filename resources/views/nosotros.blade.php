@@ -3,7 +3,7 @@
 @section('contenido')
     <div class="py-5">
         <h1>Quiénes Somos</h1>
-        <p class="lead">Hotel Tramonto nació hace más de 20 años como un emprendimiento familiar en las barrancas de Empedrado.</p>
+        <p class="lead">Hotel Tramonto nació hace más de 20 años como un emprendimiento familiar a orillas del Paraná.</p>
         
         <h3 class="mt-4">Nuestros Objetivos</h3>
         <p>Brindar una experiencia de descanso única, conectando a nuestros huéspedes con la naturaleza y la cultura correntina.</p>
