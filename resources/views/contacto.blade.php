@@ -69,19 +69,30 @@
     </div>
 
     <script>
-        function mostrarAviso() {
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const mensaje = document.getElementById('mensaje').value;
+    function mostrarAviso() {
+        const nombre = document.getElementById('nombre').value;
+        const email = document.getElementById('email').value;
+        const mensaje = document.getElementById('mensaje').value;
 
-            if (nombre === "" || email === "" || mensaje === "") {
-                alert("Por favor, completá todos los campos.");
-                return;
-            }
-
-            var miModal = new bootstrap.Modal(document.getElementById('modalContacto'));
-            miModal.show();
-            document.getElementById("formContacto").reset();
+        // 1. Verificamos que no haya campos vacíos
+        if (nombre === "" || email === "" || mensaje === "") {
+            alert("Por favor, completá todos los campos.");
+            return;
         }
-    </script>
+
+        // 2. Verificamos que el formato del email sea válido
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Por favor, ingresá un correo electrónico válido (ejemplo@correo.com).");
+            return;
+        }
+
+        // Si todo está bien, mostramos el modal
+        var miModal = new bootstrap.Modal(document.getElementById('modalContacto'));
+        miModal.show();
+
+        // Reseteamos el formulario
+        document.getElementById("formContacto").reset();
+    }
+</script>
 @endsection
