@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Tramonto - Empedrado</title>
@@ -45,6 +46,19 @@
     <footer class="bg-dark text-white text-center py-4 mt-5">
         <p class="mb-0">© 2026 Hotel Tramonto - Empedrado, Corrientes.</p>
         <a href="{{ route('terminos') }}" class="text-secondary small">Términos y Condiciones</a>
+        <div class="container text-center py-3">
+    <div class="d-flex justify-content-center gap-4">
+        <a href="https://www.instagram.com/tramonto.hotel" target="_blank" class="text-decoration-none" style="color: #C7B25D;">
+    <i class="bi bi-instagram" style="font-size: 2rem;"></i>
+    <span class="d-block small text-muted">Instagram</span>
+    </a>
+
+        <a href="https://wa.me/543794000000" target="_blank" class="text-decoration-none" style="color: #25D366;">
+            <i class="bi bi-whatsapp" style="font-size: 2rem;"></i>
+            <span class="d-block small text-muted">WhatsApp</span>
+        </a>
+    </div>
+</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

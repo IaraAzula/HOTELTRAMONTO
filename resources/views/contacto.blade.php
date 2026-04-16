@@ -7,12 +7,27 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <h1 class="text-tramonto">Contacto</h1>
-                <div class="mt-4">
+                <div class="mt-4 mb-4">
                     <p><strong>Titular:</strong> Juan Pérez</p>
                     <p><strong>Razón Social:</strong> Hotel Tramonto S.R.L.</p>
                     <p><strong>Domicilio Legal:</strong> Lavalle 55, Empedrado, Corrientes.</p>
                     <p><strong>Teléfono:</strong> +54 379 4000000</p>
+                    <p><strong>Instagram:</strong> tramonto.hotel</p>
                 </div>
+
+                <h4 class="mb-2 text-tramonto fw-bold" style="font-size: 1.1rem;">Nuestra Ubicación</h4>
+                <div class="shadow-sm rounded overflow-hidden border border-warning" style="height: 250px; max-width: 100%;">
+                    <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14104.973434659223!2d-58.8105779!3d-27.8329587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450a696236688f%3A0x6b801a6b0c2a7f5a!2sEmpedrado%2C%20Corrientes!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+                </div>
+                <p class="mt-2 text-muted small"><i class="bi bi-geo-alt-fill text-danger"></i> Lavalle 55, Empedrado</p>
             </div>
 
             <div class="col-md-6">
@@ -55,7 +70,6 @@
 
     <script>
         function mostrarAviso() {
-            // Validamos que los campos no estén vacíos
             const nombre = document.getElementById('nombre').value;
             const email = document.getElementById('email').value;
             const mensaje = document.getElementById('mensaje').value;
@@ -65,11 +79,8 @@
                 return;
             }
 
-            // Mostramos el modal usando la API de Bootstrap
             var miModal = new bootstrap.Modal(document.getElementById('modalContacto'));
             miModal.show();
-
-            // Reseteamos el formulario
             document.getElementById("formContacto").reset();
         }
     </script>
