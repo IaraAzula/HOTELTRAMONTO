@@ -11,10 +11,10 @@
     <div class="row">
         <div class="col-md-4 mb-4">
             <div class="card h-100 border-0 shadow-sm">
-                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500" class="card-img-top" alt="Eventos" style="height: 250px; object-fit: cover;">
+                <img src="https://i.postimg.cc/wM4J4F27/IMG-5907.jpg" class="card-img-top" alt="Eventos" style="height: 300px; object-fit: cover;">
                 <div class="card-body text-center">
                     <h4 class="card-title text-tramonto">Eventos</h4>
-                    <p class="card-text">Contamos con salones totalmente equipados para bodas, conferencias y reuniones sociales con vistas panorámicas a las barrancas.</p>
+                    <p class="card-text">Contamos con ambiente al aire libre y salones totalmente equipados para bodas, conferencias y reuniones sociales.</p>
                     <ul class="list-unstyled text-muted small">
                         <li><i class="bi bi-check2 text-warning"></i> Catering exclusivo</li>
                         <li><i class="bi bi-check2 text-warning"></i> Tecnología audiovisual</li>
@@ -25,7 +25,7 @@
 
         <div class="col-md-4 mb-4">
             <div class="card h-100 border-0 shadow-sm">
-                <img src="https://images.unsplash.com/photo-1550966842-28c258688c7e?w=500" class="card-img-top" alt="Restaurant" style="height: 250px; object-fit: cover;">
+                <img src="https://i.postimg.cc/gjX1rtxG/IMG-5746.jpg" class="card-img-top" alt="Restaurant" style="height: 300px; object-fit: cover;">
                 <div class="card-body text-center">
                     <h4 class="card-title text-tramonto">Restaurante</h4>
                     <p class="card-text">Disfrutá de una propuesta gastronómica que combina ingredientes locales de Corrientes con cocina internacional de autor.</p>
@@ -39,12 +39,12 @@
 
         <div class="col-md-4 mb-4">
             <div class="card h-100 border-0 shadow-sm">
-                <img src="https://images.unsplash.com/photo-1544161515-4508f5ad4c14?w=500" class="card-img-top" alt="SPA" style="height: 250px; object-fit: cover;">
+                <img src="https://i.postimg.cc/cHnLGhdJ/IMG-5908.jpg" class="card-img-top" alt="SPA" style="height: 300px; object-fit: cover;">
                 <div class="card-body text-center">
                     <h4 class="card-title text-tramonto">SPA & Relax</h4>
                     <p class="card-text">Un refugio de paz. Ofrecemos circuitos de aguas, sauna seco y masajes terapéuticos para renovar cuerpo y mente.</p>
                     <ul class="list-unstyled text-muted small">
-                        <li><i class="bi bi-check2 text-warning"></i> Piscina climatizada</li>
+                        <li><i class="bi bi-check2 text-warning"></i> Masajes</li>
                         <li><i class="bi bi-check2 text-warning"></i> Tratamientos faciales</li>
                     </ul>
                 </div>
