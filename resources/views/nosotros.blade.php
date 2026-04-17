@@ -2,6 +2,10 @@
 
 @section('contenido')
 <style>
+
+    body {
+        background-color: #020617 !important;
+    }
     /* Tipografía Segoe UI para toda la sección */
     .font-tramonto {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -46,7 +50,7 @@
     }
 </style>
 
-<div class="container-fluid p-0 font-tramonto bg-main-tramonto">
+<div class="container-fluid p-0 font-tramonto bg-main-tramonto min-vh-100">
     
     <div class="hero-section text-center shadow-lg">
         <div class="container">
