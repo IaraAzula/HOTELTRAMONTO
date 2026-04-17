@@ -13,24 +13,22 @@
             color: #C7B25D !important; 
             display: flex; 
             align-items: center; 
-            font-size: 1.6rem; /* Un poco más grande para acompañar al logo */
+            font-size: 1.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
         .brand-logo {
-            height: 65px; /* Tamaño grande solicitado */
+            height: 65px; /* Tamaño del logo */
             width: auto;
-            margin-right: 5px; /* Texto bien cerca del logo */
-            filter: drop-shadow(0px 0px 4px rgba(199, 178, 93, 0.6));
             transition: transform 0.3s ease;
+            filter: drop-shadow(0px 0px 4px rgba(199, 178, 93, 0.6));
         }
 
         .brand-logo:hover {
-            transform: scale(1.05); /* Efecto sutil al pasar el mouse */
+            transform: scale(1.05);
         }
 
-        /* Ajuste para que los links del menú no queden apretados con el logo grande */
         .nav-link {
             font-size: 0.95rem;
             text-transform: uppercase;
@@ -59,8 +57,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
       <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="https://i.postimg.cc/NG6xS9fw/Photoroom-20260417-174957.png" alt="Logo Tramonto" class="brand-logo">
-            TRAMONTO
+            <img src="https://i.postimg.cc/j5ksvdwj/Photoroom-20260417-194400.png" alt="Logo Tramonto" class="brand-logo">
         </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
