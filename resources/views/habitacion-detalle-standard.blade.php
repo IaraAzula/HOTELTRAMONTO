@@ -45,6 +45,7 @@
                 <li><i class="bi bi-check2-circle text-warning"></i> Aire Acondicionado Frío/Calor</li>
                 <li><i class="bi bi-check2-circle text-warning"></i> Wi-Fi de alta velocidad</li>
                 <li><i class="bi bi-check2-circle text-warning"></i> Baño privado con ducha</li>
+                <li><i class="bi bi-check2-circle text-warning"></i> Servicio de limpieza diario</li>
                 <li><i class="bi bi-check2-circle text-warning"></i> Desayuno incluido</li>
             </ul>
         </div>
