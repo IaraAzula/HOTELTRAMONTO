@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('principal');
 })->name ('home');
 
+Route::get('/habitacion-standard', function () {
+    return view('habitacion-detalle'); 
+});
+
 Route::view('/quienes-somos', 'nosotros')->name('nosotros');
 Route::view('/comercializacion', 'comercio')->name('comercio');
 Route::view('/contacto', 'contacto')->name('contacto');

@@ -13,7 +13,7 @@
                     <h5 class="card-title text-tramonto">Habitación Standard</h5>
                     <p class="card-text">Cama matrimonial, aire acondicionado y Wi-Fi.</p>
                     <p class="fw-bold text-success">$45.000 / noche</p>
-                    <a href="#" class="btn btn-outline-warning btn-sm">Ver más</a>
+                    <a href="{{ url('/habitacion-standard') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
                 </div>
             </div>
         </div>

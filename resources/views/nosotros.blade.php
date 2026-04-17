@@ -15,13 +15,13 @@
 
     /* Color Dorado/Amarillo para resaltar */
     .text-gold-tramonto {
-        color: #ffc107 !important;
+        color: #d4af37 !important;
     }
 
     /* Cards adaptadas al estilo de habitaciones pero integradas al fondo oscuro */
     .card-habitacion-style {
         background-color: rgba(255, 255, 255, 0.05); /* Fondo sutilmente claro */
-        border: 1px solid #ffc107; /* Borde dorado */
+        border: 1px solid #d4af37; /* Borde dorado */
         border-radius: 8px;
         color: #ffffff;
         transition: transform 0.3s ease;
@@ -42,7 +42,7 @@
     }
 
     .border-gold {
-        border-color: #ffc107 !important;
+        border-color: #d4af37 !important;
     }
 </style>
 
