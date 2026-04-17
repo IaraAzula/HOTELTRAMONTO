@@ -14,7 +14,13 @@
                         <img src="https://i.postimg.cc/RFYcK5LL/IMG-5733.jpg" class="d-block w-100" alt="Foto 1" style="height: 450px; object-fit: cover;">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg" class="d-block w-100" alt="Foto 2" style="height: 450px; object-fit: cover;">
+                        <img src="https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg" class="d-block w-100" alt="Foto 2" style="height: 450px; object-fit: cover;"> 
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.postimg.cc/XJ5xzRRR/IMG-6050.jpg" class="d-block w-100" alt="Foto 2" style="height: 450px; object-fit: cover;"> 
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.postimg.cc/3NH95L7N/IMG-6051.jpg" class="d-block w-100" alt="Foto 2" style="height: 450px; object-fit: cover;"> 
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselHabitacion" data-bs-slide="prev">
