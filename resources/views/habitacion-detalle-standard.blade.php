@@ -34,7 +34,7 @@
 
         <div class="col-md-5">
             <h1 class="text-tramonto fw-bold">Habitación Standard</h1>
-            <h3 class="text-success my-3">$45.000 <small class="text-muted" style="font-size: 0.9rem;">/ noche</small></h3>
+            <h3 class="text-success my-3">USD 60 – 90 <small class="text-muted" style="font-size: 0.9rem;">/ noche</small></h3>
             <hr>
             <h5>Descripción</h5>
             <p class="text-muted">Nuestra habitación Standard ofrece el equilibrio perfecto entre confort y sencillez. Ideal para parejas que buscan una estadía tranquila en Empedrado.</p>

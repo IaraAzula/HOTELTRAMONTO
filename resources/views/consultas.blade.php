@@ -46,7 +46,7 @@
 
     <script>
         function enviarFormulario() {
-            // Aquí podrías validar si el mensaje no está vacío antes de mostrar el aviso
+            // validar si el mensaje no está vacío antes de mostrar el aviso
             const mensaje = document.getElementById('mensaje').value;
             
             if(mensaje.trim() === "") {

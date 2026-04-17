@@ -34,7 +34,7 @@
 
         <div class="col-md-5">
             <h1 class="text-tramonto fw-bold">Familiar o Junior Suite</h1>
-           <h3 class="text-success my-3">$40.000 <small class="text-muted" style="font-size: 0.9rem;">/ noche</small></h3>
+           <h3 class="text-success my-3">USD 80 – 120<small class="text-muted" style="font-size: 0.9rem;">/ noche</small></h3>
             <hr>
             <h5>Descripción</h5>
             <p class="text-muted">un espacio amplio y versátil, ideal para familias o grupos que buscan comodidad sin resignar estilo. Diseñada para brindar descanso y funcionalidad, cuenta con áreas bien distribuidas que permiten disfrutar de una estadía relajada, ya sea en compañía o con mayor independencia dentro de la misma habitación. Perfecta para quienes priorizan confort y practicidad en un ambiente acogedor.</p>

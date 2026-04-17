@@ -34,7 +34,7 @@
 
         <div class="col-md-5">
             <h1 class="text-tramonto fw-bold">Suite Vista al Río</h1>
-           <h3 class="text-success my-3">$65.000 <small class="text-muted" style="font-size: 0.9rem;">/ noche</small></h3>
+           <h3 class="text-success my-3">USD 90 – 140<small class="text-muted" style="font-size: 0.9rem;">/ noche</small></h3>
             <hr>
             <h5>Descripción</h5>
             <p class="text-muted">una habitación diseñada para disfrutar del paisaje y la tranquilidad. Cuenta con un balcón privado con vista al río, ideal para relajarse al aire libre, y un minibar equipado para mayor comodidad durante la estadía. Perfecta para quienes buscan confort y una experiencia única junto al río.</p>

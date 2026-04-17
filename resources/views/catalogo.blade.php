@@ -12,7 +12,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title text-tramonto">Habitación Standard</h5>
                     <p class="card-text">Cama matrimonial, aire acondicionado y Wi-Fi.</p>
-                    <p class="fw-bold text-success">$45.000 / noche</p>
+                    <p class="fw-bold text-success">USD 60 – 90 / noche</p>
                     <a href="{{ url('/habitacion-standard') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title text-tramonto">Suite Vista al Río</h5>
                     <p class="card-text">Balcón privado hacia las barrancas y minibar.</p>
-                    <p class="fw-bold text-success">$65.000 / noche</p>
+                    <p class="fw-bold text-success">USD 90 – 140/ noche</p>
                   <a href="{{ url('/habitacion-suite') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title text-tramonto">Familiar o Junior Suite</h5>
                     <p class="card-text">Amplia y cómoda, ideal para familias o grupos.</p>
-                    <p class="fw-bold text-success">$40.000 / total</p>
+                    <p class="fw-bold text-success">USD 80 – 120 / total</p>
                     <a href="{{ url('/habitacion-familiar') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
                 </div>
             </div>
