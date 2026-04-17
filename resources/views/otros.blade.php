@@ -50,9 +50,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="https://i.postimg.cc/kG4y3wgh/IMG-6076.jpg" class="card-img-top" alt="SPA" style="height: 300px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-tramonto">Pesca Guíada</h4>
+                    <p class="card-text">Disfrutá de una experiencia única en contacto con la naturaleza, recorriendo los mejores puntos del río junto a guías locales expertos que conocen cada rincón y técnica</p>
+                    <ul class="list-unstyled text-muted small">
+                        <li><i class="bi bi-check2 text-warning"></i> Turismo</li>
+                        <li><i class="bi bi-check2 text-warning"></i> Actividades en grupo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="mt-5 p-5 bg-light rounded text-center shadow-sm">
+    <div class="mt-3 p-3 bg-light rounded text-center shadow-sm">
         <h3 class="text-tramonto">¿Tenés una consulta especial?</h3>
         <p>Estamos a tu disposición para personalizar cualquier servicio según tus necesidades.</p>
         <a href="{{ route('contacto') }}" class="btn btn-warning fw-bold px-4">Contactanos ahora</a>

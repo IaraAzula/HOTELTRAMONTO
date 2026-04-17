@@ -107,7 +107,7 @@
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
                         <img src="https://i.postimg.cc/rmPLLn9d/IMG-6065.jpg" class="img-fluid" alt="Elena">
                     </div>
-                    <h5 class="fw-bold">Elena Solari</h5>
+                    <h5 class="fw-bold">Carlos Solari</h5>
                     <p class="text-gold-tramonto fw-bold">Chef Principal</p>
                 </div>
                 <div class="col-md-4 mb-4">
