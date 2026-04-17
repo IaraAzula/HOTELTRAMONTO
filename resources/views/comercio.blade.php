@@ -5,7 +5,13 @@
 
 <style>
     .comercializacion-wrapper {
-        background-color: #050a18;
+        /* Cambio a la nueva foto manteniendo el oscurecimiento para legibilidad */
+        background: linear-gradient(rgba(5, 10, 24, 0.85), rgba(5, 10, 24, 0.85)), 
+                    url('https://i.postimg.cc/MH8dRzPk/IMG-5708.jpg'); 
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        
         color: white;
         min-height: 100vh;
         margin-bottom: -50px;
@@ -17,18 +23,18 @@
         font-weight: bold;
     }
 
-    /* Ajuste para que los items de pago tengan la misma altura en la grilla */
     .pago-item {
         background-color: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(212, 175, 55, 0.3);
         border-radius: 12px;
-        padding: 30px; /* Aumenté el padding para que luzcan mejor en 2x2 */
+        padding: 30px;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         transition: 0.3s;
+        backdrop-filter: blur(5px);
     }
 
     .pago-item:hover {
@@ -39,7 +45,7 @@
 
     .icon-gold {
         color: #d4af37;
-        font-size: 3rem; /* Un poco más grandes para la nueva grilla */
+        font-size: 3rem;
         margin-bottom: 15px;
     }
 
@@ -49,6 +55,7 @@
         padding: 30px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         height: 100%;
+        backdrop-filter: blur(5px);
     }
 </style>
 
@@ -58,7 +65,8 @@
         <h1 class="text-center display-5 titulo-dorado mb-5">Métodos de Pago</h1>
 
         <div class="row justify-content-center g-4 mb-5">
-            <div class="col-12 col-md-8 col-lg-7"> <div class="row g-4">
+            <div class="col-12 col-md-8 col-lg-7"> 
+                <div class="row g-4">
                     <div class="col-md-6">
                         <div class="pago-item text-center shadow-sm">
                             <i class="fa-solid fa-handshake-angle icon-gold"></i>
