@@ -69,8 +69,8 @@
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="pago-item text-center shadow-sm">
-                            <i class="fa-solid fa-handshake-angle icon-gold"></i>
-                            <span class="fw-bold fs-5 text-white">Mercado Pago</span>
+                            <i class="fa-solid fa-money-bill-1-wave icon-gold"></i>
+                            <span class="fw-bold fs-5 text-white">Efectivo</span>
                         </div>
                     </div>
 
