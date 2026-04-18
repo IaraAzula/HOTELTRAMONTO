@@ -97,7 +97,7 @@
                 <h1 class="text-gold-tramonto fw-bold display-6">Habitación Standard</h1>
                 <div class="d-flex align-items-baseline mb-3">
                     <h2 class="price-large mb-0">USD 60 – 90</h2>
-                    <span class="text-muted ms-2">/ noche</span>
+                    <span class="text-white fw-medium">/ noche</span>
                 </div>
                 
                 <hr class="gold-line">
@@ -112,12 +112,12 @@
                 
                 <h5 class="text-gold-tramonto text-uppercase mt-4 mb-3" style="letter-spacing: 1px;">Servicios Incluidos</h5>
                 <ul class="list-unstyled service-list">
-                    <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Cama Matrimonial Sommier</li>
-                    <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Aire Acondicionado Frío/Calor</li>
-                    <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Wi-Fi de alta velocidad bonificado</li>
-                    <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Baño privado con ducha</li>
-                    <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Servicio de limpieza diario</li>
-                    <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Desayuno artesanal incluido</li>
+                    <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Cama Matrimonial Sommier</li>
+                    <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Aire Acondicionado Frío/Calor</li>
+                    <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Wi-Fi de alta velocidad bonificado</li>
+                    <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Baño privado con ducha</li>
+                    <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Servicio de limpieza diario</li>
+                    <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Desayuno artesanal incluido</li>
                 </ul>
 
                 <div class="mt-5">
