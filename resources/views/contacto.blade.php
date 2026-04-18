@@ -97,14 +97,15 @@
                 </div>
 
                 <h4 class="mb-3 text-gold-tramonto fw-bold" style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Nuestra Ubicación</h4>
+                <p class="mt-3 text-light-muted small"></i> Ubicado en la ciudad de Empedrado, Corrientes, a orillas del río Paraná, nuestro hotel es un refugio de tranquilidad para quienes buscan desconectar de la rutina y reconectar con lo esencial.</p>
                 <div class="map-container shadow-lg" style="height: 300px;">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.7483661142274!2d-58.808000!3d-27.915000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDU0JzU0LjAiUyA1OMKwNDgnMjguOCJX!5e0!3m2!1ses!2sar!4v1713444000000!5m2!1ses!2sar" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
+                    src="https://www.google.com/maps?q=Lavalle+55,+Empedrado,+Corrientes,+Argentina&output=embed"
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
                     </iframe>
                 </div>
                 <p class="mt-3 text-light-muted small"><i class="bi bi-geo-alt-fill text-gold-tramonto me-2"></i> Lavalle 55, Empedrado, Corrientes.</p>
@@ -149,7 +150,7 @@
             <div class="modal-body">
                 <i class="bi bi-check-circle-fill text-gold-tramonto" style="font-size: 4rem;"></i>
                 <h3 class="mt-4 fw-bold">¡Mensaje enviado!</h3>
-                <p class="text-light-muted">Gracias por escribirnos. Nos comunicaremos con vos a la brevedad.</p>
+                <p class="text-light-muted">En breve el equipo de Hotel Tramonto se pondrá en contacto con vos.</p>
                 <button type="button" class="btn btn-tramonto px-5 mt-3" data-bs-dismiss="modal">Aceptar</button>
             </div>
         </div>
