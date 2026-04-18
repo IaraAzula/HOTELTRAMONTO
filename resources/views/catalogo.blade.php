@@ -1,44 +1,134 @@
 @extends('layouts.app')
 
 @section('contenido')
-<div class="container py-5">
-    <h1 class="mb-4 text-center text-tramonto">Nuestras Habitaciones</h1>
-    
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card h-200 shadow-sm">
-                <img src="https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg" class="card-img-top" alt="Habitación Standard" style="height: 300px; object-fit: cover;">
-                
-                <div class="card-body text-center">
-                    <h5 class="card-title text-tramonto">Habitación Standard</h5>
-                    <p class="fw-bold text-success">USD 60 – 90 / noche</p>
-                    <a href="{{ url('/habitacion-standard') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
-                </div>
-            </div>
-        </div>
+<style>
+    /* Fondo general oscuro para mantener coherencia */
+    body {
+        background-color: #020617 !important;
+    }
 
-        <div class="col-md-4 mb-4">
-            <div class="card h-200 shadow-sm">
-                <img src="https://i.postimg.cc/kggxR2y6/IMG-5736.jpg" class="card-img-top" alt="Suite Río" style="height: 300px; object-fit: cover;">
-                
-                <div class="card-body text-center">
-                    <h5 class="card-title text-tramonto">Suite Vista al Río</h5>
-                    <p class="fw-bold text-success">USD 90 – 140/ noche</p>
-                  <a href="{{ url('/habitacion-suite') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
-                </div>
-            </div>
-        </div>
+    .bg-rooms {
+        background-color: #020617;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-vh-100;
+    }
 
-        <div class="col-md-4 mb-4">
-            <div class="card h-200 shadow-sm">
-                <img src="https://i.postimg.cc/KzSn6MQ6/IMG-5739.jpg class="card-img-top" alt="hab triple" style="height: 300px; object-fit: cover;">
-                
-                <div class="card-body text-center">
-                    <h5 class="card-title text-tramonto">Familiar o Junior Suite</h5>
+    .text-gold-tramonto {
+        color: #d4af37 !important;
+        letter-spacing: 1px;
+    }
+
+    /* Cards Profesionales */
+    .card-habitacion {
+        background-color: rgba(255, 255, 255, 0.03); /* Efecto cristal sutil */
+        border: 1px solid rgba(212, 175, 55, 0.3); /* Borde dorado translúcido */
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        color: white;
+    }
+
+    .card-habitacion:hover {
+        transform: translateY(-10px);
+        border-color: #d4af37; /* El dorado se intensifica al pasar el mouse */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        background-color: rgba(255, 255, 255, 0.07);
+    }
+
+    /* Ajuste de imágenes */
+    .room-img {
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .card-habitacion:hover .room-img {
+        transform: scale(1.05);
+    }
+
+    /* Botón personalizado */
+    .btn-tramonto {
+        border: 1px solid #d4af37;
+        color: #d4af37;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        padding: 10px 20px;
+        transition: 0.3s;
+        background: transparent;
+    }
+
+    .btn-tramonto:hover {
+        background-color: #d4af37;
+        color: #020617;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .price-tag {
+        font-size: 1.1rem;
+        color: #d4af37;
+        opacity: 0.9;
+    }
+</style>
+
+<div class="bg-rooms py-5">
+    <div class="container">
+        <h1 class="display-5 fw-bold mb-2 text-center text-gold-tramonto">Nuestras Habitaciones</h1>
+        <p class="text-center text-muted mb-5">Exclusividad y confort frente a las barrancas del Paraná</p>
         
-                    <p class="fw-bold text-success">USD 80 – 120 / total</p>
-                    <a href="{{ url('/habitacion-familiar') }}" class="btn btn-outline-warning btn-sm">Ver más</a>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card card-habitacion h-100">
+                    <div class="overflow-hidden">
+                        <img src="https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg" class="card-img-top room-img" alt="Habitación Standard">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="card-title fw-bold mb-3">Habitación Standard</h4>
+                            <p class="price-tag fw-bold">USD 60 – 90 <span class="small text-muted">/ noche</span></p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="{{ url('/habitacion-standard') }}" class="btn btn-tramonto">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-habitacion h-100">
+                    <div class="overflow-hidden">
+                        <img src="https://i.postimg.cc/kggxR2y6/IMG-5736.jpg" class="card-img-top room-img" alt="Suite Río">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="card-title fw-bold mb-3">Suite Vista al Río</h4>
+                            <p class="price-tag fw-bold">USD 90 – 140 <span class="small text-muted">/ noche</span></p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="{{ url('/habitacion-suite') }}" class="btn btn-tramonto">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-habitacion h-100">
+                    <div class="overflow-hidden">
+                        <img src="https://i.postimg.cc/KzSn6MQ6/IMG-5739.jpg" class="card-img-top room-img" alt="Habitación Familiar">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="card-title fw-bold mb-3">Familiar Junior Suite</h4>
+                            <p class="price-tag fw-bold">USD 80 – 120 <span class="small text-muted">/ total</span></p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="{{ url('/habitacion-familiar') }}" class="btn btn-tramonto">Explorar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> </div> @endsection
+    </div>
+</div>
+@endsection
