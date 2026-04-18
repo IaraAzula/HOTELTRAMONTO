@@ -82,24 +82,26 @@
         @yield('contenido')
     </div>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p class="mb-0">© 2026 Hotel Tramonto - Empedrado, Corrientes.</p>
-        <a href="{{ route('terminos') }}" class="text-secondary small text-decoration-none">Términos y Condiciones</a>
-        
-        <div class="container text-center py-3">
-            <div class="d-flex justify-content-center gap-4">
-                <a href="https://www.instagram.com/tramonto.hotel" target="_blank" class="text-decoration-none" style="color: #C7B25D;">
-                    <i class="bi bi-instagram" style="font-size: 2rem;"></i>
-                    <span class="d-block small text-muted">Instagram</span>
-                </a>
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <p class="mb-0">© 2026 Hotel Tramonto - Lavalle 55 Empedrado, Corrientes.</p>
+    <a href="{{ route('terminos') }}" class="text-secondary small text-decoration-none">Términos y Condiciones</a>
+    
+    <div class="container py-3">
+        <div class="d-flex justify-content-center align-items-center gap-4">
+            
+            <a href="https://www.instagram.com/tramonto.hotel" target="_blank" class="text-decoration-none d-flex align-items-center">
+                <span class="text-white fw-medium">@tramonto.hotel</span>
+                <i class="bi bi-instagram ms-2" style="color: #C7B25D; font-size: 1.2rem;"></i>
+            </a>
 
-                <a href="https://wa.me/543794000000" target="_blank" class="text-decoration-none" style="color: #25D366;">
-                    <i class="bi bi-whatsapp" style="font-size: 2rem;"></i>
-                    <span class="d-block small text-muted">WhatsApp</span>
-                </a>
-            </div>
+            <a href="https://wa.me/543794000000" target="_blank" class="text-decoration-none d-flex align-items-center">
+                <span class="text-white fw-medium">+54 379 4000000</span>
+                <i class="bi bi-whatsapp ms-2" style="color: #25D366; font-size: 1.2rem;"></i>
+            </a>
+            
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
