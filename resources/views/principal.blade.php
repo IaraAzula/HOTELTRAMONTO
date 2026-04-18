@@ -54,8 +54,7 @@
             <h1 class="display-1 fw-bold text-gold-tramonto">Hotel Tramonto</h1>
             <p class="lead fs-3 mt-4">Bienvenidos a la Perla del Paraná.</p>
             <div class="mt-5">
-                <a href="{{ route('catalogo') }}" class="btn btn-warning btn-lg px-5 fw-bold">Ver Habitaciones</a>
-            </div>
+               <a href="{{ route('catalogo') }}" class="btn btn-lg px-5 fw-bold" style="background-color: #d4af37; border-color: #d4af37; color: #020617;">Ver Habitaciones</a>
         </div>
     </div>
 </div>
