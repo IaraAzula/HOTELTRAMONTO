@@ -90,14 +90,14 @@
             <div class="col-md-6 col-lg-3">
                 <div class="card card-servicio h-100 border-0">
                     <div class="overflow-hidden">
-                        <img src="https://i.postimg.cc/wM4J4F27/IMG-5907.jpg" class="card-img-top service-img" alt="Eventos">
+                        <img src="https://i.postimg.cc/g21pPwcr/IMG-6080.jpg" class="card-img-top service-img" alt="Eventos">
                     </div>
                     <div class="card-body text-center d-flex flex-column">
                         <h4 class="card-title text-gold-tramonto fw-bold">Eventos</h4>
-                        <p class="card-text text-light-muted small mb-3">Salones totalmente equipados para bodas, conferencias y reuniones sociales.</p>
+                        <p class="card-text text-light-muted small mb-3">Nuestro patio con vista al río Paraná es perfecto para celebraciones sociales, y el salón para reuniones, lanzamientos y seminarios.</p>
                         <ul class="list-unstyled service-list mt-auto">
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Catering exclusivo</li>
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Tecnología audiovisual</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Catering exclusivo</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Tecnología audiovisual</li>
                         </ul>
                     </div>
                 </div>
@@ -109,11 +109,11 @@
                         <img src="https://i.postimg.cc/gjX1rtxG/IMG-5746.jpg" class="card-img-top service-img" alt="Restaurant">
                     </div>
                     <div class="card-body text-center d-flex flex-column">
-                        <h4 class="card-title text-gold-tramonto fw-bold">Restaurante</h4>
-                        <p class="card-text text-light-muted small mb-3">Gastronomía litoraleña e internacional con ingredientes locales seleccionados.</p>
+                        <h4 class="card-title text-gold-tramonto fw-bold">Gastronomía</h4>
+                        <p class="card-text text-light-muted small mb-3">Ofrecemos una experiencia gastronómica auténtica con ingredientes frescos de nuestra huerta, reflejando la esencia de la cocina correntina.</p>
                         <ul class="list-unstyled service-list mt-auto">
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Desayuno artesanal</li>
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Cava de vinos</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Desayuno buffet</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Cava de vinos</li>
                         </ul>
                     </div>
                 </div>
@@ -126,10 +126,10 @@
                     </div>
                     <div class="card-body text-center d-flex flex-column">
                         <h4 class="card-title text-gold-tramonto fw-bold">SPA & Relax</h4>
-                        <p class="card-text text-light-muted small mb-3">Circuitos de agua, sauna seco y masajes terapéuticos para renovar mente y cuerpo.</p>
+                        <p class="card-text text-light-muted small mb-3">En nuestro hotel te ofrecemos un espacio para relajarte y renovarte, con gimnasio y spa pensados para tu bienestar.</p>
                         <ul class="list-unstyled service-list mt-auto">
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Masajes de autor</li>
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Tratamientos faciales</li>
+                             <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Masajes</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Cabina multifunción</li>
                         </ul>
                     </div>
                 </div>
@@ -142,10 +142,10 @@
                     </div>
                     <div class="card-body text-center d-flex flex-column">
                         <h4 class="card-title text-gold-tramonto fw-bold">Pesca Guiada</h4>
-                        <p class="card-text text-light-muted small mb-3">Recorridos por el río Paraná junto a expertos que conocen cada rincón.</p>
+                        <p class="card-text text-light-muted small mb-3">Recorridos por el río Paraná junto a expertos locales que conocen cada rincón, brindando una experiencia segura, enriquecedora y en contacto con la naturaleza.</p>
                         <ul class="list-unstyled service-list mt-auto">
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Guías expertos</li>
-                            <li><i class="bi bi-star-fill text-gold-tramonto me-2"></i> Equipo completo</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Guías expertos</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Equipo completo</li>
                         </ul>
                     </div>
                 </div>
