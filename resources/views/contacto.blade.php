@@ -2,7 +2,6 @@
 
 @section('contenido')
 <style>
-    /* Estética general coherente */
     body {
         background-color: #020617 !important;
     }
@@ -22,7 +21,12 @@
         color: #cbd5e1 !important;
     }
 
-    /* Tarjetas con efecto cristal */
+    /* --- CORRECCIÓN DE COLOR PARA PLACEHOLDERS --- */
+    .form-control::placeholder {
+        color: #94a3b8 !important; /* Gris claro visible */
+        opacity: 1; 
+    }
+
     .glass-card {
         background-color: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(212, 175, 55, 0.3);
@@ -30,7 +34,6 @@
         backdrop-filter: blur(10px);
     }
 
-    /* Estilo de los labels e inputs */
     .form-label {
         color: #d4af37;
         text-transform: uppercase;
@@ -41,7 +44,7 @@
 
     .form-control {
         background-color: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         color: white !important;
         transition: 0.3s;
     }
@@ -52,7 +55,6 @@
         box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
     }
 
-    /* Botón Tramonto */
     .btn-tramonto {
         background-color: transparent;
         border: 1px solid #d4af37;
@@ -68,12 +70,10 @@
         box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     }
 
-    /* Estilo del Mapa */
     .map-container {
         border: 1px solid rgba(212, 175, 55, 0.4);
         border-radius: 12px;
         overflow: hidden;
-        filter: grayscale(0.3) contrast(1.1); /* Toque más profesional al mapa */
     }
 
     .modal-content-dark {
@@ -114,17 +114,24 @@
                 <div class="glass-card p-4 p-md-5 shadow-lg">
                     <h4 class="text-gold-tramonto fw-bold mb-4 text-center">ENVIANOS TU CONSULTA</h4>
                     <form id="formContacto">
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label class="form-label">Nombre Completo</label>
-                            <input type="text" id="nombre" class="form-control" placeholder="Juan Pérez" required>
+                            <input type="text" id="nombre" class="form-control" placeholder="Escribí tu nombre..." required>
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label class="form-label">Correo Electrónico</label>
                             <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com" required>
                         </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono de Contacto</label>
+                            <input type="tel" id="telefono" class="form-control" placeholder="Escribí tu número..." required>
+                            <small class="text-light-muted" style="font-size: 0.75rem; font-style: italic;">Sin espacios y guiones.</small>
+                        </div>
+
                         <div class="mb-4">
                             <label class="form-label">Mensaje</label>
-                            <textarea id="mensaje" class="form-control" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                            <textarea id="mensaje" class="form-control" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
                         </div>
                         <button type="button" onclick="mostrarAviso()" class="btn btn-tramonto w-100 py-3 fw-bold">
                             Enviar Mensaje
@@ -153,9 +160,10 @@
 function mostrarAviso() {
     const nombre = document.getElementById('nombre').value;
     const email = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
     const mensaje = document.getElementById('mensaje').value;
 
-    if (nombre.trim() === "" || email.trim() === "" || mensaje.trim() === "") {
+    if (nombre.trim() === "" || email.trim() === "" || telefono.trim() === "" || mensaje.trim() === "") {
         alert("Por favor, completá todos los campos.");
         return;
     }
@@ -163,6 +171,12 @@ function mostrarAviso() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert("Por favor, ingresá un correo electrónico válido.");
+        return;
+    }
+
+    const telRegex = /^[0-9]{7,15}$/;
+    if (!telRegex.test(telefono)) {
+        alert("Por favor, ingresá un número de teléfono válido (solo números, entre 7 y 15 dígitos).");
         return;
     }
 
