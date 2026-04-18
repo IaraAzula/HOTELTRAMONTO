@@ -144,8 +144,8 @@
                         <h4 class="card-title text-gold-tramonto fw-bold">Pesca Guiada</h4>
                         <p class="card-text text-light-muted small mb-3">Recorridos por el río Paraná junto a expertos locales que conocen cada rincón, brindando una experiencia segura, enriquecedora y en contacto con la naturaleza.</p>
                         <ul class="list-unstyled service-list mt-auto">
-                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Guías expertos</li>
-                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Equipo completo</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Bajada de lancha privada</li>
+                            <li><i class="bi bi-check2-circle text-gold-tramonto me-2"></i> Excursiones de Pesca y devolución </li>
                         </ul>
                     </div>
                 </div>
