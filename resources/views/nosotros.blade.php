@@ -36,14 +36,16 @@
         background-color: rgba(255, 255, 255, 0.1);
     }
 
-    /* Hero Section con overlay azul/oscuro */
+    /* --- ESTA ES LA SECCIÓN QUE IMPORTA --- */
     .hero-section {
         background: linear-gradient(rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.9)), 
-                    url('{{ asset('images/barrancas.jpg') }}');
+                    url('https://i.postimg.cc/QxNXYtpr/Whats-App-Image-2026-04-18-at-8-36-53-AM.jpg');
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat; /* Asegura que no se repita */
         padding: 100px 0;
     }
+    /* -------------------------------------- */
 
     .border-gold {
         border-color: #d4af37 !important;
@@ -98,23 +100,23 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
-                        <img src="https://i.postimg.cc/CLWL81kR/IMG-6064.jpg" class="img-fluid" alt="Ricardo">
+                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Ricardo">
                     </div>
                     <h5 class="fw-bold">Ricardo Valenzuela</h5>
                     <p class="text-gold-tramonto fw-bold">Gerente General</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
-                        <img src="https://i.postimg.cc/rmPLLn9d/IMG-6065.jpg" class="img-fluid" alt="Elena">
+                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Elena">
                     </div>
-                    <h5 class="fw-bold">Carlos Solari</h5>
+                    <h5 class="fw-bold">Elena Solari</h5>
                     <p class="text-gold-tramonto fw-bold">Chef Principal</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
-                        <img src="https://i.postimg.cc/cJ5ssLx3/IMG-6066.jpg" class="img-fluid" alt="Bautista">
+                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Bautista">
                     </div>
-                    <h5 class="fw-bold">Silvina Ríos</h5>
+                    <h5 class="fw-bold">Bautista Ríos</h5>
                     <p class="text-gold-tramonto fw-bold">Guía de Expediciones</p>
                 </div>
             </div>
@@ -122,3 +124,68 @@
     </div>
 </div>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
