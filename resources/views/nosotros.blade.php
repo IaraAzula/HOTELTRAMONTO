@@ -100,23 +100,23 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Ricardo">
+                        <img src="https://i.postimg.cc/CLWL81kR/IMG-6064.jpg" class="img-fluid" alt="Ricardo">
                     </div>
                     <h5 class="fw-bold">Ricardo Valenzuela</h5>
                     <p class="text-gold-tramonto fw-bold">Gerente General</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Elena">
+                        <img src="https://i.postimg.cc/rmPLLn9d/IMG-6065.jpg" class="img-fluid" alt="Elena">
                     </div>
-                    <h5 class="fw-bold">Elena Solari</h5>
+                    <h5 class="fw-bold">Bautista Solari</h5>
                     <p class="text-gold-tramonto fw-bold">Chef Principal</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="rounded-circle mx-auto mb-3 border border-2 border-gold" style="width: 150px; height: 150px; overflow: hidden; background: #1e293b;">
-                        <img src="https://via.placeholder.com/150" class="img-fluid" alt="Bautista">
+                        <img src="https://i.postimg.cc/cJ5ssLx3/IMG-6066.jpg" class="img-fluid" alt="Bautista">
                     </div>
-                    <h5 class="fw-bold">Bautista Ríos</h5>
+                    <h5 class="fw-bold">Elena Ríos</h5>
                     <p class="text-gold-tramonto fw-bold">Guía de Expediciones</p>
                 </div>
             </div>
