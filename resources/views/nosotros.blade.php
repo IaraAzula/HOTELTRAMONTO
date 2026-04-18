@@ -58,9 +58,11 @@
         <div class="container">
             <h1 class="display-4 fw-bold mb-4 text-gold-tramonto">Nuestra Historia</h1> 
             <p class="lead mx-auto" style="max-width: 900px; font-size: 1.25rem; color: #e2e8f0; line-height: 1.8;">
-                Hotel Tramonto nació de un sueño familiar bajo los cielos dorados de Corrientes. 
-                Hace más de dos décadas abrimos nuestras puertas frente a las majestuosas barrancas del Paraná, 
-                convirtiéndonos en un refugio de paz y hospitalidad correntina que celebra la belleza de nuestra tierra.
+                El Hotel Tramonto tiene una historia que se remonta a la época en que Empedrado era un destino turístico de renombre. Nuestro hotel fue originalmente construido como el histórico Hotel de Turismo de Empedrado, un emblemático establecimiento que acogió a numerosos visitantes y personalidades durante décadas.
+                En su momento, el hotel también albergó un casino, que fue un lugar de encuentro para la sociedad local y los visitantes. 
+                La construcción del hotel se remonta al año 1962 durante el gobierno del Dr. Fernando Piragine Niveyro, cuando el reconocido arquitecto diseñó una estructura que sería un ícono de la arquitectura de la región. Con una visión innovadora y una atención al detalle, se creó un edificio que no solo era funcional, sino también una obra de arte.
+                En 1982, el hotel fue privatizado y cambió de manos varias veces, hasta que finalmente en el 2020 fue adquirido por nuestra familia. Con una visión clara de restaurar el esplendor del hotel y ofrecer una experiencia única a nuestros huéspedes, hemos trabajado arduamente para renovar y modernizar las instalaciones, mientras preservamos su rica historia y encanto. 
+                El nombre "Tramonto" proviene del italiano y significa "atardecer". Y es que nuestros atardeceres sobre el rio Paraná son verdaderamente únicos, pintando el cielo de colores cálidos y vibrantes. 
             </p>
         </div>
     </div>
