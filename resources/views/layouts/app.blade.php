@@ -66,13 +66,13 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('nosotros') }}">Quiénes Somos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('catalogo') }}">Habitaciones</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('comercio') }}">Métodos de pago</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('contacto') }}">Contacto</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('consultas') }}">Consultas</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('servicios') }}">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active fw-bold' : '' }}" href="{{ route('home') }}">Inicio</a>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('nosotros') ? 'active fw-bold' : '' }}" href="{{ route('nosotros') }}">Quiénes Somos</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalogo') ? 'active fw-bold' : '' }}" href="{{ route('catalogo') }}">Habitaciones</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('comercio') ? 'active fw-bold' : '' }}" href="{{ route('comercio') }}">Comercializacion</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('contacto') ? 'active fw-bold' : '' }}" href="{{ route('contacto') }}">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('terminos') ? 'active fw-bold' : '' }}" href="{{ route('terminos') }}">Términos y usos</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('servicios') ? 'active fw-bold' : '' }}" href="{{ route('servicios') }}">Servicios</a></li>
           </ul>
         </div>
       </div>
@@ -84,8 +84,6 @@
 
 <footer class="bg-dark text-white text-center py-4 mt-5">
     <p class="mb-0">© 2026 Hotel Tramonto - Lavalle 55 Empedrado, Corrientes.</p>
-    <a href="{{ route('terminos') }}" class="text-secondary small text-decoration-none">Términos y Condiciones</a>
-    
     <div class="container py-3">
         <div class="d-flex justify-content-center align-items-center gap-4">
             
