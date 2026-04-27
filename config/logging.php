@@ -9,26 +9,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Log Channel
+    | Canal de Logs por Defecto
     |--------------------------------------------------------------------------
-    |
-    | This option defines the default log channel that is utilized to write
-    | messages to your logs. The value provided here should match one of
-    | the channels present in the list of "channels" configured below.
-    |
+    | Aquí se define qué canal se usa para escribir los mensajes de error.
+    | El valor 'stack' significa que puede usar varios canales al mismo tiempo.
     */
 
     'default' => env('LOG_CHANNEL', 'stack'),
 
     /*
     |--------------------------------------------------------------------------
-    | Deprecations Log Channel
+    | Canal de Depreciaciones
     |--------------------------------------------------------------------------
-    |
-    | This option controls the log channel that should be used to log warnings
-    | regarding deprecated PHP and library features. This allows you to get
-    | your application ready for upcoming major versions of dependencies.
-    |
+    | Esto controla dónde se guardan los avisos sobre funciones viejas de PHP
+    | que van a dejar de funcionar pronto. Ayuda a mantener el código al día.
     */
 
     'deprecations' => [
@@ -38,26 +32,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Log Channels
+    | Canales de Log
     |--------------------------------------------------------------------------
-    |
-    | Here you may configure the log channels for your application. Laravel
-    | utilizes the Monolog PHP logging library, which includes a variety
-    | of powerful log handlers and formatters that you're free to use.
-    |
-    | Available drivers: "single", "daily", "slack", "syslog",
-    |                    "errorlog", "monolog", "custom", "stack"
-    |
+    | Aquí configuramos los distintos lugares donde el Hotel Tramonto 
+    | puede anotar lo que pasa. Usamos la librería Monolog.
     */
 
     'channels' => [
 
+        // Stack: Agrupa varios canales (por defecto usa el canal 'single').
         'stack' => [
             'driver' => 'stack',
             'channels' => explode(',', (string) env('LOG_STACK', 'single')),
             'ignore_exceptions' => false,
         ],
 
+        // Single: Guarda todo en un ÚNICO archivo de texto.
+        // Ruta: storage/logs/laravel.log
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
@@ -65,6 +56,8 @@ return [
             'replace_placeholders' => true,
         ],
 
+        // Daily: Crea un archivo por día (ej: laravel-2026-04-28.log).
+        // Borra los archivos que tengan más de 14 días para no llenar el disco.
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
@@ -73,6 +66,7 @@ return [
             'replace_placeholders' => true,
         ],
 
+        // Slack: Si hay un error crítico, manda un mensaje a un canal de Slack.
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
@@ -82,6 +76,7 @@ return [
             'replace_placeholders' => true,
         ],
 
+        // Papertrail: Envía los errores a un servicio externo en la nube.
         'papertrail' => [
             'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),
@@ -89,40 +84,17 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
             ],
             'processors' => [PsrLogMessageProcessor::class],
         ],
 
-        'stderr' => [
-            'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => StreamHandler::class,
-            'handler_with' => [
-                'stream' => 'php://stderr',
-            ],
-            'formatter' => env('LOG_STDERR_FORMATTER'),
-            'processors' => [PsrLogMessageProcessor::class],
-        ],
-
-        'syslog' => [
-            'driver' => 'syslog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'facility' => env('LOG_SYSLOG_FACILITY', LOG_USER),
-            'replace_placeholders' => true,
-        ],
-
-        'errorlog' => [
-            'driver' => 'errorlog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'replace_placeholders' => true,
-        ],
-
+        // Null: Un "agujero negro". Lo que se manda acá no se guarda en ningún lado.
         'null' => [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
 
+        // Emergency: Canal de emergencia por si el archivo principal falla.
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],

@@ -124,3 +124,7 @@ return [
     ],
 
 ];
+
+//"Este archivo centraliza la configuración del sistema. Lo más importante aquí es el uso de la función 
+// env(), que nos permite traer valores desde el archivo de variables de entorno para no dejar datos 
+// sensibles (como la clave de encriptación) escritos directamente en el código".

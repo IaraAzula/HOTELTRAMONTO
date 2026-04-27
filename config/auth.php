@@ -115,3 +115,7 @@ return [
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
 ];
+
+//"Este es el archivo de configuración de Autenticación. Aquí definimos los Guards y Providers.
+//  Básicamente, configuramos que el sistema use el modelo User a través de Eloquent para validar a
+//  los usuarios y que la seguridad se maneje mediante sesiones del navegador".

@@ -4,32 +4,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Filesystem Disk
+    | Disco por Defecto
     |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default filesystem disk that should be used
-    | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application for file storage.
-    |
+    | Aquí elegimos qué "disco" usará el hotel para guardar cosas. 
+    | Por defecto usa el disco 'local'.
     */
 
     'default' => env('FILESYSTEM_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
-    | Filesystem Disks
+    | Configuración de los Discos
     |--------------------------------------------------------------------------
-    |
-    | Below you may configure as many filesystem disks as necessary, and you
-    | may even configure multiple disks for the same driver. Examples for
-    | most supported storage drivers are configured here for reference.
-    |
-    | Supported drivers: "local", "ftp", "sftp", "s3"
-    |
+    | Estos son los distintos lugares donde se pueden almacenar archivos.
     */
 
     'disks' => [
 
+        // Disco Local: Para archivos privados que el usuario no puede ver desde afuera.
+        // Se guardan en storage/app/private.
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
@@ -38,6 +31,9 @@ return [
             'report' => false,
         ],
 
+        // Disco Público: ¡ESTE ES EL IMPORTANTE! 
+        // Aquí se guardan las fotos de las habitaciones del hotel que sí queremos 
+        // que se vean en la página web. Se guardan en storage/app/public.
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -47,6 +43,8 @@ return [
             'report' => false,
         ],
 
+        // Disco S3: Para guardar archivos en la nube de Amazon (AWS). 
+        // Se usa cuando el hotel crece mucho y tiene miles de imágenes.
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -64,13 +62,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Symbolic Links
+    | Enlaces Simbólicos (Links)
     |--------------------------------------------------------------------------
-    |
-    | Here you may configure the symbolic links that will be created when the
-    | `storage:link` Artisan command is executed. The array keys should be
-    | the locations of the links and the values should be their targets.
-    |
+    | Como la carpeta 'storage' es privada, este comando crea un "atajo" 
+    | desde la carpeta 'public' para que el navegador pueda mostrar las fotos.
     */
 
     'links' => [
