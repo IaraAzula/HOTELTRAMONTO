@@ -38,7 +38,6 @@
     .card-habitacion:hover {
         transform: translateY(-10px);
         border-color: #d4af37; 
-        /* Corregido: Sombra dorada en lugar de roja */
         box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
         background-color: rgba(255, 255, 255, 0.07);
     }
