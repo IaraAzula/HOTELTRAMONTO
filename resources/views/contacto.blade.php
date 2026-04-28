@@ -21,9 +21,8 @@
         color: #cbd5e1 !important;
     }
 
-    /* --- CORRECCIÓN DE COLOR PARA PLACEHOLDERS --- */
     .form-control::placeholder {
-        color: #94a3b8 !important; /* Gris claro visible */
+        color: #94a3b8 !important; 
         opacity: 1; 
     }
 

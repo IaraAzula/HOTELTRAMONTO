@@ -16,12 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
     
     // 3. Middlewares: Capas de seguridad y procesamiento
     ->withMiddleware(function (Middleware $middleware): void {
-        // Aquí podrías agregar filtros (ej: verificar que el usuario sea Admin)
     })
     
     // 4. Manejo de Excepciones: Cómo reacciona el sistema ante errores
     ->withExceptions(function (Exceptions $exceptions): void {
-        // Aquí se configura qué hacer si algo falla en el código
     })
     
     // 5. Crea e inicia la instancia de la aplicación con toda la configuración anterior

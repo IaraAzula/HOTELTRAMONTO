@@ -6,9 +6,9 @@
         background-color: #020617 !important;
     }
 
-    /* Sección de Consultas con la nueva imagen de fondo */
+    /* Sección de Consultas*/
     .bg-consultas-imagen {
-        /* Capa oscura translúcida ajustada para la nueva foto */
+        /* Capa oscura translúcida ajustada para la foto */
         background-image: linear-gradient(rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.85)), 
                           url('https://i.postimg.cc/vBt2xG2b/Whats-App-Image-2026-04-18-at-9-45-02-AM.jpg'); 
         background-size: cover;
@@ -25,14 +25,13 @@
     }
 
     .text-light-muted {
-        color: #cbd5e1 !important; /* Gris Slate 300 para máxima legibilidad */
+        color: #cbd5e1 !important; 
         text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
     }
 
-    /* Formulario Glassmorphism Mejorado */
     .form-glass {
         background-color: rgba(255, 255, 255, 0.02); 
-        border: 1px solid rgba(212, 175, 55, 0.4); /* Borde un poco más nítido */
+        border: 1px solid rgba(212, 175, 55, 0.4); 
         border-radius: 20px;
         backdrop-filter: blur(12px); 
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);

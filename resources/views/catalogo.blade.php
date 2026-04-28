@@ -19,13 +19,12 @@
         letter-spacing: 1px;
     }
 
-    /* CAMBIO: Color para que el subtítulo sea legible */
     .text-light-muted {
-        color: #cbd5e1 !important; /* Un gris azulado claro muy elegante */
+        color: #cbd5e1 !important; /* Gris claro para textos secundarios */
         opacity: 0.8;
     }
 
-    /* Cards Profesionales */
+    /* Configuración de las tarjetas (Cards) de habitaciones */
     .card-habitacion {
         background-color: rgba(255, 255, 255, 0.03); 
         border: 1px solid rgba(212, 175, 55, 0.3); 
@@ -34,7 +33,7 @@
         transition: all 0.4s ease;
         color: white;
     }
-
+    /* Efecto al pasar el mouse sobre la tarjeta */
     .card-habitacion:hover {
         transform: translateY(-10px);
         border-color: #d4af37; 
@@ -44,14 +43,15 @@
 
     .room-img {
         height: 280px;
-        object-fit: cover;
+        object-fit: cover; /* Ajusta la imagen sin deformarla */
         transition: transform 0.5s ease;
     }
-
+    /* Efecto de zoom en la imagen cuando se hace hover en la tarjeta */
     .card-habitacion:hover .room-img {
         transform: scale(1.05);
     }
-
+    
+    /* Estilo del botón personalizado */
     .btn-tramonto {
         border: 1px solid #d4af37;
         color: #d4af37;
@@ -66,7 +66,7 @@
 
     .btn-tramonto:hover {
         background-color: #d4af37;
-        color: #020617;
+        color: #020617;/* El texto se vuelve oscuro al fondo del botón dorado */
         box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
     }
 
@@ -78,10 +78,12 @@
 
 <div class="bg-rooms py-5">
     <div class="container">
+        {{-- Encabezado de la sección --}}
         <h1 class="display-5 fw-bold mb-2 text-center text-gold-tramonto">Nuestras Habitaciones</h1>
         <p class="text-center text-light-muted mb-5">Exclusividad y confort frente a las barrancas del Paraná</p>
         
         <div class="row g-4">
+            {{-- Inicio habitación Standard (3 columnas en pantallas grandes) --}}
             <div class="col-md-4">
                 <div class="card card-habitacion h-100">
                     <div class="overflow-hidden">
@@ -97,8 +99,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </div>{{-- Fin de la habitación --}}
+            
+            {{-- Inicio habitación Suite (3 columnas en pantallas grandes) --}}
             <div class="col-md-4">
                 <div class="card card-habitacion h-100">
                     <div class="overflow-hidden">
@@ -114,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>{{-- Fin de la habitación --}}
 
             <div class="col-md-4">
                 <div class="card card-habitacion h-100">

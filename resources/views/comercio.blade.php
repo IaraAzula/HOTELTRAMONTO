@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('contenido')
+{{-- Carga la librería FontAwesome para poder usar los iconos de tarjetas, bancos y llaves --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -22,7 +23,8 @@
         color: #d4af37;
         font-weight: bold;
     }
-
+   
+    /* Estilo de los cuadros de Métodos de Pago */
     .pago-item {
         background-color: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(212, 175, 55, 0.3);
@@ -40,7 +42,7 @@
     .pago-item:hover {
         background-color: rgba(212, 175, 55, 0.1);
         border-color: #d4af37;
-        transform: translateY(-5px);
+        transform: translateY(-5px);/* Pequeño salto hacia arriba al pasar el mouse */
     }
 
     .icon-gold {
@@ -48,7 +50,8 @@
         font-size: 3rem;
         margin-bottom: 15px;
     }
-
+    
+    /* Tarjetas de información inferior (Check-in) */
     .checkin-card {
         background-color: rgba(255, 255, 255, 0.05);
         border-radius: 15px;
@@ -100,12 +103,14 @@
                 </div>
             </div>
         </div>
-
+    
         <h2 class="text-center titulo-dorado mb-5 mt-5 pt-4">Información Post-Reserva</h2>
-
+        
+        {{-- Sección de información adicional usando Flexbox (d-flex) --}}
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="checkin-card d-flex align-items-center">
+                    {{-- Icono de llave al lado del texto --}}
                     <i class="fa-solid fa-key icon-gold me-4 fs-1 mb-0"></i>
                     <div>
                         <h4 class="titulo-dorado fs-5">Tu Check-in Digital</h4>
@@ -116,6 +121,7 @@
 
             <div class="col-md-6">
                 <div class="checkin-card d-flex align-items-center">
+                    {{-- Icono de conserje/campana --}}
                     <i class="fa-solid fa-bell-concierge icon-gold me-4 fs-1 mb-0"></i>
                     <div>
                         <h4 class="titulo-dorado fs-5">Entrega de Habitación</h4>
