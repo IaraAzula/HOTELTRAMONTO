@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HabitacionController;
+
+Route::resource('habitaciones', HabitacionController::class);
 
 // Cambiamos esto para que la raíz sea tu página principal
 Route::get('/', function () {
