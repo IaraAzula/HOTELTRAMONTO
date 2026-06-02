@@ -23,8 +23,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $roles = Rol::all(); // Necesario para el select de roles en el formulario
-        return view('usuarios.create', compact('roles'));
+    $roles = Rol::all(); 
+    return view('registro', compact('roles')); 
     }
 
     /**
@@ -34,6 +34,7 @@ class UsuarioController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:100',
+            'apellido' => 'required|string|max:100',
             'email' => 'required|email|unique:usuarios',
             'password' => 'required|min:8|confirmed', // busca el campo password_confirmation
             'rol_id' => 'required|exists:roles,id', // valida que el rol exista en la tabla roles
@@ -41,9 +42,8 @@ class UsuarioController extends Controller
 
         // Gracias al cast 'hashed' que pusimos en el Modelo Usuario,
         // Laravel va a encriptar la password automáticamente acá.
-        Usuario::create($request->only(['nombre', 'email', 'password', 'rol_id']));
-        
-        return redirect()->route('usuarios.index')->with('exito', 'Usuario registrado.');
+        Usuario::create($request->only(['nombre', 'apellido', 'email', 'password', 'rol_id']));
+        return redirect()->route('catalogo')->with('exito', '¡Cuenta creada con éxito! Ya podés iniciar sesión.');
     }
 
     public function show(Usuario $usuario) {}

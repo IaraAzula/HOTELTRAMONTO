@@ -80,20 +80,22 @@
                     <h2 class="text-center fw-bold text-gold-tramonto mb-3">Crear Cuenta</h2>
                     <p class="text-center text-muted small mb-4">Registrate para gestionar tus reservas en Hotel Tramonto</p>
 
-                        <form action="{{ route('usuarios.store') }}" method="POST">
-                        @csrf {{-- Token obligatorio de Laravel para evitar ataques de seguridad --}}
+                    <form action="{{ route('registro.store') }}" method="POST">
+                        @csrf 
+
+                        <input type="hidden" name="rol_id" value="2">
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label small text-white-50">Nombre</label>
-                                <input type="text" name="nombre" class="form-control form-control-tramonto @error('nombre') is-invalid @enderror" value="{{ old('nombre') }}">
+                                <input type="text" name="nombre" class="form-control form-control-tramonto @error('nombre') is-invalid @enderror" value="{{ old('nombre') }}" required>
                                 @error('nombre')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-white-50">Apellido</label>
-                                <input type="text" name="apellido" class="form-control form-control-tramonto @error('apellido') is-invalid @enderror" value="{{ old('apellido') }}">
+                                <input type="text" name="apellido" class="form-control form-control-tramonto @error('apellido') is-invalid @enderror" value="{{ old('apellido') }}" required>
                                 @error('apellido')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -102,15 +104,15 @@
 
                         <div class="mb-3">
                             <label class="form-label small text-white-50">Correo Electrónico</label>
-                            <input type="email" name="email" class="form-control form-control-tramonto @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                            <input type="email" name="email" class="form-control form-control-tramonto @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label small text-white-50">Contraseña</label>
-                            <input type="password" name="password" class="form-control form-control-tramonto @error('password') is-invalid @enderror">
+                            <label class="form-label small text-white-50">Contraseña (Mínimo 8 caracteres)</label>
+                            <input type="password" name="password" class="form-control form-control-tramonto @error('password') is-invalid @enderror" required>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -118,7 +120,7 @@
 
                         <div class="mb-4">
                             <label class="form-label small text-white-50">Confirmar Contraseña</label>
-                            <input type="password" name="password_confirmation" class="form-control form-control-tramonto">
+                            <input type="password" name="password_confirmation" class="form-control form-control-tramonto" required>
                         </div>
 
                         <button type="submit" class="btn btn-tramonto-submit mb-3">Registrarse</button>

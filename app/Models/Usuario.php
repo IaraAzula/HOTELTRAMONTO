@@ -17,6 +17,7 @@ class Usuario extends Authenticatable
     // Columnas permitidas para asignación masiva
     protected $fillable = [
         'nombre', 
+        'apellido',
         'email', 
         'password', 
         'rol_id'

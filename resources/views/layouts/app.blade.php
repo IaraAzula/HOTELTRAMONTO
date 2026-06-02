@@ -65,15 +65,42 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active fw-bold' : '' }}" href="{{ route('home') }}">Inicio</a>
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active fw-bold' : '' }}" href="{{ route('home') }}">Inicio</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('nosotros') ? 'active fw-bold' : '' }}" href="{{ route('nosotros') }}">Quiénes Somos</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalogo') ? 'active fw-bold' : '' }}" href="{{ route('catalogo') }}">Habitaciones</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('comercio') ? 'active fw-bold' : '' }}" href="{{ route('comercio') }}">Comercializacion</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('contacto') ? 'active fw-bold' : '' }}" href="{{ route('contacto') }}">Contacto</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('terminos') ? 'active fw-bold' : '' }}" href="{{ route('terminos') }}">Términos y usos</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('servicios') ? 'active fw-bold' : '' }}" href="{{ route('servicios') }}">Servicios</a></li>
-          </ul>
+            
+            @guest
+                <li class="nav-item ms-lg-3">
+                    <a class="nav-link text-white-50" href="{{ route('login') }}">
+                        Ingresar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning btn-sm ms-lg-2" href="{{ route('registro') }}" style="border-color: #C7B25D; color: #C7B25D;">
+                        Registrarse
+                    </a>
+                </li>
+            @endguest
+
+            @auth
+                <li class="nav-item ms-lg-3 text-white-50 small">
+                    Bienvenido, <span style="color: #C7B25D;" class="fw-bold">{{ Auth::user()->nombre }}</span>
+                </li>
+                <li class="nav-item ms-lg-2">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-link text-white-50 text-decoration-none" style="font-size: 0.85rem; text-transform: uppercase;">
+                            [Salir]
+                        </button>
+                    </form>
+                </li>
+            @endauth
+            </ul>
         </div>
       </div>
     </nav>
