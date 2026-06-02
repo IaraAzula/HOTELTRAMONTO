@@ -2,22 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes; // <-- IMPORTANTE
 
-class Producto extends Model
+class Habitacion extends Model
 {
-    protected $fillable = [
-        'tipo',
-        'descripcion',
-        'precio',
-        'stock',
-        'url_imagen',
-        'disponible',
-    ];
+    use HasFactory, SoftDeletes; // <-- Activa la baja lógica
 
-    protected $casts = [
-        'precio' => 'decimal:2',
-        'stock' => 'integer',
-        'disponible' => 'boolean',
-    ];
+    // Le avisamos a Laravel el nombre real de la tabla en español
+    protected $table = 'habitaciones';
+
+    protected $fillable = ['nombre', 'descripcion', 'precio', 'imagen'];
 }

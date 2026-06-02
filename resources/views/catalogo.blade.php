@@ -83,58 +83,34 @@
         <p class="text-center text-light-muted mb-5">Exclusividad y confort frente a las barrancas del Paraná</p>
         
         <div class="row g-4">
-            {{-- Inicio habitación Standard (3 columnas en pantallas grandes) --}}
-            <div class="col-md-4">
-                <div class="card card-habitacion h-100">
-                    <div class="overflow-hidden">
-                        <img src="https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg" class="card-img-top room-img" alt="Habitación Standard">
-                    </div>
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="card-title fw-bold mb-3">Habitación Standard</h4>
-                            <p class="price-tag fw-bold">USD 60 – 90 <span class="small text-light-muted">/ noche</span></p>
+            {{-- BUCLE DINÁMICO: Recorre las habitaciones cargadas en MariaDB --}}
+            @forelse($habitaciones as $habitacion)
+                <div class="col-md-4">
+                    <div class="card card-habitacion h-100">
+                        <div class="overflow-hidden">
+                            <img src="{{ $habitacion->imagen ?? 'https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg' }}" class="card-img-top room-img" alt="{{ $habitacion->nombre }}">
                         </div>
-                        <div class="mt-4">
-                            <a href="{{ url('/habitacion-standard') }}" class="btn btn-tramonto">Explorar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>{{-- Fin de la habitación --}}
-            
-            {{-- Inicio habitación Suite (3 columnas en pantallas grandes) --}}
-            <div class="col-md-4">
-                <div class="card card-habitacion h-100">
-                    <div class="overflow-hidden">
-                        <img src="https://i.postimg.cc/kggxR2y6/IMG-5736.jpg" class="card-img-top room-img" alt="Suite Río">
-                    </div>
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="card-title fw-bold mb-3 text-white">Suite Vista al Río</h4>
-                            <p class="price-tag fw-bold">USD 90 – 140 <span class="small text-light-muted">/ noche</span></p>
-                        </div>
-                        <div class="mt-4">
-                            <a href="{{ url('/habitacion-suite') }}" class="btn btn-tramonto">Explorar</a>
+                        <div class="card-body text-center d-flex flex-column justify-content-between">
+                            <div>
+                                <h4 class="card-title fw-bold mb-3 text-white">{{ $habitacion->nombre }}</h4>
+                                
+                                <p class="text-light-muted small mb-3">{{ $habitacion->descripcion }}</p>
+                                
+                                <p class="price-tag fw-bold">${{ number_format($habitacion->precio, 0, ',', '.') }} <span class="small text-light-muted">/ noche</span></p>
+                            </div>
+                            <div class="mt-4">
+                                {{-- Por ahora te redirige a una ruta genérica del recurso hasta armar los detalles dinámicos --}}
+                                <a href="{{ route('habitaciones.show', $habitacion->id) }}" class="btn btn-tramonto">Explorar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>{{-- Fin de la habitación --}}
-
-            <div class="col-md-4">
-                <div class="card card-habitacion h-100">
-                    <div class="overflow-hidden">
-                        <img src="https://i.postimg.cc/KzSn6MQ6/IMG-5739.jpg" class="card-img-top room-img" alt="Habitación Familiar">
-                    </div>
-                    <div class="card-body text-center d-flex flex-column justify-content-between">
-                        <div>
-                            <h4 class="card-title fw-bold mb-3 text-white">Familiar Junior Suite</h4>
-                            <p class="price-tag fw-bold">USD 80 – 120 <span class="small text-light-muted">/ noche</span></p>
-                        </div>
-                        <div class="mt-4">
-                            <a href="{{ url('/habitacion-familiar') }}" class="btn btn-tramonto">Explorar</a>
-                        </div>
-                    </div>
+            @empty
+                {{-- En caso de que se borren todas las habitaciones o no haya ninguna en DBeaver --}}
+                <div class="col-12 text-center py-5">
+                    <p class="text-light-muted fs-4">No hay habitaciones disponibles en este momento.</p>
                 </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </div>

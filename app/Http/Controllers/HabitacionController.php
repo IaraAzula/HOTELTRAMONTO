@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
 {
+
+     public function catalogo()
+    {
+        // Trae todas las habitaciones de MariaDB que NO tengan baja lógica
+        $habitaciones = Habitacion::all();
+
+        // Te manda a la vista 'catalogo' pasándole la variable
+        return view('catalogo', compact('habitaciones'));
+    }
     /**
      * Display a listing of the resource.
      */
