@@ -109,14 +109,9 @@
                                 
                                 <p class="price-tag fw-bold">${{ number_format($habitacion->precio, 0, ',', '.') }} <span class="small text-light-muted">/ noche</span></p>
                             </div>
-                            
-                            {{-- Bloque de botones de acción modificado --}}
-                            <div class="mt-4 d-grid gap-2">
-                                <a href="{{ route('habitaciones.show', $habitacion->id) }}" class="btn btn-tramonto">Explorar</a>
-                                
-                                <a href="{{ route('carrito.agregar', $habitacion->id) }}" class="btn btn-tramonto" style="background-color: #d4af37; color: #020617;">
-                                    <i class="bi bi-calendar-plus me-2"></i>Reservar ahora
-                                </a>
+                            <div class="mt-4">
+                                {{-- Por ahora te redirige a una ruta genérica del recurso hasta armar los detalles dinámicos --}}
+                              <a href="{{ route('habitaciones.show', $habitacion->id) }}" class="btn btn-tramonto">Explorar</a>
                             </div>
                         </div>
                     </div>

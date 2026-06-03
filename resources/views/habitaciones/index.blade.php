@@ -1,17 +1,21 @@
 <h1>Lista de Habitaciones</h1>
 
-<a href="{{ route('habitaciones.create') }}">
-    Crear habitacion
-</a>
+<a href="{{ route('habitaciones.create') }}">Crear habitación</a>
 
 <hr>
 
 @foreach ($habitaciones as $habitacion)
-
     <p>
         {{ $habitacion->nombre }} -
-        {{ $habitacion->tipo }} -
+        {{ $habitacion->descripcion }} -
         ${{ $habitacion->precio }}
-    </p>
 
+        <a href="{{ route('habitaciones.edit', $habitacion->id) }}">Editar</a>
+
+        <form action="{{ route('habitaciones.destroy', $habitacion->id) }}" method="POST" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Eliminar</button>
+        </form>
+    </p>
 @endforeach

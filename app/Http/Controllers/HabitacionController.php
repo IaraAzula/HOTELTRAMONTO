@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Habitacion;
+use App\Models\HabitacionImagen;
 use Illuminate\Http\Request;
 
 class HabitacionController extends Controller

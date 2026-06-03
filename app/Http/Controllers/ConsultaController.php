@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 class ConsultaController extends Controller
 {
     // Muestra la página del formulario
-    public function index()
+   public function index()
     {
-        return view('consultas');
+    // Trae todas las consultas de la base de datos
+    $consultas = \App\Models\Consulta::latest()->get(); 
+    return view('admin.consultas.index', compact('consultas'));
     }
-
     public function store(Request $request)
     {
         // 1. Validamos únicamente lo que el usuario escribe ahora

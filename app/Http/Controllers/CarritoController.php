@@ -79,4 +79,12 @@ class CarritoController extends Controller
 
         return redirect()->route('home')->with('exito', '¡Reserva confirmada con éxito!');
     }
+
+    public function ventasAdmin()
+{
+    // Buscamos todas las reservas con los datos del usuario que las hizo
+    // Si no tenés la relación 'usuario' en el modelo, podés usar Reserva::latest()->get()
+    $ventas = \App\Models\Reserva::latest()->get();
+    return view('admin.ventas.index', compact('ventas'));
+}
 }
