@@ -23,6 +23,7 @@
                     <p class="text-center text-muted small mb-4">Ingresá a tu cuenta exclusiva de Hotel Tramonto</p>
 
                     <form action="{{ route('login.store') }}" method="POST">
+    
                         @csrf
 
                         <div class="mb-3">

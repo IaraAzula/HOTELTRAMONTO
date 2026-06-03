@@ -16,6 +16,12 @@ return Application::configure(basePath: dirname(__DIR__))
     
     // 3. Middlewares: Capas de seguridad y procesamiento
     ->withMiddleware(function (Middleware $middleware): void {
+        
+        // 🚀 REGISTRAMOS EL ALIAS PARA EL MIDDLEWARE DE ADMINISTRADOR
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\EsAdministrador::class,
+        ]);
+
     })
     
     // 4. Manejo de Excepciones: Cómo reacciona el sistema ante errores

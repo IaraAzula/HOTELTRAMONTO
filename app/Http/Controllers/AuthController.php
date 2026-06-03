@@ -15,27 +15,26 @@ class AuthController extends Controller
     }
 
     // Procesa el inicio de sesión
-    public function login(Request $request)
-    {
-        $credenciales = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
 
-        // Intentar autenticar al usuario
-        if (Auth::attempt($credenciales)) {
-            $request->session()->regenerate();
-            
-            // Si el login es exitoso, redirige al catálogo
-            return redirect()->route('catalogo')->with('exito', '¡Bienvenido de nuevo!');
+    public function login(Request $request)
+        {
+            $credenciales = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+            // Ahora que configuramos auth.php, esto va a buscar directo en tu tabla 'usuarios'
+            if (Auth::attempt($credenciales)) {
+                $request->session()->regenerate();
+                return redirect()->route('catalogo')->with('exito', '¡Bienvenido de nuevo!');
+            }
+
+            return back()->withErrors([
+                'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+            ])->onlyInput('email');
         }
 
-        // Si falla, vuelve atrás con un error
-        return back()->withErrors([
-            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-        ])->onlyInput('email');
-    }
-
+   
     // Procesa el cierre de sesión (Logout)
     public function logout(Request $request)
     {

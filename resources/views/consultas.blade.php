@@ -2,151 +2,71 @@
 
 @section('contenido')
 <style>
-    body {
-        background-color: #020617 !important;
-    }
-
-    /* Sección de Consultas*/
-    .bg-consultas-imagen {
-        /* Capa oscura translúcida ajustada para la foto */
-        background-image: linear-gradient(rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.85)), 
-                          url('https://i.postimg.cc/vBt2xG2b/Whats-App-Image-2026-04-18-at-9-45-02-AM.jpg'); 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-
-    .text-gold-tramonto {
-        color: #d4af37 !important;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-    }
-
-    .text-light-muted {
-        color: #cbd5e1 !important; 
-        text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-    }
-
-    .form-glass {
-        background-color: rgba(255, 255, 255, 0.02); 
-        border: 1px solid rgba(212, 175, 55, 0.4); 
-        border-radius: 20px;
-        backdrop-filter: blur(12px); 
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    }
-
-    .form-label {
-        color: #d4af37;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-    }
-
-    .form-control, .form-select {
-        background-color: rgba(2, 6, 23, 0.5); /* Fondo más oscuro para los inputs */
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        color: white !important;
-    }
-
-    .form-control::placeholder {
-        color: #94a3b8 !important; 
-    }
-
-    .form-control:focus, .form-select:focus {
-        background-color: rgba(2, 6, 23, 0.8);
-        border-color: #d4af37;
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        color: white;
-    }
-
-    .form-select option {
-        background-color: #020617;
-        color: white;
-    }
-
-    .btn-tramonto {
-        background-color: transparent;
-        border: 1px solid #d4af37;
-        color: #d4af37;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: 0.4s;
-    }
-
-    .btn-tramonto:hover {
-        background-color: #d4af37;
-        color: #020617;
-        box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-    }
-
-    .modal-content-dark {
-        background-color: #020617;
-        border: 1px solid #d4af37;
-        color: white;
-        border-radius: 15px;
-    }
+    body { background-color: #020617 !important; color: #ffffff; }
+    .text-gold-tramonto { color: #d4af37 !important; letter-spacing: 1px; }
+    .card-tramonto { background-color: rgba(15, 23, 42, 0.6); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; backdrop-filter: blur(5px); }
+    .form-control-tramonto { background-color: rgba(2, 6, 23, 0.8) !important; border: 1px solid rgba(212, 175, 55, 0.3) !important; color: #ffffff !important; }
+    .form-control-tramonto:focus { border-color: #d4af37 !important; box-shadow: 0 0 8px rgba(212, 175, 55, 0.3) !important; }
+    .btn-tramonto { background-color: #d4af37; color: #020617; font-weight: bold; border: 1px solid #d4af37; transition: 0.3s; width: 100%; }
+    .btn-tramonto:hover { background-color: transparent; color: #d4af37; box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
 </style>
 
-<div class="bg-consultas-imagen py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold text-gold-tramonto">Consultas Generales</h1>
-            <p class="text-light-muted fs-5">Utilizá este formulario para consultas que no sean reservas.</p>
-        </div>
-        
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-5">
-                <form id="formConsulta" class="form-glass p-4 p-md-5">
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Asunto</label>
-                        <select class="form-select">
-                            <option>Consulta sobre tarifas</option>
-                            <option>Eventos y convenciones</option>
-                            <option>Restaurante</option>
-                            <option>Pesca guiada</option>
-                            <option>Otro</option>
-                        </select>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            {{-- Cartel flotante de éxito específico para consultas --}}
+            @if(session('exito_consulta'))
+                <div class="alert alert-success alert-dismissible fade show text-center border-0 mb-4 shadow-sm" role="alert" style="background-color: rgba(25, 135, 84, 0.2); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.4) !important;">
+                    <i class="bi bi-envelope-check-fill me-2"></i>
+                    {{ session('exito_consulta') }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="card card-tramonto p-4 shadow-lg">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-gold-tramonto">Dejanos tu Consulta</h2>
+                    <p class="text-muted small">Respondemos todas tus dudas para hacer tu estadía inolvidable</p>
+                </div>
+
+                <form action="{{ route('consultas.store') }}" method="POST">
+                    @csrf
+
+                    {{-- 💡 Información del usuario logueado (Solo lectura y estético) --}}
+                    <div class="p-3 mb-4 rounded" style="background-color: rgba(199, 178, 93, 0.1); border: 1px dashed rgba(199, 178, 93, 0.4);">
+                        <p class="m-0 small text-muted">Enviando consulta como:</p>
+                        <p class="m-0 fw-bold" style="color: #C7B25D;">
+                            {{ Auth::user()->nombre }} {{ Auth::user()->apellido }} 
+                            <span class="fw-normal text-white-50">({{ Auth::user()->email }})</span>
+                        </p>
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Tu Mensaje</label>
-                        <textarea class="form-control" rows="5" id="mensaje" placeholder="Escribí tu consulta aquí..." required></textarea>
+
+                    {{-- Asunto --}}
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label small fw-bold text-gold-tramonto">Asunto</label>
+                        <input type="text" name="asunto" id="asunto" class="form-control form-control-tramonto @error('asunto') is-invalid @enderror" value="{{ old('asunto') }}">
+                        @error('asunto')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    
-                    <button type="button" class="btn btn-tramonto w-100 py-3 fw-bold" onclick="enviarFormulario()">
-                        Enviar Consulta
+
+                    {{-- Mensaje --}}
+                    <div class="mb-4">
+                        <label for="mensaje" class="form-label small fw-bold text-gold-tramonto">Mensaje o Comentario</label>
+                        <textarea name="mensaje" id="mensaje" rows="4" class="form-control form-control-tramonto @error('mensaje') is-invalid @enderror">{{ old('mensaje') }}</textarea>
+                        @error('mensaje')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-tramonto py-2">
+                        <i class="bi bi-send-fill me-2"></i>Enviar Mensaje
                     </button>
                 </form>
             </div>
+
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="modalExito" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content modal-content-dark text-center p-5">
-            <div class="modal-body">
-                <div class="mb-4">
-                    <i class="bi bi-check-circle-fill text-gold-tramonto" style="font-size: 5rem;"></i>
-                </div>
-                <h2 class="fw-bold mb-3">¡Consulta enviada!</h2>
-                <p class="text-light-muted mb-4">En breve el equipo de Hotel Tramonto se pondrá en contacto con vos.</p>
-                <button type="button" class="btn btn-tramonto px-5" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function enviarFormulario() {
-        const mensaje = document.getElementById('mensaje').value;
-        if(mensaje.trim() === "") {
-            return; 
-        }
-        var myModal = new bootstrap.Modal(document.getElementById('modalExito'));
-        myModal.show();
-        document.getElementById("formConsulta").reset();
-    }
-</script>
 @endsection

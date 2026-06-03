@@ -76,6 +76,17 @@
     }
 </style>
 
+{{-- Cartel de Éxito Flotante del Registro --}}
+@if(session('exito'))
+    <div class="container mt-4">
+        <div class="alert alert-success alert-dismissible fade show text-center border-0 shadow-sm" role="alert" style="background-color: rgba(25, 135, 84, 0.2); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.4) !important;">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            {{ session('exito') }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@endif
+
 <div class="bg-rooms py-5">
     <div class="container">
         {{-- Encabezado de la sección --}}
@@ -98,15 +109,20 @@
                                 
                                 <p class="price-tag fw-bold">${{ number_format($habitacion->precio, 0, ',', '.') }} <span class="small text-light-muted">/ noche</span></p>
                             </div>
-                            <div class="mt-4">
-                                {{-- Por ahora te redirige a una ruta genérica del recurso hasta armar los detalles dinámicos --}}
+                            
+                            {{-- Bloque de botones de acción modificado --}}
+                            <div class="mt-4 d-grid gap-2">
                                 <a href="{{ route('habitaciones.show', $habitacion->id) }}" class="btn btn-tramonto">Explorar</a>
+                                
+                                <a href="{{ route('carrito.agregar', $habitacion->id) }}" class="btn btn-tramonto" style="background-color: #d4af37; color: #020617;">
+                                    <i class="bi bi-calendar-plus me-2"></i>Reservar ahora
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             @empty
-                {{-- En caso de que se borren todas las habitaciones o no haya ninguna en DBeaver --}}
+                {{-- En caso de que se borren todas las habitaciones o no haya ninguna --}}
                 <div class="col-12 text-center py-5">
                     <p class="text-light-muted fs-4">No hay habitaciones disponibles en este momento.</p>
                 </div>

@@ -4,20 +4,24 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\UsuarioController; 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RolController; // <-- Agregamos esta importación para evitar futuros errores
-
-// 1. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
-Route::resource('habitaciones', HabitacionController::class);
-Route::resource('roles', RolController::class);
-Route::resource('usuarios', UsuarioController::class);
+use App\Http\Controllers\RolController; 
+use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\CarritoController; 
 
 // 2. Ruta para la página principal
 Route::get('/', function () {
     return view('principal');
 })->name('home');
 
-// 3. Catálogo dinámico
+// 3. Catálogo dinámico (Público)
 Route::get('/catalogo', [HabitacionController::class, 'catalogo'])->name('catalogo');
+
+// 1. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('habitaciones', HabitacionController::class);
+    Route::resource('roles', RolController::class);
+    Route::resource('usuarios', UsuarioController::class);
+});
 
 // 4. Rutas estáticas de las habitaciones viejas 
 Route::get('/habitacion-standard', function () {
@@ -44,5 +48,17 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // El formulario público usa el método 'create' de UsuarioController 
 Route::get('/registro', [UsuarioController::class, 'create'])->name('registro');
-// Procesar el envío de datos del formulario (POST)
 Route::post('/registro', [UsuarioController::class, 'store'])->name('registro.store');
+
+// 7. Rutas para la sección de Consultas
+Route::get('/consultas', [ConsultaController::class, 'index'])->name('consultas.index')->middleware('auth');
+Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas.store')->middleware('auth');
+
+
+// 8. RUTAS DEL CARRITO DE RESERVAS 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
+    Route::get('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
+    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+});

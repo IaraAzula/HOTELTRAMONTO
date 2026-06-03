@@ -4,14 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; // <-- IMPORTANTE
+use Illuminate\Database\Eloquent\SoftDeletes; 
 
 class Habitacion extends Model
 {
-    use HasFactory, SoftDeletes; // <-- Activa la baja lógica
+    use HasFactory, SoftDeletes; 
 
-    // Le avisamos a Laravel el nombre real de la tabla en español
     protected $table = 'habitaciones';
 
-    protected $fillable = ['nombre', 'descripcion', 'precio', 'imagen'];
+    
+    protected $dates = ['deleted_at']; 
+
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+        'precio',
+        'capacidad',
+        'imagen', // Por si guardás la URL o ruta de la foto
+    ];
 }

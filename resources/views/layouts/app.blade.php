@@ -71,19 +71,29 @@
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalogo') ? 'active fw-bold' : '' }}" href="{{ route('catalogo') }}">Habitaciones</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('comercio') ? 'active fw-bold' : '' }}" href="{{ route('comercio') }}">Comercializacion</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('contacto') ? 'active fw-bold' : '' }}" href="{{ route('contacto') }}">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->routeIs('consultas.index') ? 'active fw-bold' : '' }}" href="{{ route('consultas.index') }}">Consultas</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('terminos') ? 'active fw-bold' : '' }}" href="{{ route('terminos') }}">Términos y usos</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('servicios') ? 'active fw-bold' : '' }}" href="{{ route('servicios') }}">Servicios</a></li>
             
+            {{-- 🛒 BOTÓN DINÁMICO DEL CARRITO --}}
+            <li class="nav-item ms-lg-2">
+                <a class="nav-link position-relative {{ request()->routeIs('carrito.ver') ? 'active' : '' }}" href="{{ route('carrito.ver') }}" style="color: #C7B25D !important;">
+                    <i class="bi bi-cart3 fs-5"></i>
+                    @if(session()->has('carrito') && count(session('carrito')) > 0)
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">
+                            {{ count(session('carrito')) }}
+                        </span>
+                    @endif
+                </a>
+            </li>
+
+            {{-- Autenticación limpia --}}
             @guest
                 <li class="nav-item ms-lg-3">
-                    <a class="nav-link text-white-50" href="{{ route('login') }}">
-                        Ingresar
-                    </a>
+                    <a class="nav-link text-white-50" href="{{ route('login') }}">Ingresar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-warning btn-sm ms-lg-2" href="{{ route('registro') }}" style="border-color: #C7B25D; color: #C7B25D;">
-                        Registrarse
-                    </a>
+                    <a class="btn btn-outline-warning btn-sm ms-lg-2" href="{{ route('registro') }}" style="border-color: #C7B25D; color: #C7B25D;">Registrarse</a>
                 </li>
             @endguest
 
@@ -100,7 +110,7 @@
                     </form>
                 </li>
             @endauth
-            </ul>
+          </ul>
         </div>
       </div>
     </nav>
@@ -109,24 +119,25 @@
         @yield('contenido')
     </div>
 
-<footer class="bg-dark text-white text-center py-4 mt-5">
-    <p class="mb-0">© 2026 Hotel Tramonto - Lavalle 55 Empedrado, Corrientes.</p>
-    <div class="container py-3">
-        <div class="d-flex justify-content-center align-items-center gap-4">
-            
-            <a href="https://www.instagram.com/tramonto.hotel" target="_blank" class="text-decoration-none d-flex align-items-center">
-                <span class="text-white fw-medium">@tramonto.hotel</span>
-                <i class="bi bi-instagram ms-2" style="color: #C7B25D; font-size: 1.2rem;"></i>
-            </a>
+    {{-- 📋 FOOTER ACADÉMICO REQUERIDO --}}
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0">© 2026 Hotel Tramonto - Lavalle 55 Empedrado, Corrientes.</p>
+        <p class="small text-muted mt-1 mb-0">Desarrollado para <strong>Ingeniería del Software I</strong> - Año 2026</p>
+        
+        <div class="container py-3">
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <a href="https://www.instagram.com/tramonto.hotel" target="_blank" class="text-decoration-none d-flex align-items-center">
+                    <span class="text-white fw-medium">@tramonto.hotel</span>
+                    <i class="bi bi-instagram ms-2" style="color: #C7B25D; font-size: 1.2rem;"></i>
+                </a>
 
-            <a href="https://wa.me/543794000000" target="_blank" class="text-decoration-none d-flex align-items-center">
-                <span class="text-white fw-medium">+54 379 4000000</span>
-                <i class="bi bi-whatsapp ms-2" style="color: #25D366; font-size: 1.2rem;"></i>
-            </a>
-            
+                <a href="https://wa.me/543794000000" target="_blank" class="text-decoration-none d-flex align-items-center">
+                    <span class="text-white fw-medium">+54 379 4000000</span>
+                    <i class="bi bi-whatsapp ms-2" style="color: #25D366; font-size: 1.2rem;"></i>
+                </a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

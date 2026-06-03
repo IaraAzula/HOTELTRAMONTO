@@ -30,21 +30,25 @@ class UsuarioController extends Controller
     /**
      * Valida y registra un nuevo usuario
      */
+    /**
+     * Valida y registra un nuevo usuario
+     */
     public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:100',
             'apellido' => 'required|string|max:100',
             'email' => 'required|email|unique:usuarios',
-            'password' => 'required|min:8|confirmed', // busca el campo password_confirmation
-            'rol_id' => 'required|exists:roles,id', // valida que el rol exista en la tabla roles
+            'password' => 'required|min:8|confirmed', 
+            'rol_id' => 'required|exists:roles,id', 
         ]);
 
-        // Gracias al cast 'hashed' que pusimos en el Modelo Usuario,
-        // Laravel va a encriptar la password automáticamente acá.
+        // Guardamos limpio usando el 'only'. El modelo se encarga de encriptar solo.
         Usuario::create($request->only(['nombre', 'apellido', 'email', 'password', 'rol_id']));
+        
         return redirect()->route('catalogo')->with('exito', '¡Cuenta creada con éxito! Ya podés iniciar sesión.');
     }
+        
 
     public function show(Usuario $usuario) {}
     public function edit(Usuario $usuario) {}
