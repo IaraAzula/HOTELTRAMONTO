@@ -100,7 +100,7 @@
                             </div>
                             <div class="mt-4">
                                 {{-- Por ahora te redirige a una ruta genérica del recurso hasta armar los detalles dinámicos --}}
-                                <a href="{{ route('habitaciones.show', $habitacion->id) }}" class="btn btn-tramonto">Explorar</a>
+                              <a href="{{ route('habitaciones.show', $habitacion->id) }}" class="btn btn-tramonto">Explorar</a>
                             </div>
                         </div>
                     </div>

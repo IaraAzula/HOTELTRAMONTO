@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolController; // <-- Agregamos esta importación para evitar futuros errores
 
 // 1. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
-Route::resource('habitaciones', HabitacionController::class);
+Route::resource('habitaciones', HabitacionController::class, ['parameters' => ['habitaciones' => 'habitacion']]);
 Route::resource('roles', RolController::class);
 Route::resource('usuarios', UsuarioController::class);
 

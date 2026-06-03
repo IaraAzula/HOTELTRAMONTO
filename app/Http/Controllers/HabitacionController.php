@@ -3,81 +3,80 @@
 namespace App\Http\Controllers;
 
 use App\Models\Habitacion;
+use App\Models\HabitacionImagen;
 use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
 {
-
-     public function catalogo()
+    public function catalogo()
     {
-        // Trae todas las habitaciones de MariaDB que NO tengan baja lógica
         $habitaciones = Habitacion::all();
-
-        // Te manda a la vista 'catalogo' pasándole la variable
         return view('catalogo', compact('habitaciones'));
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-     $productos = Habitacion::all();
-
-    return view('habitaciones.index', compact('habitaciones'));
+        $habitaciones = Habitacion::all();
+        return view('habitaciones.index', compact('habitaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-   public function create()
-   {
-    return view('habitaciones.create');
-   }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function create()
     {
-       Producto::create([
+        return view('habitaciones.create');
+    }
+
+    public function store(Request $request)
+{
+    $habitacion = Habitacion::create([
         'nombre' => $request->nombre,
-        'tipo' => $request->tipo,
+        'descripcion' => $request->descripcion,
         'precio' => $request->precio,
-        'disponible' => $request-> true,
+        'nombre' => $request->nombre,
+        'descripcion' => $request->descripcion,
+        'servicios' => $request->servicios,
+        'precio' => $request->precio,
+        'imagen' => null,
     ]);
 
-    return redirect()->route('productos.index');
+    if ($request->imagenes) {
+        $urls = array_filter(explode("\n", trim($request->imagenes)));
+        foreach ($urls as $index => $url) {
+            HabitacionImagen::create([
+                'habitacion_id' => $habitacion->id,
+                 'url' => trim($url, " \t\n\r\0\x0B\""),
+                'principal' => $index === 0,
+            ]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Producto $producto)
+    return redirect()->route('habitaciones.index');
+}
+
+    public function edit(Habitacion $habitacion)
     {
-        //
+        return view('habitaciones.edit', compact('habitacion'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Producto $producto)
+    public function show(Habitacion $habitacion)
     {
-        //
+    $habitacion->load('imagenes');
+    return view('habitaciones.show', compact('habitacion'));
+    }
+    public function update(Request $request, Habitacion $habitacion)
+    {
+        $habitacion->update([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'imagen' => $request->imagen,
+        ]);
+
+        return redirect()->route('habitaciones.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Producto $producto)
+    public function destroy(Habitacion $habitacion)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Producto $producto)
-    {
-        //
+        $habitacion->delete();
+        return redirect()->route('habitaciones.index');
     }
 }
