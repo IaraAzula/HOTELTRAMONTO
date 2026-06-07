@@ -18,8 +18,15 @@ class Habitacion extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
+        'servicios',
         'precio',
+        'stock',
         'capacidad',
         'imagen', // Por si guardás la URL o ruta de la foto
     ];
+
+    public function imagenes()
+    {
+        return $this->hasMany(HabitacionImagen::class, 'habitacion_id');
+    }
 }

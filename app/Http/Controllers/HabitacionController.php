@@ -38,6 +38,7 @@ class HabitacionController extends Controller
             'descripcion' => $request->descripcion,
             'servicios'   => $request->servicios,
             'precio'      => $request->precio,
+            'stock'       => (int) ($request->stock ?? 1),
             'imagen'      => null, // Se controla mediante la tabla intermedia
         ]);
 
@@ -66,9 +67,9 @@ class HabitacionController extends Controller
     public function show(Habitacion $habitacion)
     {
         $habitacion->load('imagenes');
+
         return view('habitaciones.show', compact('habitacion'));
     }
-
     // 7. Procesa la actualización
     public function update(Request $request, Habitacion $habitacion)
     {
@@ -76,6 +77,7 @@ class HabitacionController extends Controller
             'nombre'      => $request->nombre,
             'descripcion' => $request->descripcion,
             'precio'      => $request->precio,
+            'stock'       => (int) ($request->stock ?? $habitacion->stock ?? 1),
             'imagen'      => $request->imagen,
         ]);
 

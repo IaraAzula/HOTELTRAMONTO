@@ -32,6 +32,12 @@
 
 <div class="room-detail-container py-5">
     <div class="container">
+        @if(session('error'))
+            <div class="alert alert-danger border-0 shadow-sm mb-4" role="alert" style="background-color: rgba(220, 53, 69, 0.12); color: #fecaca; border: 1px solid rgba(248, 113, 113, 0.35) !important;">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                {{ session('error') }}
+            </div>
+        @endif
         <a href="{{ route('catalogo') }}" class="btn btn-sm btn-back mb-4">
             <i class="bi bi-arrow-left"></i> Volver a habitaciones
         </a>
@@ -63,6 +69,7 @@
                     <h2 class="price-large mb-0">USD {{ number_format($habitacion->precio, 0) }}</h2>
                     <span class="text-white fw-medium ms-2">/ noche</span>
                 </div>
+                <p class="text-white-50 mb-3">Stock disponible: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
 
                 <hr class="gold-line">
 
@@ -80,11 +87,27 @@
                     @endforeach
                 </ul>
 
-                <div class="mt-5">
+                <form action="{{ route('carrito.agregar', $habitacion->id) }}" method="POST" class="mt-5 d-grid gap-3">
+                    @csrf
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="fecha_entrada" class="form-label text-gold-tramonto small text-uppercase">Fecha de entrada</label>
+                            <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fecha_salida" class="form-label text-gold-tramonto small text-uppercase">Fecha de salida</label>
+                            <input type="date" name="fecha_salida" id="fecha_salida" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-lg w-100 btn-back">
+                        <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
+                    </button>
+
                     <a href="https://wa.me/543794000000" target="_blank" class="btn btn-lg w-100 btn-back">
                         CONSULTAR DISPONIBILIDAD
                     </a>
-                </div>
+                </form>
             </div>
         </div>
     </div>

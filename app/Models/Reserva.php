@@ -11,8 +11,15 @@ class Reserva extends Model
 
     // 🚀 AHORA SÍ: Adentro de la clase para permitir la asignación masiva
     protected $fillable = [
-        'usuario_id', 
-        'total', 
-        'estado'
+        'usuario_id',
+        'total',
+        'estado',
+        'fecha_entrada',
+        'fecha_salida'
     ];
+
+    public function detalles()
+    {
+        return $this->hasMany(DetalleReserva::class, 'reserva_id');
+    }
 }

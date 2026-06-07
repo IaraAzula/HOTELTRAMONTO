@@ -8,22 +8,26 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CarritoController; 
 
-// 1. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
+// 1. Ruta pública de detalle de habitación (debe ir antes que la versión admin)
+Route::get('/habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones.show');
+
+// 2. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('habitaciones', HabitacionController::class, ['parameters' => ['habitaciones' => 'habitacion']]);
+    Route::resource('habitaciones', HabitacionController::class, ['parameters' => ['habitaciones' => 'habitacion']])
+        ->except('show');
     Route::resource('roles', RolController::class);
-   Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
-    
+    Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
+
     // Ruta de ventas que ya tenías
     Route::get('/admin/ventas', [CarritoController::class, 'ventasAdmin'])->name('admin.ventas');
 });
 
-// 2. Ruta para la página principal
+// 3. Ruta para la página principal
 Route::get('/', function () {
     return view('principal');
 })->name('home');
 
-// 3. Catálogo dinámico (Público)
+// 4. Catálogo dinámico (Público)
 Route::get('/catalogo', [HabitacionController::class, 'catalogo'])->name('catalogo');
 
 // 4. Rutas estáticas de las habitaciones viejas 
@@ -60,7 +64,8 @@ Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas
 // 8. RUTAS DEL CARRITO DE RESERVAS
 Route::middleware(['auth'])->group(function () {
     Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
-    Route::get('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::get('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar.get');
     Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
 
