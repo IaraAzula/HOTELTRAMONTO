@@ -103,10 +103,6 @@
                     <button type="submit" class="btn btn-lg w-100 btn-back">
                         <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
                     </button>
-
-                    <a href="https://wa.me/543794000000" target="_blank" class="btn btn-lg w-100 btn-back">
-                        CONSULTAR DISPONIBILIDAD
-                    </a>
                 </form>
             </div>
         </div>

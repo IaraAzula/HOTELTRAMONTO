@@ -84,28 +84,40 @@ class CarritoController extends Controller
         }
 
         $total = 0;
+        $tieneFechasReserva = Schema::hasColumn('reservas', 'fecha_entrada') && Schema::hasColumn('reservas', 'fecha_salida');
+        $tieneFechasDetalle = Schema::hasColumn('detalle_reservas', 'fecha_entrada') && Schema::hasColumn('detalle_reservas', 'fecha_salida');
 
         foreach ($carrito as $item) {
             $noches = Carbon::parse($item['fecha_entrada'])->diffInDays(Carbon::parse($item['fecha_salida']));
             $total += $item['precio'] * $noches;
         }
 
-        $reserva = Reserva::create([
+        $reservaData = [
             'usuario_id' => auth()->id(),
             'total' => $total,
             'estado' => 'confirmada',
-            'fecha_entrada' => Carbon::parse(reset($carrito)['fecha_entrada'])->toDateString(),
-            'fecha_salida' => Carbon::parse(end($carrito)['fecha_salida'])->toDateString(),
-        ]);
+        ];
 
-        foreach($carrito as $item) {
-            DetalleReserva::create([
+        if ($tieneFechasReserva) {
+            $reservaData['fecha_entrada'] = Carbon::parse(reset($carrito)['fecha_entrada'])->toDateString();
+            $reservaData['fecha_salida'] = Carbon::parse(end($carrito)['fecha_salida'])->toDateString();
+        }
+
+        $reserva = Reserva::create($reservaData);
+
+        foreach ($carrito as $item) {
+            $detalleData = [
                 'reserva_id' => $reserva->id,
                 'habitacion_id' => $item['id'],
                 'precio_unitario' => $item['precio'],
-                'fecha_entrada' => $item['fecha_entrada'],
-                'fecha_salida' => $item['fecha_salida'],
-            ]);
+            ];
+
+            if ($tieneFechasDetalle) {
+                $detalleData['fecha_entrada'] = $item['fecha_entrada'];
+                $detalleData['fecha_salida'] = $item['fecha_salida'];
+            }
+
+            DetalleReserva::create($detalleData);
         }
 
         // Se vacía el carrito automáticamente

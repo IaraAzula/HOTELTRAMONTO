@@ -19,14 +19,14 @@ class HabitacionController extends Controller
     public function index()
     {
         $habitaciones = Habitacion::all();
-        // Corregido: Apunta a admin.habitaciones.index para mantener tu diseño oscuro
-        return view('habitaciones.index', compact('habitaciones'));
+
+        return view('admin.habitaciones.index', compact('habitaciones'));
     }
 
     // 3. Formulario de creación de habitaciones
     public function create()
     {
-        return view('habitaciones.create');
+        return view('admin.habitaciones.create');
     }
 
     // 4. Guarda la habitación y procesa las múltiples imágenes de Iara
@@ -39,7 +39,7 @@ class HabitacionController extends Controller
             'servicios'   => $request->servicios,
             'precio'      => $request->precio,
             'stock'       => (int) ($request->stock ?? 1),
-            'imagen'      => null, // Se controla mediante la tabla intermedia
+            'imagen'      => null,
         ]);
 
         // Lógica de Iara: Separa las URLs ingresadas por saltos de línea
@@ -76,9 +76,10 @@ class HabitacionController extends Controller
         $habitacion->update([
             'nombre'      => $request->nombre,
             'descripcion' => $request->descripcion,
+            'servicios'   => $request->servicios,
             'precio'      => $request->precio,
             'stock'       => (int) ($request->stock ?? $habitacion->stock ?? 1),
-            'imagen'      => $request->imagen,
+            'imagen'      => $request->imagen ?? $habitacion->imagen,
         ]);
 
         return redirect()->route('habitaciones.index');
