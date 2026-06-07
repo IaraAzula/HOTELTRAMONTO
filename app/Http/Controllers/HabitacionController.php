@@ -20,13 +20,13 @@ class HabitacionController extends Controller
     {
         $habitaciones = Habitacion::all();
         // Corregido: Apunta a admin.habitaciones.index para mantener tu diseño oscuro
-        return view('admin.habitaciones.index', compact('habitaciones'));
+        return view('habitaciones.index', compact('habitaciones'));
     }
 
     // 3. Formulario de creación de habitaciones
     public function create()
     {
-        return view('admin.habitaciones.create');
+        return view('habitaciones.create');
     }
 
     // 4. Guarda la habitación y procesa las múltiples imágenes de Iara

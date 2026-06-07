@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolController; 
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CarritoController; 
+ use App\Http\Controllers\ReservaController; 
 
 // 1. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -58,10 +59,13 @@ Route::get('/consultas', [ConsultaController::class, 'index'])->name('consultas.
 Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas.store')->middleware('auth');
 
 // 8. RUTAS DEL CARRITO DE RESERVAS
-Route::middleware(['auth'])->group(function () {
-    Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
-    Route::get('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-    Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
-    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
 
+// 🟢 Rutas públicas: Cualquier usuario puede armar su carrito antes de registrarse o loguearse
+Route::get('/carrito', [App\Http\Controllers\ReservaController::class, 'verCarrito'])->name('carrito.ver');
+Route::post('/carrito/agregar', [App\Http\Controllers\ReservaController::class, 'agregar'])->name('carrito.agregar');
+
+// 🔴 Rutas protegidas: Solo usuarios logueados pueden quitar items o confirmar la compra/reserva
+Route::middleware(['auth'])->group(function () {
+    Route::delete('/carrito/quitar/{id}', [App\Http\Controllers\CarritoController::class, 'quitar'])->name('carrito.quitar');
+    Route::post('/carrito/confirmar', [App\Http\Controllers\CarritoController::class, 'confirmar'])->name('carrito.confirmar');
 });

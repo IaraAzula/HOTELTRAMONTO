@@ -80,11 +80,14 @@
                     @endforeach
                 </ul>
 
-                <div class="mt-5">
-                    <a href="https://wa.me/543794000000" target="_blank" class="btn btn-lg w-100 btn-back">
-                        CONSULTAR DISPONIBILIDAD
-                    </a>
-                </div>
+                <form action="{{ route('carrito.agregar') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
+                    
+                    <button type="submit" class="btn btn-outline-warning w-100 py-2" style="color: #d4af37; border-color: #d4af37;">
+                        SELECCIONAR HABITACIÓN
+                    </button>
+                </form>
             </div>
         </div>
     </div>
