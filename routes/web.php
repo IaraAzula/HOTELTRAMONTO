@@ -6,8 +6,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolController; 
 use App\Http\Controllers\ConsultaController;
-use App\Http\Controllers\CarritoController; 
- use App\Http\Controllers\ReservaController; 
+use App\Http\Controllers\CarritoController;
 
 // 1. Ruta pública de detalle de habitación (debe ir antes que la versión admin)
 Route::get('/habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones.show');
@@ -63,22 +62,9 @@ Route::get('/consultas', [ConsultaController::class, 'index'])->name('consultas.
 Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas.store')->middleware('auth');
 
 // 8. RUTAS DEL CARRITO DE RESERVAS
-<<<<<<< HEAD
-=======
 Route::middleware(['auth'])->group(function () {
     Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
     Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-    Route::get('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar.get');
     Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
->>>>>>> 5eea1545943633cafc56e6b8c05044962d339168
-
-// 🟢 Rutas públicas: Cualquier usuario puede armar su carrito antes de registrarse o loguearse
-Route::get('/carrito', [App\Http\Controllers\ReservaController::class, 'verCarrito'])->name('carrito.ver');
-Route::post('/carrito/agregar', [App\Http\Controllers\ReservaController::class, 'agregar'])->name('carrito.agregar');
-
-// 🔴 Rutas protegidas: Solo usuarios logueados pueden quitar items o confirmar la compra/reserva
-Route::middleware(['auth'])->group(function () {
-    Route::delete('/carrito/quitar/{id}', [App\Http\Controllers\CarritoController::class, 'quitar'])->name('carrito.quitar');
-    Route::post('/carrito/confirmar', [App\Http\Controllers\CarritoController::class, 'confirmar'])->name('carrito.confirmar');
 });
