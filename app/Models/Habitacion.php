@@ -16,13 +16,9 @@ class Habitacion extends Model
         'descripcion',
         'servicios',
         'precio',
-<<<<<<< HEAD
-        'imagen'
-=======
         'stock',
         'capacidad',
         'imagen', // Por si guardás la URL o ruta de la foto
->>>>>>> 5eea1545943633cafc56e6b8c05044962d339168
     ];
 
     public function imagenes()

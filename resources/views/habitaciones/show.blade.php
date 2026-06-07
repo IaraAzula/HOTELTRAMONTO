@@ -87,15 +87,6 @@
                     @endforeach
                 </ul>
 
-<<<<<<< HEAD
-                <form action="{{ route('carrito.agregar') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
-                    
-                    <button type="submit" class="btn btn-outline-warning w-100 py-2" style="color: #d4af37; border-color: #d4af37;">
-                        SELECCIONAR HABITACIÓN
-                    </button>
-=======
                 <form action="{{ route('carrito.agregar', $habitacion->id) }}" method="POST" class="mt-5 d-grid gap-3">
                     @csrf
                     <div class="row g-3">
@@ -113,10 +104,6 @@
                         <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
                     </button>
 
-                    <a href="https://wa.me/543794000000" target="_blank" class="btn btn-lg w-100 btn-back">
-                        CONSULTAR DISPONIBILIDAD
-                    </a>
->>>>>>> 5eea1545943633cafc56e6b8c05044962d339168
                 </form>
             </div>
         </div>
