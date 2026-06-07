@@ -6,6 +6,8 @@ use App\Models\Habitacion;
 use App\Models\Reserva;
 use App\Models\DetalleReserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 
 class CarritoController extends Controller
 {
@@ -17,21 +19,47 @@ class CarritoController extends Controller
     }
 
     // 2. Agregar una habitación al carrito
-    public function agregar($id)
+    public function agregar(Request $request, $id)
     {
+        $request->validate([
+            'fecha_entrada' => 'required|date|after_or_equal:today',
+            'fecha_salida'  => 'required|date|after:fecha_entrada',
+        ]);
+
         $habitacion = Habitacion::findOrFail($id);
+        $fechaEntrada = Carbon::parse($request->fecha_entrada);
+        $fechaSalida = Carbon::parse($request->fecha_salida);
+        $noches = $fechaEntrada->diffInDays($fechaSalida);
+
+        $hayConflicto = false;
+
+        if (Schema::hasColumn('detalle_reservas', 'fecha_entrada') && Schema::hasColumn('detalle_reservas', 'fecha_salida')) {
+            $hayConflicto = Reserva::whereHas('detalles', function ($query) use ($id, $fechaEntrada, $fechaSalida) {
+                $query->where('habitacion_id', $id)
+                    ->where('fecha_entrada', '<', $fechaSalida->toDateString())
+                    ->where('fecha_salida', '>', $fechaEntrada->toDateString());
+            })->exists();
+        }
+
+        if ($hayConflicto) {
+            return back()->with('error', 'La habitación no está disponible en esas fechas.');
+        }
+
         $carrito = session()->get('carrito', []);
 
-        // Estructuramos el item
         $carrito[$id] = [
-            "id" => $habitacion->id,
-            "nombre" => $habitacion->nombre,
-            "precio" => $habitacion->precio,
-            "capacidad" => $habitacion->capacidad
+            'id' => $habitacion->id,
+            'nombre' => $habitacion->nombre,
+            'precio' => $habitacion->precio,
+            'capacidad' => $habitacion->capacidad,
+            'fecha_entrada' => $fechaEntrada->toDateString(),
+            'fecha_salida' => $fechaSalida->toDateString(),
+            'noches' => $noches,
         ];
 
         session()->put('carrito', $carrito);
-        return redirect()->route('catalogo')->with('exito', 'Habitación añadida al carrito de reservas.');
+
+        return redirect()->route('carrito.ver')->with('exito', 'Habitación añadida al carrito con fechas seleccionadas.');
     }
 
     // 3. Quitar un elemento del carrito
@@ -55,22 +83,28 @@ class CarritoController extends Controller
             return redirect()->route('catalogo')->with('error', 'El carrito está vacío.');
         }
 
-        // Calculamos el total
-        $total = array_sum(array_column($carrito, 'precio'));
+        $total = 0;
 
-        // Creamos la cabecera de la reserva
+        foreach ($carrito as $item) {
+            $noches = Carbon::parse($item['fecha_entrada'])->diffInDays(Carbon::parse($item['fecha_salida']));
+            $total += $item['precio'] * $noches;
+        }
+
         $reserva = Reserva::create([
             'usuario_id' => auth()->id(),
             'total' => $total,
-            'estado' => 'confirmada'
+            'estado' => 'confirmada',
+            'fecha_entrada' => Carbon::parse(reset($carrito)['fecha_entrada'])->toDateString(),
+            'fecha_salida' => Carbon::parse(end($carrito)['fecha_salida'])->toDateString(),
         ]);
 
-        // Creamos el detalle de cada habitación reservada
         foreach($carrito as $item) {
             DetalleReserva::create([
                 'reserva_id' => $reserva->id,
                 'habitacion_id' => $item['id'],
-                'precio_unitario' => $item['precio']
+                'precio_unitario' => $item['precio'],
+                'fecha_entrada' => $item['fecha_entrada'],
+                'fecha_salida' => $item['fecha_salida'],
             ]);
         }
 

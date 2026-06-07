@@ -9,8 +9,10 @@ class DetalleReserva extends Model
     protected $table = 'detalle_reservas';
 
     protected $fillable = [
-        'reserva_id', 
-        'habitacion_id', 
-        'precio_unitario'
+        'reserva_id',
+        'habitacion_id',
+        'precio_unitario',
+        'fecha_entrada',
+        'fecha_salida'
     ];
 }

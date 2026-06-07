@@ -108,6 +108,7 @@
                                 <p class="text-light-muted small mb-3">{{ $habitacion->descripcion }}</p>
                                 
                                 <p class="price-tag fw-bold">${{ number_format($habitacion->precio, 0, ',', '.') }} <span class="small text-light-muted">/ noche</span></p>
+                                <p class="text-light-muted small mb-0">Stock: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
                             </div>
                             <div class="mt-4">
                                 {{-- Por ahora te redirige a una ruta genérica del recurso hasta armar los detalles dinámicos --}}

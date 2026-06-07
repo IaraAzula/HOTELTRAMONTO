@@ -24,8 +24,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Habitación</th>
-                                <th scope="col" class="text-center">Capacidad</th>
-                                <th scope="col" class="text-end">Precio por Noche</th>
+                                <th scope="col" class="text-center">Fechas</th>
+                                <th scope="col" class="text-center">Noches</th>
+                                <th scope="col" class="text-end">Subtotal</th>
                                 <th scope="col" class="text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -33,12 +34,13 @@
                             @foreach($carrito as $id => $item)
                                 <tr>
                                     <td class="fw-bold text-white fs-5">{{ $item['nombre'] }}</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-secondary text-dark fw-bold px-3 py-2" style="background-color: rgba(203, 213, 225, 0.2) !important; color: #ffffff !important;">
-                                            <i class="bi bi-people-fill me-1"></i>{{ $item['capacidad'] }} paxs
-                                        </span>
+                                    <td class="text-center text-white-50 small">
+                                        {{ \Carbon\Carbon::parse($item['fecha_entrada'] ?? now())->format('d/m/Y') }}<br>
+                                        <span class="text-muted">a</span><br>
+                                        {{ \Carbon\Carbon::parse($item['fecha_salida'] ?? now()->addDay())->format('d/m/Y') }}
                                     </td>
-                                    <td class="text-end fw-semibold text-white">${{ number_format($item['precio'], 2, ',', '.') }}</td>
+                                    <td class="text-center text-white">{{ $item['noches'] ?? 1 }}</td>
+                                    <td class="text-end fw-semibold text-white">${{ number_format(($item['precio'] ?? 0) * ($item['noches'] ?? 1), 2, ',', '.') }}</td>
                                     <td class="text-center">
                                         {{-- Botón para eliminar un item --}}
                                         <form action="{{ route('carrito.quitar', $id) }}" method="POST" class="d-inline">
@@ -79,7 +81,7 @@
 
                     <div class="d-flex justify-content-between align-items-center border-top border-bottom py-3 my-3" style="border-color: rgba(255, 255, 255, 0.1) !important;">
                         <span class="fs-5 fw-bold text-white">Monto Total:</span>
-                        <span class="fs-4 fw-bold text-gold-tramonto">${{ number_format(array_sum(array_column($carrito, 'precio')), 2, ',', '.') }}</span>
+                        <span class="fs-4 fw-bold text-gold-tramonto">${{ number_format(array_reduce($carrito, function ($carry, $item) { return $carry + (($item['precio'] ?? 0) * ($item['noches'] ?? 1)); }, 0), 2, ',', '.') }}</span>
                     </div>
 
                     {{-- Formulario para procesar y limpiar el carrito --}}
