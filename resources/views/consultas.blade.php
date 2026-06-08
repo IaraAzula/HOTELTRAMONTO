@@ -11,7 +11,7 @@
     .btn-tramonto:hover { background-color: transparent; color: #d4af37; box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
 </style>
 
-<div class="container py-5">
+<div class="container py-5" translate="no"> {{-- Evitamos traducciones raras del navegador --}}
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             
@@ -27,13 +27,14 @@
             <div class="card card-tramonto p-4 shadow-lg">
                 <div class="text-center mb-4">
                     <h2 class="fw-bold text-gold-tramonto">Dejanos tu Consulta</h2>
-                    <p class="text-muted small">Respondemos todas tus dudas para hacer tu estadía inolvidable</p>
+                    <p class="fw-bold fs-5 text-white">Respondemos todas tus dudas para hacer tu estadía inolvidable</p>
                 </div>
 
                 <form action="{{ route('consultas.store') }}" method="POST">
                     @csrf
 
-                    {{-- 💡 Información del usuario logueado (Solo lectura y estético) --}}
+                    {{-- 💡 Información del usuario logueado --}}
+                    @if(Auth::check())
                     <div class="p-3 mb-4 rounded" style="background-color: rgba(199, 178, 93, 0.1); border: 1px dashed rgba(199, 178, 93, 0.4);">
                         <p class="m-0 small text-muted">Enviando consulta como:</p>
                         <p class="m-0 fw-bold" style="color: #C7B25D;">
@@ -41,6 +42,7 @@
                             <span class="fw-normal text-white-50">({{ Auth::user()->email }})</span>
                         </p>
                     </div>
+                    @endif
 
                     {{-- Asunto --}}
                     <div class="mb-3">

@@ -4,16 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Consulta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConsultaController extends Controller
 {
-    // Muestra la página del formulario
-   public function index()
-    {
-    // Trae todas las consultas de la base de datos
-    $consultas = \App\Models\Consulta::latest()->get(); 
-    return view('admin.consultas.index', compact('consultas'));
+    // Muestra la página correspondiente según el rol
+    public function index()
+{
+    // 1. Validamos que el usuario esté logueado
+    if (!auth()->check()) {
+        return redirect()->route('login');
     }
+
+    $usuarioLogueado = auth()->user();
+
+    // 👑 2. Si el rol_id es 1 (Administrador), ve el listado de consultas
+    if ($usuarioLogueado->rol_id == 1) {
+        $consultas = \App\Models\Consulta::latest()->get(); 
+        return view('admin.consultas.index', compact('consultas'));
+    }
+
+    // 👤 3. Si es cualquier otro rol (Cliente/rol_id: 2), ve el formulario suelto
+    return view('consultas');
+}
+
     public function store(Request $request)
     {
         // 1. Validamos únicamente lo que el usuario escribe ahora

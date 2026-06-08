@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
@@ -50,6 +50,15 @@
             transform: translateY(-3px);
             filter: brightness(1.2);
         }
+
+        /* ✨ ESTILOS INTERACTIVOS PARA EL DESPLEGABLE ADMIN */
+        .dropdown-item:hover {
+            background-color: rgba(199, 178, 93, 0.15) !important;
+            color: #C7B25D !important;
+        }
+        .dropdown-menu {
+            min-width: 210px;
+        }
     </style>
 </head>
 <body>
@@ -97,17 +106,36 @@
                 </li>
             @endguest
 
+            {{-- 👑 BLOQUE DE AUTENTICACIÓN DROPDOWN CORREGIDO --}}
             @auth
-                <li class="nav-item ms-lg-3 text-white-50 small">
-                    Bienvenido, <span style="color: #C7B25D;" class="fw-bold">{{ Auth::user()->nombre }}</span>
-                </li>
-                <li class="nav-item ms-lg-2">
-                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-link text-white-50 text-decoration-none" style="font-size: 0.85rem; text-transform: uppercase;">
-                            [Salir]
-                        </button>
-                    </form>
+                <li class="nav-item dropdown ms-lg-3">
+                    <a class="nav-link dropdown-toggle fw-bold" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #C7B25D !important; text-transform: none;">
+                        <i class="bi bi-person-circle me-1"></i>{{ Auth::user()->nombre }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow-lg mt-2" aria-labelledby="adminDropdown">
+                        
+                        {{-- Filtra si es ID 1 de Administrador o si posee la relación con string 'Admin' --}}
+                        @if(Auth::user()->rol_id == 1 || (isset(Auth::user()->rol) && Auth::user()->rol->nombre == 'Admin'))
+                            <li><h6 class="dropdown-header text-uppercase text-muted small fw-bold" style="letter-spacing: 0.5px; color: #C7B25D !important;">Panel Admin</h6></li>
+                            <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2 me-2" style="color: #C7B25D;"></i>Dashboard</a></li>
+                            <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.ventas') }}"><i class="bi bi-calendar-check me-2" style="color: #C7B25D;"></i>Reservas</a></li>
+                            <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.usuarios') }}"><i class="bi bi-people me-2" style="color: #C7B25D;"></i>Usuarios</a></li>
+                            
+                            {{-- 🔄 Redirección apuntando al módulo de soporte / tickets internos --}}
+                            <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.consultas.internas') }}"><i class="bi bi-chat-right-text me-2" style="color: #C7B25D;"></i>Consultas Internas</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                        @endif
+
+                        {{-- Botón de Salida --}}
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" class="m-0">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-danger small py-2 fw-medium">
+                                    <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
                 </li>
             @endauth
           </ul>

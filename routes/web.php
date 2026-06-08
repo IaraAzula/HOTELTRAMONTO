@@ -17,9 +17,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->except('show');
     Route::resource('roles', RolController::class);
     Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
-
-    // Ruta de ventas que ya tenías
+   
+    Route::get('/admin/usuarios', [\App\Http\Controllers\CarritoController::class, 'usuariosAdmin'])->name('admin.usuarios');
+    Route::get('/admin/dashboard', [\App\Http\Controllers\CarritoController::class, 'dashboardAdmin'])->name('admin.dashboard');
+    // Ruta de ventas 
     Route::get('/admin/ventas', [CarritoController::class, 'ventasAdmin'])->name('admin.ventas');
+    Route::get('/admin/consultas', [\App\Http\Controllers\CarritoController::class, 'consultasAdmin'])->name('admin.consultas');
+    // Ruta para el panel de incidentes/consultas internas
+    Route::get('/admin/consultas-internas', function () {
+    return view('admin.consultas_internas');
+})->name('admin.consultas.internas')->middleware('auth');
 });
 
 // 3. Ruta para la página principal

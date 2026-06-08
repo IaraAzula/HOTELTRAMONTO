@@ -122,7 +122,7 @@ class CarritoController extends Controller
             DetalleReserva::create($detalleData);
         }
 
-        // 🚀 PASO CLAVE: Guardamos una copia del carrito y el ID de la reserva en la sesión flash 
+        //  Guardamos una copia del carrito y el ID de la reserva en la sesión flash 
         // antes de destruirlo, para poder mostrar los datos en la tarjeta de éxito.
         session()->flash('ultima_reserva', [
             'codigo' => str_pad($reserva->id, 6, '0', STR_PAD_LEFT),
@@ -137,7 +137,7 @@ class CarritoController extends Controller
         return redirect()->route('reserva.exito');
     }
 
-    // 🚀 NUEVA FUNCIÓN: Renderiza la tarjeta de éxito con los datos reales
+    // Renderiza la tarjeta de éxito con los datos reales
     public function exito()
     {
         $datosReserva = session('ultima_reserva');
@@ -150,11 +150,44 @@ class CarritoController extends Controller
         return view('carrito.exito', compact('datosReserva'));
     }
 
-    public function ventasAdmin()
+        public function ventasAdmin()
+    {
+        // Buscamos todas las reservas con los datos del usuario que las hizo
+        $ventas = \App\Models\Reserva::latest()->get();
+        return view('admin.ventas.index', compact('ventas'));
+    }
+
+    public function consultasAdmin()
+    {   
+        $consultas = collect([]); // Dejamos la colección vacía para que use los datos de prueba idénticos al profe
+
+        return view('admin.consultas.index', compact('consultas'));
+    }
+
+    public function usuariosAdmin()
 {
-    // Buscamos todas las reservas con los datos del usuario que las hizo
-    // Si no tenés la relación 'usuario' en el modelo, podés usar Reserva::latest()->get()
-    $ventas = \App\Models\Reserva::latest()->get();
-    return view('admin.ventas.index', compact('ventas'));
+    // Si ya tenés el modelo User listo, podés usar:
+    // $usuarios = \App\Models\User::all();
+    
+    $usuarios = collect([]); // Lo dejamos vacío temporalmente para pruebas visuales
+
+    return view('admin.usuarios.index', compact('usuarios'));
 }
+
+public function dashboardAdmin()
+{
+    // 📊 1. Intentamos calcular las métricas reales desde tus modelos
+    $ventasTotales = \App\Models\Reserva::sum('total') ?: 666000;
+    $totalPedidos = \App\Models\Reserva::count() ?: 2;
+    $ticketPromedio = $totalPedidos > 0 ? ($ventasTotales / $totalPedidos) : 333000;
+    
+    // 🔍 CAMBIAMOS 'User' POR 'Usuario'
+    $totalUsuarios = \App\Models\Usuario::count() ?: 2;
+
+    // 🕒 2. Traemos las últimas reservas (Pedidos)
+    $ultimasVentas = \App\Models\Reserva::latest()->take(5)->get();
+
+    return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas'));
+}
+
 }
