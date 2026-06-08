@@ -38,6 +38,18 @@
                 {{ session('error') }}
             </div>
         @endif
+
+        {{-- Alerta para ver errores de validación si las fechas fallan --}}
+        @if ($errors->any())
+            <div class="alert alert-danger bg-danger text-white border-0 shadow-sm mb-4">
+                <ul class="mb-0 px-3">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <a href="{{ route('catalogo') }}" class="btn btn-sm btn-back mb-4">
             <i class="bi bi-arrow-left"></i> Volver a habitaciones
         </a>
@@ -73,8 +85,8 @@
 
                 <hr class="gold-line">
 
-               <h5 class="text-gold-tramonto text-uppercase mb-3" style="letter-spacing: 1px;">Descripción</h5>
-               <p class="description-text">{{ $habitacion->descripcion }}</p>
+                <h5 class="text-gold-tramonto text-uppercase mb-3" style="letter-spacing: 1px;">Descripción</h5>
+                <p class="description-text">{{ $habitacion->descripcion }}</p>
 
                 <h5 class="text-gold-tramonto text-uppercase mt-4 mb-3" style="letter-spacing: 1px;">Servicios Incluidos</h5>
                 <ul class="list-unstyled">
@@ -87,8 +99,13 @@
                     @endforeach
                 </ul>
 
-                <form action="{{ route('carrito.agregar', $habitacion->id) }}" method="POST" class="mt-5 d-grid gap-3">
+                {{-- FORMULARIO ACTUALIZADO Y CORREGIDO PARA EL NUEVO CONTROLADOR --}}
+                <form action="{{ route('carrito.agregar') }}" method="POST" class="mt-5 d-grid gap-3">
                     @csrf
+                    
+                    {{-- Envía el id de forma interna como lo espera el $request->habitacion_id --}}
+                    <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
+
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="fecha_entrada" class="form-label text-gold-tramonto small text-uppercase">Fecha de entrada</label>
@@ -100,7 +117,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-lg w-100 btn-back">
+                    <button type="submit" class="btn btn-lg w-100 btn-back mt-2">
                         <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
                     </button>
                 </form>

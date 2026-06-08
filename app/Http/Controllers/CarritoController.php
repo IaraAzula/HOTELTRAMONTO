@@ -19,12 +19,15 @@ class CarritoController extends Controller
     }
 
     // 2. Agregar una habitación al carrito
-    public function agregar(Request $request, $id)
+    public function agregar(Request $request) 
     {
         $request->validate([
+            'habitacion_id' => 'required|exists:habitaciones,id', // Validamos que llegue el id
             'fecha_entrada' => 'required|date|after_or_equal:today',
             'fecha_salida'  => 'required|date|after:fecha_entrada',
         ]);
+
+        $id = $request->habitacion_id; // Recuperamos el id desde el formulario
 
         $habitacion = Habitacion::findOrFail($id);
         $fechaEntrada = Carbon::parse($request->fecha_entrada);
@@ -73,8 +76,7 @@ class CarritoController extends Controller
         }
         return redirect()->route('carrito.ver')->with('exito', 'Habitación removida.');
     }
-
-    // 4. CONFIRMAR RESERVA (Guarda en BD y Vacía el carrito)
+    // 4. CONFIRMAR RESERVA (Guarda en BD, prepara la pantalla de éxito y vacía el carrito)
     public function confirmar()
     {
         $carrito = session()->get('carrito', []);
@@ -120,10 +122,32 @@ class CarritoController extends Controller
             DetalleReserva::create($detalleData);
         }
 
+        // 🚀 PASO CLAVE: Guardamos una copia del carrito y el ID de la reserva en la sesión flash 
+        // antes de destruirlo, para poder mostrar los datos en la tarjeta de éxito.
+        session()->flash('ultima_reserva', [
+            'codigo' => str_pad($reserva->id, 6, '0', STR_PAD_LEFT),
+            'total' => $total,
+            'items' => $carrito
+        ]);
+
         // Se vacía el carrito automáticamente
         session()->forget('carrito');
 
-        return redirect()->route('home')->with('exito', '¡Reserva confirmada con éxito!');
+        // Redirigimos a la nueva ruta de éxito de la reserva
+        return redirect()->route('reserva.exito');
+    }
+
+    // 🚀 NUEVA FUNCIÓN: Renderiza la tarjeta de éxito con los datos reales
+    public function exito()
+    {
+        $datosReserva = session('ultima_reserva');
+
+        // Si intentan entrar a /reserva/exito escribiendo la URL a mano sin reservar nada, los saca
+        if (!$datosReserva) {
+            return redirect()->route('catalogo');
+        }
+
+        return view('carrito.exito', compact('datosReserva'));
     }
 
     public function ventasAdmin()

@@ -10,10 +10,22 @@
     .table-tramonto td { border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; color: #cbd5e1 !important; }
     .btn-gold { background-color: #d4af37; color: #020617; font-weight: bold; border: 1px solid #d4af37; transition: 0.3s; }
     .btn-gold:hover { background-color: transparent; color: #d4af37; box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
+    
+    /* Personalización para que el cartel del medio use los colores oscuros y dorados del hotel */
+    .swal2-popup-tramonto {
+        background-color: #0f172a !important;
+        border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        border-radius: 15px !important;
+        color: #ffffff !important;
+    }
+    .swal2-title-tramonto { color: #d4af37 !important; }
+    .swal2-confirm-tramonto { background-color: #d4af37 !important; color: #020617 !important; font-weight: bold !important; }
 </style>
 
 <div class="container py-5">
     <h1 class="fw-bold text-gold-tramonto mb-4"><i class="bi bi-cart3 me-2"></i>Mi Carrito de Reservas</h1>
+
+    {{-- Quitamos los carteles HTML de arriba y dejamos que JavaScript maneje las sesiones de Laravel aquí abajo --}}
 
     <div class="row g-4">
         {{-- Listado de habitaciones en el carrito --}}
@@ -100,4 +112,43 @@
         @endif
     </div>
 </div>
+
+{{-- 🚀 CDN de SweetAlert2 para los carteles flotantes en el medio --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Captura el mensaje de éxito de Laravel y lo muestra en el medio
+        @if(session('exito'))
+            Swal.fire({
+                title: '¡Excelente!',
+                text: "{{ session('exito') }}",
+                icon: 'success',
+                iconColor: '#d4af37',
+                customClass: {
+                    popup: 'swal2-popup-tramonto',
+                    title: 'swal2-title-tramonto',
+                    confirmButton: 'swal2-confirm-tramonto'
+                },
+                buttonsStyling: false
+            });
+        @endif
+
+        // Captura el mensaje de error de Laravel y lo muestra en el medio
+        @if(session('error'))
+            Swal.fire({
+                title: '¡Ups! Algo salió mal',
+                text: "{{ session('error') }}",
+                icon: 'error',
+                iconColor: '#dc3545',
+                customClass: {
+                    popup: 'swal2-popup-tramonto',
+                    title: 'swal2-title-tramonto',
+                    confirmButton: 'swal2-confirm-tramonto'
+                },
+                buttonsStyling: false
+            });
+        @endif
+    });
+</script>
 @endsection

@@ -62,9 +62,15 @@ Route::get('/consultas', [ConsultaController::class, 'index'])->name('consultas.
 Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas.store')->middleware('auth');
 
 // 8. RUTAS DEL CARRITO DE RESERVAS
+
+// 🟢 Rutas públicas: Cualquier usuario (logueado o no) puede ver su selección y agregar habitaciones
+Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+
+// 🔴 Rutas protegidas: Solo los usuarios logueados pueden quitar ítems, confirmar o ver el éxito
 Route::middleware(['auth'])->group(function () {
-    Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
-    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
     Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+    Route::get('/reserva/exito', [CarritoController::class, 'exito'])->name('reserva.exito');
 });
+
