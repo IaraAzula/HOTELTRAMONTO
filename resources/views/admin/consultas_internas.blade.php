@@ -13,7 +13,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="fw-bold text-gold-tramonto m-0"><i class="bi bi-headset me-2"></i>Consultas Internas</h1>
-            <p class="text-muted small">Canal de comunicación directa e incidencias de huéspedes alojados</p>
+            <p class="text-white small">Canal de comunicación directa e incidencias de huéspedes alojados</p>
         </div>
         <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Soporte Huéspedes</span>
     </div>
@@ -26,13 +26,13 @@
                 <div>
                     <span class="badge bg-warning text-dark mb-2" style="font-size: 0.65rem;">Habitación 104 (Suite)</span>
                     <h5 class="fw-bold text-white mb-1" style="font-size: 1.05rem;">Inconveniente con el control del Jacuzzi</h5>
-                    <p class="text-muted small mb-2">Reportado por: <strong>Matias Mendoza</strong> — mendozaamaab@gmail.com</p>
+                    <p class="text-white small mb-2">Reportado por: <strong>Matias Mendoza</strong> — mendozaamaab@gmail.com</p>
                     <p class="text-light small m-0 bg-dark p-2 rounded" style="background-color: rgba(0,0,0,0.2) !important;">
                         "Buenas tardes, el panel digital del jacuzzi de la suite no responde al intentar regular la temperatura. ¿Podrían mandar a mantenimiento?"
                     </p>
                 </div>
                 <div class="text-end">
-                    <span class="text-muted small d-block mb-2">Hace 10 min</span>
+                    <span class="text-white small d-block mb-2">Hace 10 min</span>
                     <button class="btn btn-outline-warning btn-sm px-3 rounded-pill btn-resolver" style="font-size: 0.75rem;">
                         <i class="bi bi-check2-circle me-1"></i>Resolver
                     </button>
@@ -45,13 +45,13 @@
                 <div>
                     <span class="badge bg-secondary text-white mb-2" style="font-size: 0.65rem;">Cochera Privada</span>
                     <h5 class="fw-bold text-white mb-1" style="font-size: 1.05rem; text-decoration: line-through; opacity: 0.6;">Solicitud de Late Check-out y resguardo de coche</h5>
-                    <p class="text-muted small mb-2">Reportado por: <strong>Lara Azula</strong> — soyunaprueba@gmail.com</p>
+                    <p class="text-white small mb-2">Reportado por: <strong>Lara Azula</strong> — soyunaprueba@gmail.com</p>
                 </div>
                 <div class="text-end">
                     <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill" style="font-size: 0.7rem;">
                         <i class="bi bi-check-all me-1"></i>Resuelto
                     </span >
-                    <span class="text-muted small d-block mt-2">Ayer</span>
+                    <span class="text-white small d-block mt-2">Ayer</span>
                 </div>
             </div>
         </div>

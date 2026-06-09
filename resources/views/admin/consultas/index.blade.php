@@ -18,7 +18,7 @@
     <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
             <h1 class="fw-bold text-gold-tramonto m-0"><i class="bi bi-chat-right-text me-2"></i>Consultas</h1>
-            <p class="text-muted small">Panel interactivo para la administración de consultas y contactos reales</p>
+            <p class="text-white small">Panel interactivo para la administración de consultas y contactos reales</p>
         </div>
         <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Admin Mode</span>
     </div>
@@ -37,16 +37,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- 🔄 BUCLE DINÁMICO RECIÉN AGREGADO --}}
+                    {{-- 🔄 BUCLE DINÁMICO --}}
                     @forelse($consultas as $consulta)
                         <tr class="fila-consulta">
                             <td>
                                 <strong class="text-gold-tramonto d-block">{{ $consulta->nombre }}</strong>
-                                <span class="text-muted small">{{ $consulta->email }}</span>
+                                <span class="text-white small">{{ $consulta->email }}</span>
                             </td>
                             <td>
                                 <span class="d-block fw-bold text-white small mb-1">{{ $consulta->asunto }}</span>
-                                <span class="text-muted small" style="display: block; max-width: 500px; word-wrap: break-word;">
+                                <span class="text-white small" style="display: block; max-width: 500px; word-wrap: break-word;">
                                     {{ $consulta->mensaje }}
                                 </span>
                             </td>
