@@ -2,56 +2,34 @@
 
 @section('contenido')
 <style>
-    /* Fondo oscuro global */
-    body { background-color: #020617 !important; color: #ffffff !important; }
-    
-    .text-gold-tramonto { color: #d4af37 !important; letter-spacing: 1px; }
-    
-    .card-tramonto { 
-        background-color: rgba(15, 23, 42, 0.6) !important; 
-        border: 1px solid rgba(212, 175, 55, 0.2) !important; 
-        border-radius: 12px; 
+    .bg-admin-form {
+        background-color: #04080f;
+        color: #f5f5f5;
+        min-height: 100vh;
     }
-
-    /* --- CORRECCIÓN DE TABLA --- */
-    /* Anulamos el fondo de todas las partes de la tabla */
-    .table-tramonto, .table-tramonto thead, .table-tramonto tbody, 
-    .table-tramonto tr, .table-tramonto td, .table-tramonto th { 
-        background-color: transparent !important; 
+    .bg-admin-form .card {
+        background-color: rgba(20, 28, 45, 0.96);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .bg-admin-form .form-label,
+    .bg-admin-form .form-text,
+    .bg-admin-form .text-gold-tramonto,
+    .bg-admin-form .card-title {
+        color: #f5f5f5 !important;
+    }
+    .bg-admin-form .form-control {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(212, 175, 55, 0.25) !important;
         color: #ffffff !important;
-        border-color: rgba(212, 175, 55, 0.2) !important;
     }
-
-    .table-tramonto th { 
-        color: #d4af37 !important; 
-        border-bottom: 2px solid #d4af37 !important; 
-        text-transform: uppercase; 
-        font-size: 0.85rem; 
+    .bg-admin-form .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.55) !important;
     }
-    
-    .table-tramonto td { 
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; 
-        color: #cbd5e1 !important; 
+    .bg-admin-form .btn-gold {
+        background-color: #d4af37;
+        color: #020617;
+        border: 1px solid #d4af37;
     }
-
-    /* Hover que respeta la transparencia */
-    .table-hover tbody tr:hover {
-        background-color: rgba(212, 175, 55, 0.05) !important;
-    }
-    /* --------------------------- */
-
-    /* Estilos para los buscadores y selectores */
-    .form-control-tramonto { background-color: #0f172a !important; border: 1px solid rgba(212, 175, 55, 0.3) !important; color: #ffffff !important; }
-    .form-control-tramonto:focus { border-color: #d4af37 !important; box-shadow: 0 0 8px rgba(212, 175, 55, 0.3) !important; }
-    
-    /* Botón de acciones */
-    .btn-gold-outline { color: #d4af37; border: 1px solid #d4af37; font-size: 0.85rem; transition: 0.3s; }
-    .btn-gold-outline:hover { background-color: #d4af37; color: #020617; }
-
-    /* Modal */
-    .modal-content-tramonto { background-color: #0b1329 !important; border: 1px solid #d4af37 !important; border-radius: 14px; color: #ffffff; }
-    .modal-header-tramonto { border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important; }
-    .modal-footer-tramonto { border-top: 1px solid rgba(212, 175, 55, 0.1) !important; }
 </style>
 
 <div class="container py-5 bg-admin-form">
@@ -82,7 +60,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label text-gold-tramonto">Disponibilidad</label>
-                <input type="number" name="disponibilidad" value="1" min="1" class="form-control bg-dark text-white border-secondary" required>
+                <input type="number" name="stock" value="1" min="1" class="form-control bg-dark text-white border-secondary" required>
             </div>
         </div>
 
