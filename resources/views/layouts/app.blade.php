@@ -30,10 +30,23 @@
         }
 
         .nav-link {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 10px;
+            letter-spacing: 0.4px;
+            margin-left: 8px;
+            color: #e5e7eb !important;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #C7B25D !important;
+            opacity: 1;
+        }
+
+        .navbar-dark {
+            background: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98)) !important;
+            border-bottom: 1px solid rgba(199, 178, 93, 0.18);
         }
 
         .hero-section { 
@@ -74,7 +87,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto align-items-center">
+          <ul class="navbar-nav ms-auto align-items-center gap-1">
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active fw-bold' : '' }}" href="{{ route('home') }}">Inicio</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('nosotros') ? 'active fw-bold' : '' }}" href="{{ route('nosotros') }}">Quiénes Somos</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalogo') ? 'active fw-bold' : '' }}" href="{{ route('catalogo') }}">Habitaciones</a></li>

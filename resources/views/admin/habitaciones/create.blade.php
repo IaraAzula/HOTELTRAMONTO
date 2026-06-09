@@ -1,10 +1,41 @@
 @extends('layouts.app')
 
 @section('contenido')
-<div class="container py-5 text-white">
+<style>
+    .bg-admin-form {
+        background-color: #04080f;
+        color: #f5f5f5;
+        min-height: 100vh;
+    }
+    .bg-admin-form .card {
+        background-color: rgba(20, 28, 45, 0.96);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    .bg-admin-form .form-label,
+    .bg-admin-form .form-text,
+    .bg-admin-form .text-gold-tramonto,
+    .bg-admin-form .card-title {
+        color: #f5f5f5 !important;
+    }
+    .bg-admin-form .form-control {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(212, 175, 55, 0.25) !important;
+        color: #ffffff !important;
+    }
+    .bg-admin-form .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.55) !important;
+    }
+    .bg-admin-form .btn-gold {
+        background-color: #d4af37;
+        color: #020617;
+        border: 1px solid #d4af37;
+    }
+</style>
+
+<div class="container py-5 bg-admin-form">
     <h1 class="fw-bold mb-4 text-gold-tramonto">Crear habitación</h1>
 
-    <form action="{{ route('habitaciones.store') }}" method="POST" class="card p-4 shadow-sm" style="background: rgba(15,23,42,0.9); border: 1px solid rgba(212,175,55,0.25);">
+    <form action="{{ route('habitaciones.store') }}" method="POST" class="card p-4 shadow-sm">
         @csrf
 
         <div class="mb-3">

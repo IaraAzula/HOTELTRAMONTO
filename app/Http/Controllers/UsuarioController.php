@@ -11,13 +11,13 @@ class UsuarioController extends Controller
     /**
      * Muestra el listado de usuarios con su relación (Evita consultas N+1)
      */
-  public function index()
-{
-    // Trae los usuarios de la base de datos
-    $usuarios = \App\Models\Usuario::all(); 
-    
-    return view('admin.usuarios.index', compact('usuarios'));
-}
+    public function index()
+    {
+        // Cargamos la relación del rol para evitar relaciones vacías en la vista
+        $usuarios = Usuario::with('rol')->latest()->get();
+
+        return view('admin.usuarios.index', compact('usuarios'));
+    }
 
     /**
      * Muestra el formulario de creación/registro de usuario

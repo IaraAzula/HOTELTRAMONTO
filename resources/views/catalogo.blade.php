@@ -92,6 +92,14 @@
         {{-- Encabezado de la sección --}}
         <h1 class="display-5 fw-bold mb-2 text-center text-gold-tramonto">Nuestras Habitaciones</h1>
         <p class="text-center text-light-muted mb-5">Exclusividad y confort frente a las barrancas del Paraná</p>
+
+        @auth
+            @if(auth()->user()->rol_id == 1)
+                <div class="text-end mb-4">
+                    <a href="{{ route('habitaciones.create') }}" class="btn btn-tramonto">Agregar habitación</a>
+                </div>
+            @endif
+        @endauth
         
         <div class="row g-4">
             {{-- BUCLE DINÁMICO: Recorre las habitaciones cargadas en MariaDB --}}

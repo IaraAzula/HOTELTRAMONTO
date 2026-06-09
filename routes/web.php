@@ -8,9 +8,6 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CarritoController;
 
-// 1. Ruta pública de detalle de habitación (debe ir antes que la versión admin)
-Route::get('/habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones.show');
-
 // 2. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('habitaciones', HabitacionController::class, ['parameters' => ['habitaciones' => 'habitacion']])
@@ -28,6 +25,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     return view('admin.consultas_internas');
 })->name('admin.consultas.internas')->middleware('auth');
 });
+
+// 1. Ruta pública de detalle de habitación
+Route::get('/habitaciones/{habitacion}', [HabitacionController::class, 'show'])->name('habitaciones.show');
 
 // 3. Ruta para la página principal
 Route::get('/', function () {

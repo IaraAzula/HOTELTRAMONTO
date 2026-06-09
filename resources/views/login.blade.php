@@ -21,6 +21,7 @@
                 <div class="card-login">
                     <h2 class="text-center fw-bold text-gold-tramonto mb-3">Iniciar Sesión</h2>
                     <p class="text-center text-muted small mb-4">Ingresá a tu cuenta exclusiva de Hotel Tramonto</p>
+                    <p class="text-center text-white-50 small mb-4">Si sos administrador, vos también podés ingresar aquí; el sistema te llevará al panel de admin.</p>
 
                     <form action="{{ route('login.store') }}" method="POST">
     

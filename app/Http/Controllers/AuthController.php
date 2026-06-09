@@ -26,6 +26,12 @@ class AuthController extends Controller
             // Ahora que configuramos auth.php, esto va a buscar directo en tu tabla 'usuarios'
             if (Auth::attempt($credenciales)) {
                 $request->session()->regenerate();
+
+                // Redirige a la sección de admin sólo si es un usuario administrador verdadero
+                if (Auth::user()->rol_id == 1 || (Auth::user()->rol && Auth::user()->rol->nombre === 'Admin')) {
+                    return redirect()->route('admin.dashboard')->with('exito', '¡Bienvenido al panel de administrador!');
+                }
+
                 return redirect()->route('catalogo')->with('exito', '¡Bienvenido de nuevo!');
             }
 
