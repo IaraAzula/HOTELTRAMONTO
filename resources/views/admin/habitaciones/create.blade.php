@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label text-gold-tramonto">Disponibilidad</label>
-                <input type="number" name="stock" value="1" min="1" class="form-control bg-dark text-white border-secondary" required>
+                <input type="number" name="Disponibilidad" value="1" min="1" class="form-control bg-dark text-white border-secondary" required>
             </div>
         </div>
 

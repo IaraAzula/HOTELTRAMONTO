@@ -81,7 +81,7 @@
                     <h2 class="price-large mb-0">USD {{ number_format($habitacion->precio, 0) }}</h2>
                     <span class="text-white fw-medium ms-2">/ noche</span>
                 </div>
-                <p class="text-white-50 mb-3">Stock disponible: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
+                <p class="text-white-50 mb-3">Disponibilidad: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
 
                 <hr class="gold-line">
 
@@ -118,7 +118,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-lg w-100 btn-back mt-2">
-                        <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
+                        <i class="bi bi-cart-plus me-2"></i> Añadir habitacion
                     </button>
                 </form>
             </div>

@@ -20,7 +20,7 @@
             <div class="col-md-5">
                 <div class="card-login">
                     <h2 class="text-center fw-bold text-gold-tramonto mb-3">Iniciar Sesión</h2>
-                    <p class="text-center text-muted small mb-4">Ingresá a tu cuenta exclusiva de Hotel Tramonto</p>
+                    <p class="text-center text-whitemb-4">Ingresá a tu cuenta exclusiva de Hotel Tramonto</p>
                     <p class="text-center text-white-50 small mb-4">Si sos administrador, vos también podés ingresar aquí; el sistema te llevará al panel de admin.</p>
 
                     <form action="{{ route('login.store') }}" method="POST">
@@ -42,7 +42,7 @@
 
                         <button type="submit" class="btn btn-tramonto-submit mb-3">Ingresar</button>
 
-                        <p class="text-center small text-muted mb-0">
+                        <p class="text-center small text-white mb-0">
                             ¿No tenés cuenta todavía? <a href="{{ route('registro') }}" class="text-link-gold">Registrate acá</a>
                         </p>
                     </form>

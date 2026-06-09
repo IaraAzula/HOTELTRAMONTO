@@ -78,7 +78,7 @@
                 <div class="card-register">
                     
                     <h2 class="text-center fw-bold text-gold-tramonto mb-3">Crear Cuenta</h2>
-                    <p class="text-center text-muted small mb-4">Registrate para gestionar tus reservas en Hotel Tramonto</p>
+                    <p class="text-center text-white small mb-4">Registrate para gestionar tus reservas en Hotel Tramonto</p>
 
                     <form action="{{ route('registro.store') }}" method="POST">
                         @csrf 
@@ -125,7 +125,7 @@
 
                         <button type="submit" class="btn btn-tramonto-submit mb-3">Registrarse</button>
 
-                        <p class="text-center small text-muted mb-0">
+                        <p class="text-center small text-white mb-0">
                             ¿Ya tenés una cuenta? <a href="{{ route('login') }}" class="text-link-gold">Iniciá sesión acá</a>
                         </p>
                     </form>
