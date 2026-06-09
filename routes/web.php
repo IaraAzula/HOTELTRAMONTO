@@ -79,5 +79,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
     Route::get('/reserva/exito', [CarritoController::class, 'exito'])->name('reserva.exito');
+
+    Route::post('/admin/store', [CarritoController::class, 'storeAdmin'])->name('admin.store');
 });
 

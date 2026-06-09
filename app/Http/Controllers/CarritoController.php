@@ -8,6 +8,7 @@ use App\Models\DetalleReserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Usuario;
 
 class CarritoController extends Controller
 {
@@ -165,10 +166,7 @@ class CarritoController extends Controller
     }
 
     public function usuariosAdmin()
-{
-    // Si ya tenés el modelo User listo, podés usar:
-    // $usuarios = \App\Models\User::all();
-    
+{ 
     $usuarios = collect([]); // Lo dejamos vacío temporalmente para pruebas visuales
 
     return view('admin.usuarios.index', compact('usuarios'));
@@ -188,6 +186,20 @@ public function dashboardAdmin()
     $ultimasVentas = \App\Models\Reserva::latest()->take(5)->get();
 
     return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas'));
+}
+public function storeAdmin(Request $request) 
+{
+    $rolAdmin = \App\Models\Rol::where('nombre', 'Admin')->first();
+
+    \App\Models\Usuario::create([
+        'nombre'   => $request->nombre,
+        'apellido' => $request->apellido, 
+        'email'    => $request->email,
+        'rol_id'   => $rolAdmin ? $rolAdmin->id : 1,
+        'password' => bcrypt('password123') 
+    ]);
+
+    return redirect()->route('admin.usuarios')->with('success', 'Administrador creado correctamente');
 }
 
 }

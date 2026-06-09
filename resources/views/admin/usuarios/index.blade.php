@@ -48,92 +48,86 @@
     .modal-content-tramonto { background-color: #0b1329 !important; border: 1px solid #d4af37 !important; border-radius: 14px; color: #ffffff; }
     .modal-header-tramonto { border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important; }
     .modal-footer-tramonto { border-top: 1px solid rgba(212, 175, 55, 0.1) !important; }
+
+    /*  aviso diseño dorado */
+    .alert-gold {
+        background-color: rgba(212, 175, 55, 0.2);
+        border: 1px solid #d4af37;
+        color: #d4af37;
+    }
 </style>
 
 <div class="container py-5">
+    @if(session('success'))
+    <div class="position-fixed top-0 start-50 translate-middle-x mt-4" style="z-index: 9999; width: 90%; max-width: 500px;">
+        <div class="alert alert-success alert-dismissible fade show shadow-lg border-0" role="alert" style="background: #1e293b; color: #d4af37; border-left: 5px solid #d4af37;">
+            <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@endif
     <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
             <h1 class="fw-bold text-gold-tramonto m-0"><i class="bi bi-people me-2"></i>Usuarios</h1>
-            <p class="text-white small">Prototipo visual interactivo para la administración de e-commerce</p>
         </div>
         <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Admin Mode</span>
     </div>
 
-    <div class="card card-tramonto p-4 shadow-lg">
-        {{-- Sacamos el cuadro de búsqueda para evitar conflictos de filtrado en JS --}}
-        
-        <h5 class="text-gold-tramonto text-uppercase fw-bold mb-3" style="font-size: 0.9rem; letter-spacing: 1px;">Gestión de Usuarios</h5>
-
-        <div class="table-responsive">
-            <table class="table table-hover table-tramonto align-middle m-0">
-                <thead>
-                    <tr>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Rol</th>
-                        <th scope="col" class="text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(isset($usuarios) && $usuarios->count() > 0)
-                        {{-- Bucle real si existen datos en la BD --}}
-                        @foreach($usuarios as $user)
-                            <tr class="fila-usuario">
-                                <td class="fw-semibold text-white">{{ $user->name ?? $user->nombre }}</td>
-                                <td class="text-muted">{{ $user->email }}</td>
-                                <td>
-                                    <span class="badge-rol-tramonto">Cliente</span>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-gold-outline btn-sm px-3 rounded-pill btn-detalle-usuario"
-                                            data-nombre="{{ $user->name ?? $user->nombre }}"
-                                            data-email="{{ $user->email }}"
-                                            data-rol="Cliente"
-                                            data-fecha="{{ $user->created_at ? $user->created_at->format('d/m/Y') : '10/05/2026' }}">
-                                        Ver detalle
-                                    </button>
-                                </td>
+   <div class="container py-5">
+    <div class="row g-4">
+        {{-- COLUMNA IZQUIERDA: CLIENTES --}}
+        <div class="col-lg-8">
+            <div class="card card-tramonto p-4 shadow-lg h-100">
+                <h5 class="text-gold-tramonto text-uppercase fw-bold mb-3">Clientes registrados</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-tramonto align-middle m-0">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Rol</th>
                             </tr>
-                        @endforeach
-                    @else
-                        {{-- Mocks de prueba idénticos a tu captura para la presentación --}}
-                        <tr class="fila-usuario">
-                            <td class="fw-semibold text-white">Juan Pérez</td>
-                            <td class="text-muted">juan@email.com</td>
-                            <td>
-                                <span class="badge-rol-tramonto">Cliente</span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-gold-outline btn-sm px-3 rounded-pill btn-detalle-usuario"
-                                        data-nombre="Juan Pérez"
-                                        data-email="juan@email.com"
-                                        data-rol="Cliente"
-                                        data-fecha="14/04/2026">
-                                    Ver detalle
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="fila-usuario">
-                            <td class="fw-semibold text-white">María López</td>
-                            <td class="text-muted">maria@email.com</td>
-                            <td>
-                                <span class="badge-rol-tramonto">Cliente</span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-gold-outline btn-sm px-3 rounded-pill btn-detalle-usuario"
-                                        data-nombre="María López"
-                                        data-email="maria@email.com"
-                                        data-rol="Cliente"
-                                        data-fecha="22/04/2026">
-                                    Ver detalle
-                                </button>
-                            </td>
-                        </tr>
-                    @endif
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {{-- Aquí va tu @foreach de usuarios clientes --}}
+                            <tr class="fila-usuario">
+                                <td>Juan Pérez</td>
+                                <td>juan@email.com</td>
+                                <td><span class="badge-rol-tramonto">Cliente</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{-- COLUMNA DERECHA: ADMINISTRADORES --}}
+        <div class="col-lg-4">
+            <div class="card card-tramonto p-4 shadow-lg h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="text-gold-tramonto text-uppercase fw-bold m-0">Administradores</h5>
+                    <button class="btn btn-gold-outline btn-sm" data-bs-toggle="modal" data-bs-target="#modalNuevoAdmin"> + Nuevo
+                    </button>
+                    
+                </div>
+                
+                {{-- Lista de Admins --}}
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-2">
+                        <div>
+                            <div class="fw-bold text-white">María López</div>
+                            <small class="text-white">maria@email.com</small>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm text-info">Editar</button>
+                            <button class="btn btn-sm text-danger">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 
 {{-- 🪟 MODAL DE DETALLE DE USUARIO --}}
@@ -211,5 +205,65 @@
             });
         });
     });
+    {{-- 🪟 MODAL: CREAR NUEVO ADMINISTRADOR --}}
+<div class="modal fade" id="modalNuevoAdmin" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-tramonto">
+            <form action="{{ route('admin.store') }}" method="POST">
+                @csrf
+                <div class="modal-header modal-header-tramonto">
+                    <h5 class="modal-title text-gold-tramonto">Nuevo Administrador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Nombre</label>
+                        <input type="text" name="nombre" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Email</label>
+                        <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-tramonto">
+                    <button type="submit" class="btn btn-gold-outline">Guardar Administrador</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </script>
+<div class="modal fade" id="modalNuevoAdmin" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-tramonto">
+            {{-- Asegúrate de que esta ruta exista en tu archivo routes/web.php --}}
+            <form action="{{ route('admin.store') }}" method="POST">
+                @csrf
+                <div class="modal-header modal-header-tramonto">
+                    <h5 class="modal-title text-gold-tramonto">Crear Nuevo Administrador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Nombre completo</label>
+                        <input type="text" name="nombre" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Apellido</label>
+                        <input type="text" name="apellido" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Correo electrónico</label>
+                        <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-tramonto">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-gold-outline">Guardar Administrador</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
