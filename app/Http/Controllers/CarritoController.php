@@ -166,10 +166,14 @@ class CarritoController extends Controller
     }
 
     public function usuariosAdmin()
-{ 
-    $usuarios = collect([]); // Lo dejamos vacío temporalmente para pruebas visuales
+{
+    // 1. Obtén los datos de la base de datos
+    // Ajusta 'rol_id' según sea tu estructura real (ej: 1 para admin, 2 para clientes)
+    $administradores = \App\Models\Usuario::where('rol_id', 'admin')->get(); 
+    $clientes = \App\Models\Usuario::where('rol_id', 'cliente')->get();
 
-    return view('admin.usuarios.index', compact('usuarios'));
+    // 2. ENVÍA las variables a la vista usando compact()
+    return view('admin.usuarios.index', compact('administradores', 'clientes'));
 }
 
 public function dashboardAdmin()
@@ -185,11 +189,21 @@ public function dashboardAdmin()
 }
 public function storeAdmin(Request $request) 
 {
+    // 1. Validar que el email sea único antes de guardar
+   $request->validate([
+        'nombre'   => 'required',
+        'apellido' => 'required',
+        'email'    => 'required|email|unique:usuarios,email',
+    ], [
+        // Aquí personalizamos el mensaje
+        'email.unique' => 'El correo electrónico ingresado ya se encuentra registrado.',
+    ]);
+
     $rolAdmin = \App\Models\Rol::where('nombre', 'Admin')->first();
 
     \App\Models\Usuario::create([
         'nombre'   => $request->nombre,
-        'apellido' => $request->apellido, 
+        'apellido' => $request->apellido,
         'email'    => $request->email,
         'rol_id'   => $rolAdmin ? $rolAdmin->id : 1,
         'password' => bcrypt('password123') 
@@ -210,4 +224,32 @@ public function calendario()
     return view('admin.calendario', compact('reservas'));
 }
 
+// 1. Muestra la vista con el formulario pre-llenado
+public function editAdmin($id)
+{
+    $usuario = \App\Models\Usuario::findOrFail($id);
+    return view('admin.usuarios.edit', compact('usuario'));
+}
+
+// 2. Guarda los cambios en la base de datos
+public function updateAdmin(Request $request, $id)
+{
+    $usuario = \App\Models\Usuario::findOrFail($id);
+    
+    $usuario->update([
+        'nombre'   => $request->nombre,
+        'apellido' => $request->apellido,
+        'email'    => $request->email,
+    ]);
+
+    return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado correctamente');
+}
+public function index()
+{
+    // Asegúrate de que el modelo y la consulta sean los correctos
+    $administradores = \App\Models\Usuario::where('rol', 'admin')->get(); // O el filtro que uses
+    $clientes = \App\Models\Usuario::where('rol', 'cliente')->get();
+
+    return view('admin.usuarios.index', compact('administradores', 'clientes'));
+}
 }

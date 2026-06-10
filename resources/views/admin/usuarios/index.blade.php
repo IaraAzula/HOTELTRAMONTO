@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('contenido')
+{{-- MENSAJE FLOTANTE EN EL MEDIO --}}
+@if($errors->any())
+    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 400px;">
+        <div class="alert alert-danger shadow-lg border-0" style="background-color: #7f1d1d; color: #fecaca; border: 1px solid #991b1b;">
+            <ul class="mb-0 ps-3">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close btn-close-white float-end" onclick="this.parentElement.parentElement.style.display='none'"></button>
+        </div>
+    </div>
+@endif
 <style>
     /* Fondo oscuro global */
     body { background-color: #020617 !important; color: #ffffff !important; }
@@ -73,32 +86,208 @@
         <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Admin Mode</span>
     </div>
 
-    <div class="card card-tramonto p-4 shadow-lg">
-        <div class="table-responsive">
-            <table class="table table-hover table-tramonto align-middle m-0">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Correo Electrónico</th>
-                        <th scope="col" class="text-center">Rol</th>
-                        <th scope="col" class="text-end">Fecha de Registro</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($usuarios as $usuario)
-                        <tr>
-                            <td class="fw-bold text-white">{{ $usuario->nombre }}</td>
-                            <td>{{ $usuario->email }}</td>
-                            <td class="text-center">
-                                <span class="badge bg-secondary px-3 py-2 text-uppercase" style="background-color: rgba(212, 175, 55, 0.1) !important; color: #d4af37 !important; border: 1px solid rgba(212, 175, 55, 0.3);">
-                                    {{ $usuario->rol?->nombre ?? ($usuario->rol_id == 1 ? 'Admin' : ($usuario->rol_id == 2 ? 'Cliente' : 'Sin rol')) }}
-                                </span>
-                            </td>
-                            <td class="text-end text-muted small">{{ $usuario->created_at ? $usuario->created_at->format('d/m/Y') : 'S/D' }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+   <div class="container py-5">
+    <div class="row g-4">
+       {{-- COLUMNA IZQUIERDA: CLIENTES (8 de 12 espacios) --}}
+        <div class="col-lg-8">
+            <div class="card card-tramonto p-4 shadow-lg h-100">
+                <h5 class="text-gold-tramonto text-uppercase fw-bold mb-3">Clientes registrados</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-tramonto align-middle m-0">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($clientes as $usuario)
+                            <tr>
+                                <td>{{ $usuario->nombre }} {{ $usuario->apellido }}</td>
+                                <td>{{ $usuario->email }}</td>
+                                <td><span class="badge-rol-tramonto">Cliente</span></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+{{-- COLUMNA DERECHA: ADMINISTRADORES (4 de 12 espacios) --}}
+        <div class="col-lg-4">
+            <div class="card card-tramonto p-4 shadow-lg h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="text-gold-tramonto text-uppercase fw-bold m-0">Administradores</h5>
+                    <button class="btn btn-gold-outline btn-sm" data-bs-toggle="modal" data-bs-target="#modalNuevoAdmin">+ Nuevo</button>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                    @forelse($administradores as $admin)
+                    <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-2">
+                        <div>
+                            <div class="fw-bold text-white">{{ $admin->nombre }} {{ $admin->apellido }}</div>
+                            <small class="text-white">{{ $admin->email }}</small>
+                        </div>
+                            <form action="{{ route('admin.usuarios.destroy', $admin->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar a este usuario?')">
+                                    @csrf 
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                </form>
+                    </div>
+                    @empty
+                        <p class="text-secondary text-center">No hay administradores.</p>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{{-- 🪟 MODAL DE DETALLE DE USUARIO --}}
+<div class="modal fade" id="modalDetalleUsuario" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-tramonto shadow-lg">
+            <div class="modal-header modal-header-tramonto">
+                <h5 class="modal-title fw-bold text-gold-tramonto"><i class="bi bi-person-badge me-2"></i>Ficha del Usuario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 text-center py-2">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px; background-color: rgba(212,175,55,0.1); border: 1px solid #d4af37;">
+                        <i class="bi bi-person fs-3 text-gold-tramonto"></i>
+                    </div>
+                    <h4 id="modalNombreUser" class="fw-bold text-white mb-0">-</h4>
+                    <span id="modalRolUser" class="badge-rol-tramonto mt-2 d-inline-block">Cliente</span>
+                </div>
+                
+                <hr style="border-color: rgba(212,175,55,0.2);">
+                
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="text-gold-tramonto small text-uppercase fw-semibold d-block">Correo Electrónico</label>
+                        <span id="modalEmailUser" class="text-white fw-medium">-</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="text-gold-tramonto small text-uppercase fw-semibold d-block">Teléfono de Contacto</label>
+                        <span class="text-white fw-medium">+54 379 4112233</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="text-gold-tramonto small text-uppercase fw-semibold d-block">Alta en Sistema</label>
+                        <span id="modalFechaUser" class="text-white fw-medium">-</span>
+                    </div>
+                </div>
+                
+                <hr style="border-color: rgba(212,175,55,0.2);">
+                
+                <div class="p-3 rounded" style="background-color: rgba(15, 23, 42, 0.6); border: 1px solid rgba(212,175,55,0.1);">
+                    <div class="text-white fw-medium"><i class="bi bi-info-circle me-1 text-gold-tramonto"></i> Cuenta activa y vinculada al módulo de e-commerce del hotel.</div>
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-tramonto">
+                <button type="button" class="btn btn-gold-outline px-4 rounded-pill" data-bs-dismiss="modal">Cerrar Perfil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- 📜 JAVASCRIPT PARA CONTROLAR EL MODAL --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const botonesDetalle = document.querySelectorAll('.btn-detalle-usuario');
+        const modalElement = document.getElementById('modalDetalleUsuario');
+        
+        // Instancia del modal de Bootstrap
+        const modalUsuario = new bootstrap.Modal(modalElement);
+
+        botonesDetalle.forEach(boton => {
+            boton.addEventListener('click', function() {
+                // Captura de datos vía atributos data-
+                const nombre = this.getAttribute('data-nombre');
+                const email = this.getAttribute('data-email');
+                const rol = this.getAttribute('data-rol');
+                const fecha = this.getAttribute('data-fecha');
+
+                // Inyección dinámica de textos
+                document.getElementById('modalNombreUser').innerText = nombre;
+                document.getElementById('modalEmailUser').innerText = email;
+                document.getElementById('modalRolUser').innerText = rol;
+                document.getElementById('modalFechaUser').innerText = fecha;
+
+                // Lanzar la ventana emergente
+                modalUsuario.show();
+            });
+        });
+    });
+    {{-- 🪟 MODAL: CREAR NUEVO ADMINISTRADOR --}}
+<div class="modal fade" id="modalNuevoAdmin" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-tramonto">
+            <form action="{{ route('admin.store') }}" method="POST">
+                @csrf
+                <div class="modal-header modal-header-tramonto">
+                    <h5 class="modal-title text-gold-tramonto">Nuevo Administrador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                 @if($errors->any())
+                        <div class="alert alert-danger p-2 mb-3">
+                            <ul class="mb-0 ps-3">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Nombre</label>
+                        <input type="text" name="nombre" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Email</label>
+                        <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-tramonto">
+                    <button type="submit" class="btn btn-gold-outline">Guardar Administrador</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+<div class="modal fade" id="modalNuevoAdmin" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-tramonto">
+            {{-- Asegúrate de que esta ruta exista en tu archivo routes/web.php --}}
+            <form action="{{ route('admin.store') }}" method="POST">
+                @csrf
+                <div class="modal-header modal-header-tramonto">
+                    <h5 class="modal-title text-gold-tramonto">Crear Nuevo Administrador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Nombre completo</label>
+                        <input type="text" name="nombre" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Apellido</label>
+                        <input type="text" name="apellido" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-gold-tramonto">Correo electrónico</label>
+                        <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-tramonto">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-gold-outline">Guardar Administrador</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

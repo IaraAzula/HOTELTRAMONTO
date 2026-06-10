@@ -10,15 +10,16 @@ class UsuarioController extends Controller
 {
     /**
      * Muestra el listado de usuarios con su relación (Evita consultas N+1)
-     */
-    public function index()
-    {
-        // Cargamos la relación del rol para evitar relaciones vacías en la vista
-        $usuarios = Usuario::with('rol')->latest()->get();
+     */ 
+    
+ public function index()
+{
+    // Filtramos por rol_id (Asegúrate que 1 sea Admin y 2 sea Cliente)
+    $administradores = Usuario::where('rol_id', 1)->get(); 
+    $clientes = Usuario::where('rol_id', 2)->get();
 
-        return view('admin.usuarios.index', compact('usuarios'));
-    }
-
+    return view('admin.usuarios.index', compact('administradores', 'clientes'));
+}
     /**
      * Muestra el formulario de creación/registro de usuario
      */
@@ -28,11 +29,8 @@ class UsuarioController extends Controller
     return view('registro', compact('roles')); 
     }
 
-    /**
-     * Valida y registra un nuevo usuario
-     */
-    /**
-     * Valida y registra un nuevo usuario
+   /**
+     * Valida y registra un nuevo usuario (PÚBLICO)
      */
     public function store(Request $request)
     {
@@ -44,12 +42,35 @@ class UsuarioController extends Controller
             'rol_id' => 'required|exists:roles,id', 
         ]);
 
-        // Guardamos limpio usando el 'only'. El modelo se encarga de encriptar solo.
         Usuario::create($request->only(['nombre', 'apellido', 'email', 'password', 'rol_id']));
         
+        // CORRECCIÓN: Aquí faltaba el punto y coma
         return redirect()->route('catalogo')->with('exito', '¡Cuenta creada con éxito! Ya podés iniciar sesión.');
+    } 
+
+       /**
+     * Valida y registra un nuevo administrador (ADMIN)
+     */
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'nombre'   => 'required|string',
+            'apellido' => 'required|string',
+            'email'    => 'required|email|unique:usuarios,email',
+        ], [
+            'email.unique' => 'El correo electrónico ingresado ya se encuentra registrado.',
+        ]);
+
+        Usuario::create([
+            'nombre'   => $request->nombre,
+            'apellido' => $request->apellido,
+            'email'    => $request->email,
+            'password' => bcrypt('password_temporal'), // Asegúrate de manejar la contraseña como necesites
+            'rol_id'   => 1, // Asumiendo que 1 es admin
+        ]);
+
+        return redirect()->route('admin.usuarios.index')->with('success', 'Administrador creado con éxito.');
     }
-        
 
     public function show(Usuario $usuario) {}
     public function edit(Usuario $usuario) {}
@@ -58,9 +79,11 @@ class UsuarioController extends Controller
     /**
      * Baja lógica del usuario
      */
-    public function destroy(Usuario $usuario)
-    {
-        $usuario->delete(); // borrado lógico (setea deleted_at)
-        return redirect()->route('usuarios.index')->with('exito', 'Usuario dado de baja.');
-    }
+ public function destroy($id)
+{
+    $usuario = Usuario::findOrFail($id);
+    $usuario->delete(); 
+    
+    return redirect()->route('admin.usuarios.index')->with('success', 'Usuario eliminado correctamente.');
+}
 }

@@ -83,5 +83,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reserva/exito', [CarritoController::class, 'exito'])->name('reserva.exito');
 
     Route::post('/admin/store', [CarritoController::class, 'storeAdmin'])->name('admin.store');
-});
 
+  Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios');
+    Route::post('/admin/usuarios/store', [UsuarioController::class, 'storeAdmin'])->name('admin.store');
+    Route::delete('/admin/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy');
+    Route::get('/admin/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('admin.usuarios.edit');
+    Route::put('/admin/usuarios/{id}', [UsuarioController::class, 'update'])->name('admin.usuarios.update');
+});
