@@ -15,4 +15,8 @@ class DetalleReserva extends Model
         'fecha_entrada',
         'fecha_salida'
     ];
+    public function habitacion()
+    {
+    return $this->belongsTo(Habitacion::class, 'habitacion_id');
+    }
 }

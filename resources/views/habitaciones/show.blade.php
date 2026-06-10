@@ -100,27 +100,36 @@
                 </ul>
 
                 {{-- FORMULARIO ACTUALIZADO Y CORREGIDO PARA EL NUEVO CONTROLADOR --}}
-                <form action="{{ route('carrito.agregar') }}" method="POST" class="mt-5 d-grid gap-3">
-                    @csrf
-                    
-                    {{-- Envía el id de forma interna como lo espera el $request->habitacion_id --}}
-                    <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
+                @auth
+            <form action="{{ route('carrito.agregar') }}" method="POST" class="mt-5 d-grid gap-3">
+                @csrf
+                <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
 
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="fecha_entrada" class="form-label text-gold-tramonto small text-uppercase">Fecha de entrada</label>
-                            <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d') }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="fecha_salida" class="form-label text-gold-tramonto small text-uppercase">Fecha de salida</label>
-                            <input type="date" name="fecha_salida" id="fecha_salida" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
-                        </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="fecha_entrada" class="form-label text-gold-tramonto small text-uppercase">Fecha de entrada</label>
+                        <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d') }}">
                     </div>
+                    <div class="col-md-6">
+                        <label for="fecha_salida" class="form-label text-gold-tramonto small text-uppercase">Fecha de salida</label>
+                        <input type="date" name="fecha_salida" id="fecha_salida" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                    </div>
+                </div>
 
-                    <button type="submit" class="btn btn-lg w-100 btn-back mt-2">
-                        <i class="bi bi-cart-plus me-2"></i> Añadir habitacion
-                    </button>
-                </form>
+                <button type="submit" class="btn btn-lg w-100 btn-back mt-2">
+                    <i class="bi bi-cart-plus me-2"></i> Añadir habitacion
+                </button>
+            </form>
+            @else
+            <div class="mt-5">
+                <a href="{{ route('login') }}" class="btn btn-lg w-100 btn-back">
+                    <i class="bi bi-person-lock me-2"></i> Iniciá sesión para reservar
+                </a>
+                <p class="text-center mt-2" style="color: #94a3b8; font-size: 0.85rem;">
+                    ¿No tenés cuenta? <a href="{{ route('registro') }}" style="color: #d4af37;">Registrate acá</a>
+                </p>
+            </div>
+            @endauth
             </div>
         </div>
     </div>

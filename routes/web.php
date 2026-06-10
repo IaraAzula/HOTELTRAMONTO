@@ -13,6 +13,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('habitaciones', HabitacionController::class, ['parameters' => ['habitaciones' => 'habitacion']])
         ->except('show');
     Route::resource('roles', RolController::class);
+    Route::get('/admin/reservas/{reserva}', [CarritoController::class, 'detalleReserva'])->name('admin.reservas.detalle');
+    Route::get('/admin/calendario', [CarritoController::class, 'calendario'])->name('admin.calendario');
     Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
    
     Route::get('/admin/usuarios', [\App\Http\Controllers\CarritoController::class, 'usuariosAdmin'])->name('admin.usuarios');

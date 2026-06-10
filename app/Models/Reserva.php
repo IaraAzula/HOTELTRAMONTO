@@ -22,4 +22,8 @@ class Reserva extends Model
     {
         return $this->hasMany(DetalleReserva::class, 'reserva_id');
     }
+        public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
 }

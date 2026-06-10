@@ -174,18 +174,14 @@ class CarritoController extends Controller
 
 public function dashboardAdmin()
 {
-    // 📊 1. Intentamos calcular las métricas reales desde tus modelos
     $ventasTotales = \App\Models\Reserva::sum('total') ?: 666000;
     $totalPedidos = \App\Models\Reserva::count() ?: 2;
     $ticketPromedio = $totalPedidos > 0 ? ($ventasTotales / $totalPedidos) : 333000;
-    
-    // 🔍 CAMBIAMOS 'User' POR 'Usuario'
     $totalUsuarios = \App\Models\Usuario::count() ?: 2;
+    $ultimasVentas = \App\Models\Reserva::with('usuario')->latest()->take(5)->get();
+    $reservas = \App\Models\Reserva::with('usuario', 'detalles.habitacion')->get();
 
-    // 🕒 2. Traemos las últimas reservas (Pedidos)
-    $ultimasVentas = \App\Models\Reserva::latest()->take(5)->get();
-
-    return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas'));
+    return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas', 'reservas'));
 }
 public function storeAdmin(Request $request) 
 {
@@ -200,6 +196,18 @@ public function storeAdmin(Request $request)
     ]);
 
     return redirect()->route('admin.usuarios')->with('success', 'Administrador creado correctamente');
+}
+ 
+public function detalleReserva(\App\Models\Reserva $reserva)
+{
+    $reserva->load('usuario', 'detalles.habitacion');
+    return view('admin.reservas.detalle', compact('reserva'));
+}
+
+public function calendario()
+{
+    $reservas = \App\Models\Reserva::with('usuario', 'detalles.habitacion')->get();
+    return view('admin.calendario', compact('reservas'));
 }
 
 }
