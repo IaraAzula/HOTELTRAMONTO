@@ -5,8 +5,14 @@
     body { background-color: #020617 !important; color: #ffffff; }
     .text-gold-tramonto { color: #d4af37 !important; letter-spacing: 1px; }
     .card-tramonto { background-color: rgba(15, 23, 42, 0.6); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; }
-    .table-tramonto { background-color: rgba(15, 23, 42, 0.4) !important; border: 1px solid rgba(212, 175, 55, 0.2); color: #ffffff !important; }
-    .table-tramonto th { color: #d4af37 !important; border-bottom: 2px solid #d4af37 !important; text-transform: uppercase; font-size: 0.85rem; }
+    
+   
+    .table-tramonto { background-color: transparent !important; color: #ffffff !important; }
+    .table-tramonto th, 
+    .table-tramonto td, 
+    .table-tramonto tr { background-color: transparent !important; }
+
+    .table-tramonto th { color: #d4af37 !important; border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important; text-transform: uppercase; font-size: 0.85rem; }
     .table-tramonto td { border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; color: #cbd5e1 !important; }
 
     /* Estilos para los badges de estado */
