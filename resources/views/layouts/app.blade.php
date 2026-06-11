@@ -132,7 +132,7 @@
                             <li><h6 class="dropdown-header text-uppercase text-muted small fw-bold" style="letter-spacing: 0.5px; color: #C7B25D !important;">Panel Admin</h6></li>
                             <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2 me-2" style="color: #C7B25D;"></i>Dashboard</a></li>
                             <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.ventas') }}"><i class="bi bi-calendar-check me-2" style="color: #C7B25D;"></i>Reservas</a></li>
-                            <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.usuarios') }}"><i class="bi bi-people me-2" style="color: #C7B25D;"></i>Usuarios</a></li>
+                            <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.usuarios.index') }}"><i class="bi bi-people me-2" style="color: #C7B25D;"></i>Usuarios</a></li>
                             
                             {{-- 🔄 Redirección apuntando al módulo de soporte / tickets internos --}}
                             <li><a class="dropdown-item text-white small py-2" href="{{ route('admin.consultas.internas') }}"><i class="bi bi-chat-right-text me-2" style="color: #C7B25D;"></i>Consultas Internas</a></li>

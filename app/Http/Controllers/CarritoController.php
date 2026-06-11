@@ -178,14 +178,18 @@ class CarritoController extends Controller
 
 public function dashboardAdmin()
 {
+    // 📊 1. Intentamos calcular las métricas reales desde tus modelos
     $ventasTotales = \App\Models\Reserva::sum('total') ?: 666000;
     $totalPedidos = \App\Models\Reserva::count() ?: 2;
     $ticketPromedio = $totalPedidos > 0 ? ($ventasTotales / $totalPedidos) : 333000;
+    
+    // 🔍 CAMBIAMOS 'User' POR 'Usuario'
     $totalUsuarios = \App\Models\Usuario::count() ?: 2;
-    $ultimasVentas = \App\Models\Reserva::with('usuario')->latest()->take(5)->get();
-    $reservas = \App\Models\Reserva::with('usuario', 'detalles.habitacion')->get();
 
-    return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas', 'reservas'));
+    // 🕒 2. Traemos las últimas reservas (Pedidos)
+    $ultimasVentas = \App\Models\Reserva::latest()->take(5)->get();
+
+    return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas'));
 }
 public function storeAdmin(Request $request) 
 {
@@ -211,18 +215,6 @@ public function storeAdmin(Request $request)
 
     return redirect()->route('admin.usuarios')->with('success', 'Administrador creado correctamente');
 }
- 
-public function detalleReserva(\App\Models\Reserva $reserva)
-{
-    $reserva->load('usuario', 'detalles.habitacion');
-    return view('admin.reservas.detalle', compact('reserva'));
-}
-
-public function calendario()
-{
-    $reservas = \App\Models\Reserva::with('usuario', 'detalles.habitacion')->get();
-    return view('admin.calendario', compact('reservas'));
-}
 
 // 1. Muestra la vista con el formulario pre-llenado
 public function editAdmin($id)
@@ -244,12 +236,5 @@ public function updateAdmin(Request $request, $id)
 
     return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado correctamente');
 }
-public function index()
-{
-    // Asegúrate de que el modelo y la consulta sean los correctos
-    $administradores = \App\Models\Usuario::where('rol', 'admin')->get(); // O el filtro que uses
-    $clientes = \App\Models\Usuario::where('rol', 'cliente')->get();
 
-    return view('admin.usuarios.index', compact('administradores', 'clientes'));
-}
 }

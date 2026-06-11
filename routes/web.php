@@ -8,16 +8,17 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CarritoController;
 
+
 // 2. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
 Route::middleware(['auth', 'admin'])->group(function () {
+    // Añade esta línea para que Laravel entienda qué es 'admin.usuarios'
+Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios');
     Route::resource('habitaciones', HabitacionController::class, ['parameters' => ['habitaciones' => 'habitacion']])
         ->except('show');
     Route::resource('roles', RolController::class);
     Route::get('/admin/reservas/{reserva}', [CarritoController::class, 'detalleReserva'])->name('admin.reservas.detalle');
     Route::get('/admin/calendario', [CarritoController::class, 'calendario'])->name('admin.calendario');
     Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index');
-   
-    Route::get('/admin/usuarios', [\App\Http\Controllers\CarritoController::class, 'usuariosAdmin'])->name('admin.usuarios');
     Route::get('/admin/dashboard', [\App\Http\Controllers\CarritoController::class, 'dashboardAdmin'])->name('admin.dashboard');
     // Ruta de ventas 
     Route::get('/admin/ventas', [CarritoController::class, 'ventasAdmin'])->name('admin.ventas');
@@ -82,9 +83,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
     Route::get('/reserva/exito', [CarritoController::class, 'exito'])->name('reserva.exito');
 
-    Route::post('/admin/store', [CarritoController::class, 'storeAdmin'])->name('admin.store');
-
-  Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios');
+    
+  
     Route::post('/admin/usuarios/store', [UsuarioController::class, 'storeAdmin'])->name('admin.store');
     Route::delete('/admin/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy');
     Route::get('/admin/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('admin.usuarios.edit');
