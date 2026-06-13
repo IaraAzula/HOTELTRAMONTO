@@ -23,10 +23,14 @@ class CarritoController extends Controller
     public function agregar(Request $request) 
     {
         $request->validate([
-            'habitacion_id' => 'required|exists:habitaciones,id', // Validamos que llegue el id
-            'fecha_entrada' => 'required|date|after_or_equal:today',
-            'fecha_salida'  => 'required|date|after:fecha_entrada',
-        ]);
+    'habitacion_id' => 'required|exists:habitaciones,id',
+    'fecha_entrada' => 'required|date|after_or_equal:today',
+    'fecha_salida'  => 'required|date|after:fecha_entrada',
+], [
+    // Mensajes personalizados
+    'fecha_salida.after' => 'La fecha de salida debe ser posterior a la fecha de entrada.',
+    'fecha_entrada.after_or_equal' => 'La fecha de entrada no puede ser anterior al día de hoy.',
+]);
 
         $id = $request->habitacion_id; // Recuperamos el id desde el formulario
 
@@ -178,18 +182,25 @@ class CarritoController extends Controller
 
 public function dashboardAdmin()
 {
-    // 📊 1. Intentamos calcular las métricas reales desde tus modelos
+    // 📊 1. Cálculo de métricas
     $ventasTotales = \App\Models\Reserva::sum('total') ?: 666000;
     $totalPedidos = \App\Models\Reserva::count() ?: 2;
     $ticketPromedio = $totalPedidos > 0 ? ($ventasTotales / $totalPedidos) : 333000;
     
-    // 🔍 CAMBIAMOS 'User' POR 'Usuario'
+    // 🕒 2. Otros datos necesarios para la vista
+    $reservas = \App\Models\Reserva::with('usuario')->get();
     $totalUsuarios = \App\Models\Usuario::count() ?: 2;
-
-    // 🕒 2. Traemos las últimas reservas (Pedidos)
     $ultimasVentas = \App\Models\Reserva::latest()->take(5)->get();
 
-    return view('admin.dashboard', compact('ventasTotales', 'totalPedidos', 'ticketPromedio', 'totalUsuarios', 'ultimasVentas'));
+    // 🚀 3. Un solo retorno enviando todo lo que la vista usa
+    return view('admin.dashboard', compact(
+        'reservas', 
+        'ventasTotales', 
+        'totalPedidos', 
+        'ticketPromedio', 
+        'totalUsuarios', 
+        'ultimasVentas'
+    ));
 }
 public function storeAdmin(Request $request) 
 {
