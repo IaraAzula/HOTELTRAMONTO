@@ -16,7 +16,7 @@ class CarritoController extends Controller
     public function ver()
     {
         $carrito = session()->get('carrito', []);
-        return view('carrito', compact('carrito'));
+    return view('carrito.index', compact('carrito'));
     }
 
     // 2. Agregar una habitación al carrito
@@ -151,7 +151,7 @@ class CarritoController extends Controller
         if (!$datosReserva) {
             return redirect()->route('catalogo');
         }
-
+     
         return view('carrito.exito', compact('datosReserva'));
     }
 
@@ -246,6 +246,15 @@ public function updateAdmin(Request $request, $id)
     ]);
 
     return redirect()->route('admin.usuarios')->with('success', 'Usuario actualizado correctamente');
+}
+
+public function detalleReserva($id)
+{
+    // Buscamos la reserva con sus detalles y la habitación asociada
+    $reserva = \App\Models\Reserva::with('detalles.habitacion', 'usuario')->findOrFail($id);
+    
+    // Retornamos una vista que muestre el detalle (debes tener este archivo creado)
+    return view('admin.reservas.detalle', compact('reserva'));
 }
 
 }

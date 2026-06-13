@@ -5,19 +5,21 @@
     body { background-color: #020617 !important; color: #ffffff; }
     .text-gold-tramonto { color: #d4af37 !important; letter-spacing: 1px; }
     .card-tramonto { background-color: rgba(15, 23, 42, 0.6); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; backdrop-filter: blur(5px); }
-    .table-tramonto { background-color: rgba(15, 23, 42, 0.4) !important; border: 1px solid rgba(212, 175, 55, 0.2); color: #ffffff !important; }
-    .table-tramonto th { color: #d4af37 !important; border-bottom: 2px solid #d4af37 !important; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
-    .table-tramonto td { border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; color: #cbd5e1 !important; }
+    
+    /* Nueva regla blindada para la tabla */
+    .table-tramonto { background-color: transparent !important; color: #ffffff !important; }
+    .table-tramonto tr, .table-tramonto td, .table-tramonto th { 
+        background-color: transparent !important; 
+        color: #ffffff !important; 
+    }
+    .table-tramonto th { color: #d4af37 !important; border-bottom: 2px solid #d4af37 !important; text-transform: uppercase; font-size: 0.85rem; }
+    .table-tramonto td { border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; }
+    
     .btn-gold { background-color: #d4af37; color: #020617; font-weight: bold; border: 1px solid #d4af37; transition: 0.3s; }
     .btn-gold:hover { background-color: transparent; color: #d4af37; box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
     
-    /* Personalización para que el cartel del medio use los colores oscuros y dorados del hotel */
-    .swal2-popup-tramonto {
-        background-color: #0f172a !important;
-        border: 1px solid rgba(212, 175, 55, 0.3) !important;
-        border-radius: 15px !important;
-        color: #ffffff !important;
-    }
+    /* SweetAlert */
+    .swal2-popup-tramonto { background-color: #0f172a !important; border: 1px solid rgba(212, 175, 55, 0.3) !important; border-radius: 15px !important; color: #ffffff !important; }
     .swal2-title-tramonto { color: #d4af37 !important; }
     .swal2-confirm-tramonto { background-color: #d4af37 !important; color: #020617 !important; font-weight: bold !important; }
 </style>
