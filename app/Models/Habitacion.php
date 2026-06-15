@@ -11,15 +11,7 @@ class Habitacion extends Model
 
     protected $table = 'habitaciones';
 
-    protected $fillable = [
-        'nombre',
-        'descripcion',
-        'servicios',
-        'precio',
-        'stock',
-        'capacidad',
-        'imagen',
-    ];
+    protected $fillable = ['nombre', 'descripcion', 'servicios', 'precio', 'capacidad', 'imagen'];
 
     public function imagenes()
     {

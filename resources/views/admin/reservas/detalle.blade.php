@@ -66,6 +66,7 @@
                     <th>Fecha Entrada</th>
                     <th>Fecha Salida</th>
                     <th>Noches</th>
+                    <th class="text-center">Personas</th>
                     <th class="text-end">Precio por noche</th>
                 </tr>
             </thead>
@@ -81,6 +82,9 @@
                         @else
                             -
                         @endif
+                    </td>
+                    <td class="text-center">
+                        <i class="bi bi-people me-1" style="color: #d4af37;"></i>{{ $detalle->personas ?? '-' }}
                     </td>
                     <td class="text-end">${{ number_format($detalle->precio_unitario, 2, ',', '.') }}</td>
                 </tr>

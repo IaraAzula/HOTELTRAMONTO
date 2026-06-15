@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
@@ -40,13 +41,22 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:usuarios',
             'password' => 'required|min:8|confirmed', 
             'rol_id' => 'required|exists:roles,id', 
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'apellido.required' => 'El apellido es obligatorio.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico no es válido.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'rol_id.required' => 'El rol es obligatorio.',
         ]);
 
         Usuario::create($request->only(['nombre', 'apellido', 'email', 'password', 'rol_id']));
         
-        // CORRECCIÓN: Aquí faltaba el punto y coma
         return redirect()->route('catalogo')->with('exito', '¡Cuenta creada con éxito! Ya podés iniciar sesión.');
-    } 
+    }
 
        /**
      * Valida y registra un nuevo administrador (ADMIN)

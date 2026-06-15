@@ -9,12 +9,13 @@ class DetalleReserva extends Model
     protected $table = 'detalle_reservas';
 
     protected $fillable = [
-        'reserva_id',
-        'habitacion_id',
-        'precio_unitario',
-        'fecha_entrada',
-        'fecha_salida'
-    ];
+    'reserva_id',
+    'habitacion_id',
+    'precio_unitario',
+    'personas',
+    'fecha_entrada',
+    'fecha_salida'
+     ];
     public function habitacion()
     {
     return $this->belongsTo(Habitacion::class, 'habitacion_id');

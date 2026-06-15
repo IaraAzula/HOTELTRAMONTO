@@ -39,7 +39,6 @@
             </div>
         @endif
 
-        {{-- Alerta para ver errores de validación si las fechas fallan --}}
         @if ($errors->any())
             <div class="alert alert-danger bg-danger text-white border-0 shadow-sm mb-4">
                 <ul class="mb-0 px-3">
@@ -81,7 +80,10 @@
                     <h2 class="price-large mb-0">USD {{ number_format($habitacion->precio, 0) }}</h2>
                     <span class="text-white fw-medium ms-2">/ noche</span>
                 </div>
-                <p class="text-white-50 mb-3">Disponibilidad: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
+                <p class="text-white-50 mb-3">
+                    <i class="bi bi-people me-1"></i> Capacidad: {{ $habitacion->capacidad ?? 2 }} personas &nbsp;|&nbsp;
+                    <i class="bi bi-door-open me-1"></i> Disponibilidad: {{ (int) ($habitacion->stock ?? 1) }} habitaciones
+                </p>
 
                 <hr class="gold-line">
 
@@ -99,37 +101,49 @@
                     @endforeach
                 </ul>
 
-                {{-- FORMULARIO ACTUALIZADO Y CORREGIDO PARA EL NUEVO CONTROLADOR --}}
                 @auth
-            <form action="{{ route('carrito.agregar') }}" method="POST" class="mt-5 d-grid gap-3">
-                @csrf
-                <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
+                <form action="{{ route('carrito.agregar') }}" method="POST" class="mt-5 d-grid gap-3">
+                    @csrf
+                    <input type="hidden" name="habitacion_id" value="{{ $habitacion->id }}">
 
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="fecha_entrada" class="form-label text-gold-tramonto small text-uppercase">Fecha de entrada</label>
-                        <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d') }}">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="fecha_entrada" class="form-label text-gold-tramonto small text-uppercase">Fecha de entrada</label>
+                            <input type="date" name="fecha_entrada" id="fecha_entrada" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fecha_salida" class="form-label text-gold-tramonto small text-uppercase">Fecha de salida</label>
+                            <input type="date" name="fecha_salida" id="fecha_salida" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <label for="personas" class="form-label text-gold-tramonto small text-uppercase">Cantidad de personas</label>
+                            <input type="number" name="personas" id="personas" class="form-control bg-dark text-white border-secondary" min="1" max="{{ $habitacion->capacidad ?? 2 }}" value="1" required>
+                            <small style="color: #94a3b8;">Máximo {{ $habitacion->capacidad ?? 2 }} personas.</small>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="fecha_salida" class="form-label text-gold-tramonto small text-uppercase">Fecha de salida</label>
-                        <input type="date" name="fecha_salida" id="fecha_salida" class="form-control bg-dark text-white border-secondary" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
-                    </div>
+
+                    <button type="submit" class="btn btn-lg w-100 btn-back mt-2">
+                        <i class="bi bi-cart-plus me-2"></i> Añadir habitacion
+                    </button>
+                </form>
+                @else
+                <div class="mt-5">
+                    <a href="{{ route('login') }}" class="btn btn-lg w-100 btn-back">
+                        <i class="bi bi-person-lock me-2"></i> Iniciá sesión para reservar
+                    </a>
+                    <p class="text-center mt-2" style="color: #94a3b8; font-size: 0.85rem;">
+                        ¿No tenés cuenta? <a href="{{ route('registro') }}" style="color: #d4af37;">Registrate acá</a>
+                    </p>
                 </div>
+                @endauth
 
-                <button type="submit" class="btn btn-lg w-100 btn-back mt-2">
-                    <i class="bi bi-cart-plus me-2"></i> Añadir habitacion
-                </button>
-            </form>
-            @else
-            <div class="mt-5">
-                <a href="{{ route('login') }}" class="btn btn-lg w-100 btn-back">
-                    <i class="bi bi-person-lock me-2"></i> Iniciá sesión para reservar
-                </a>
-                <p class="text-center mt-2" style="color: #94a3b8; font-size: 0.85rem;">
-                    ¿No tenés cuenta? <a href="{{ route('registro') }}" style="color: #d4af37;">Registrate acá</a>
-                </p>
-            </div>
-            @endauth
+                @if(auth()->check() && auth()->user()->rol_id == 1)
+                <div class="mt-4">
+                    <a href="{{ route('habitaciones.edit', $habitacion->id) }}" class="btn w-100 btn-back">
+                        <i class="bi bi-pencil-square me-2"></i> Editar habitación
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
     </div>

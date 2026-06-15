@@ -35,8 +35,9 @@
 <div class="container py-5 bg-admin-form">
     <h1 class="fw-bold mb-4 text-gold-tramonto">Crear habitación</h1>
 
-    <form action="{{ route('habitaciones.store') }}" method="POST" class="card p-4 shadow-sm">
+    <form id="formHabitacion" action="{{ route('habitaciones.store') }}" method="POST" class="card p-4 shadow-sm">
         @csrf
+        <input type="text" style="display:none">
 
         <div class="mb-3">
             <label class="form-label text-gold-tramonto">Nombre</label>
@@ -59,6 +60,10 @@
                 <input type="number" step="0.01" name="precio" class="form-control bg-dark text-white border-secondary" required>
             </div>
             <div class="col-md-4">
+                <label class="form-label text-gold-tramonto">Capacidad (personas)</label>
+                <input type="number" name="capacidad" value="2" min="1" class="form-control bg-dark text-white border-secondary" required>
+            </div>
+            <div class="col-md-4">
                 <label class="form-label text-gold-tramonto">Disponibilidad</label>
                 <input type="number" name="Disponibilidad" value="1" min="1" class="form-control bg-dark text-white border-secondary" required>
             </div>
@@ -66,11 +71,12 @@
 
         <div class="mb-3 mt-3">
             <label class="form-label text-gold-tramonto">Imágenes (una URL por línea)</label>
-            <textarea name="imagenes" class="form-control bg-dark text-white border-secondary" rows="4" placeholder="https://...\nhttps://..."></textarea>
+            <textarea name="imagenes" class="form-control bg-dark text-white border-secondary" rows="6" placeholder="https://i.postimg.cc/url1.jpg&#10;https://i.postimg.cc/url2.jpg"></textarea>
+            <small style="color: #94a3b8;">Pegá cada URL en una línea separada. Podés usar Enter libremente acá.</small>
         </div>
 
         <div class="d-flex gap-2 mt-4">
-            <button type="submit" class="btn btn-gold">Guardar habitación</button>
+            <button type="button" onclick="document.getElementById('formHabitacion').submit()" class="btn btn-gold">Guardar habitación</button>
             <a href="{{ route('habitaciones.index') }}" class="btn btn-outline-light">Volver</a>
         </div>
     </form>

@@ -107,7 +107,7 @@
                 <div class="col-md-4">
                     <div class="card card-habitacion h-100">
                         <div class="overflow-hidden">
-                            <img src="{{ $habitacion->imagen ?? 'https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg' }}" class="card-img-top room-img" alt="{{ $habitacion->nombre }}">
+                           <img src="{{ $habitacion->imagenes->first()->url ?? 'https://i.postimg.cc/ncjNtWvf/IMG-5740.jpg' }}" class="card-img-top room-img" alt="{{ $habitacion->nombre }}">
                         </div>
                         <div class="card-body text-center d-flex flex-column justify-content-between">
                             <div>
