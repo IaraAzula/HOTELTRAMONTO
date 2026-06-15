@@ -140,6 +140,7 @@
                                     @csrf 
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    
                                 </form>
                     </div>
                     @empty
@@ -254,10 +255,18 @@
                         <label class="text-gold-tramonto">Nombre</label>
                         <input type="text" name="nombre" class="form-control bg-dark text-white border-secondary" required>
                     </div>
-                    <div class="mb-3">
-                        <label class="text-gold-tramonto">Email</label>
-                        <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required>
-                    </div>
+                   <div class="mb-3">
+    <label class="text-gold-tramonto">Correo electrónico</label>
+    <input type="email" 
+           name="email" 
+           value="{{ old('email') }}" 
+           class="form-control bg-dark text-white border-secondary {{ $errors->has('email') ? 'is-invalid' : '' }}" 
+           required>
+    
+    @if($errors->has('email'))
+        <div class="text-danger small mt-1">{{ $errors->first('email') }}</div>
+    @endif
+</div>
                 </div>
                 <div class="modal-footer modal-footer-tramonto">
                     <button type="submit" class="btn btn-gold-outline">Guardar Administrador</button>
