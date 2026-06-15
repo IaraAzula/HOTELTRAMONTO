@@ -88,12 +88,12 @@
                         <span class="fs-4 fw-bold text-gold-tramonto">${{ number_format(array_reduce($carrito, function ($carry, $item) { return $carry + (($item['precio'] ?? 0) * ($item['noches'] ?? 1)); }, 0), 2, ',', '.') }}</span>
                     </div>
 
-                    <form action="{{ route('carrito.confirmar') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-gold w-100 py-3 text-uppercase fw-bold shadow">
-                            <i class="bi bi-check-circle-fill me-2"></i>Confirmar Reserva
-                        </button>
-                    </form>
+                  <form action="{{ route('carrito.confirmar') }}" method="POST">
+    @csrf 
+    <button type="submit" class="btn btn-gold w-100 py-3 text-uppercase fw-bold shadow">
+        <i class="bi bi-check-circle-fill me-2"></i>Confirmar Reserva
+    </button>
+</form>
 
                     <a href="{{ route('catalogo') }}" class="btn w-100 mt-2 py-2 small text-uppercase" style="border: 1px solid rgba(212,175,55,0.5); color: #d4af37;">
                         <i class="bi bi-arrow-left me-1"></i>Seguir viendo

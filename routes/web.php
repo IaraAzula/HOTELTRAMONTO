@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolController; 
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\ReservaController; 
 
 
 // 2. Rutas para el CRUD del Administrador (Alta, Baja, Modificación)
@@ -72,19 +73,21 @@ Route::get('/consultas', [ConsultaController::class, 'index'])->name('consultas.
 Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas.store')->middleware('auth');
 
 // 8. RUTAS DEL CARRITO DE RESERVAS
-
-// 🟢 Rutas públicas: Cualquier usuario (logueado o no) puede ver su selección y agregar habitaciones
 Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 
-// 🔴 Rutas protegidas: Solo los usuarios logueados pueden quitar ítems, confirmar o ver el éxito
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function () {
+    // --- RUTAS DEL CARRITO ---
     Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
     Route::get('/reserva/exito', [CarritoController::class, 'exito'])->name('reserva.exito');
 
-    
-  
+    // --- RUTAS DE PAGO ---
+    Route::get('/reservas/pago/{id}', [ReservaController::class, 'pago'])->name('reservas.pago');
+    Route::post('/reservas/procesar-pago/{id}', [CarritoController::class, 'procesarPago'])->name('reservas.procesar_pago');
+    // Ruta para mostrar el formulario de datos de pago
+    Route::get('/reservas/datos-pago/{id}', [ReservaController::class, 'datosPago'])->name('reservas.datos_pago');
+    // --- RUTAS DE ADMINISTRACIÓN ---
     Route::post('/admin/usuarios/store', [UsuarioController::class, 'storeAdmin'])->name('admin.store');
     Route::delete('/admin/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy');
     Route::get('/admin/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('admin.usuarios.edit');

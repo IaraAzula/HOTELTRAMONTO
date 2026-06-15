@@ -43,7 +43,12 @@
             <h1 class="fw-bold text-gold-tramonto m-0"><i class="bi bi-calendar-check me-2"></i>Reservas</h1>
             <p class="text-white small">Panel de administración y control de estadías del Hotel Tramonto</p>
         </div>
-        <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Admin Mode</span>
+       <span style="display: inline-flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.1); padding: 5px 10px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);">
+        <span class="text-white d-flex align-items-center" style="font-size: 0.9rem;">
+          <span style="height: 8px; width: 8px; background-color: #28a745; border-radius: 50%; display: inline-block; margin-right: 8px;"></span>
+            MODO ADMINISTRADOR
+     </span>
+    </span>
     </div>
 
     <div class="card card-tramonto p-4 shadow-lg">

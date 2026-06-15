@@ -10,11 +10,13 @@
 </style>
 
 <div class="container py-5">
+    
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="fw-bold text-gold-tramonto m-0"><i class="bi bi-headset me-2"></i>Consultas Internas</h1>
             <p class="text-white small">Canal de comunicación directa e incidencias de huéspedes alojados</p>
         </div>
+        
         <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Soporte Huéspedes</span>
     </div>
 

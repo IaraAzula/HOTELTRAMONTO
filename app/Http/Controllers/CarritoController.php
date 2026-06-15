@@ -100,64 +100,48 @@ class CarritoController extends Controller
 
     // 4. CONFIRMAR RESERVA
     public function confirmar()
-    {
-        $carrito = session()->get('carrito', []);
+{
+    $carrito = session()->get('carrito', []);
 
-        if(empty($carrito)) {
-            return redirect()->route('catalogo')->with('error', 'El carrito está vacío.');
-        }
-
-        $total = 0;
-        $tieneFechasReserva = Schema::hasColumn('reservas', 'fecha_entrada') && Schema::hasColumn('reservas', 'fecha_salida');
-        $tieneFechasDetalle = Schema::hasColumn('detalle_reservas', 'fecha_entrada') && Schema::hasColumn('detalle_reservas', 'fecha_salida');
-
-        foreach ($carrito as $item) {
-            $noches = Carbon::parse($item['fecha_entrada'])->diffInDays(Carbon::parse($item['fecha_salida']));
-            $total += $item['precio'] * $noches;
-        }
-
-        $reservaData = [
-            'usuario_id' => auth()->id(),
-            'total'      => $total,
-            'estado'     => 'confirmada',
-        ];
-
-        if ($tieneFechasReserva) {
-            $reservaData['fecha_entrada'] = Carbon::parse(reset($carrito)['fecha_entrada'])->toDateString();
-            $reservaData['fecha_salida']  = Carbon::parse(end($carrito)['fecha_salida'])->toDateString();
-        }
-
-        $reserva = Reserva::create($reservaData);
-
-        foreach ($carrito as $item) {
-            $detalleData = [
-                'reserva_id'      => $reserva->id,
-                'habitacion_id'   => $item['id'],
-                'precio_unitario' => $item['precio'],
-                'personas'        => $item['personas'] ?? 1,
-            ];
-
-            if ($tieneFechasDetalle) {
-                $detalleData['fecha_entrada'] = $item['fecha_entrada'];
-                $detalleData['fecha_salida']  = $item['fecha_salida'];
-            }
-
-            DetalleReserva::create($detalleData);
-        }
-
-        session()->flash('ultima_reserva', [
-            'codigo' => str_pad($reserva->id, 6, '0', STR_PAD_LEFT),
-            'total'  => $total,
-            'items'  => $carrito
-        ]);
-
-        session()->forget('carrito');
-
-        // Borrar carrito de BD
-        Carrito::where('usuario_id', auth()->id())->delete();
-
-        return redirect()->route('reserva.exito');
+    if(empty($carrito)) {
+        return redirect()->route('catalogo')->with('error', 'El carrito está vacío.');
     }
+
+    $total = 0;
+    // Calculamos el total
+    foreach ($carrito as $item) {
+        $noches = Carbon::parse($item['fecha_entrada'])->diffInDays(Carbon::parse($item['fecha_salida']));
+        $total += $item['precio'] * $noches;
+    }
+
+    // Preparamos los datos de la reserva
+    $reservaData = [
+        'usuario_id' => auth()->id(),
+        'total'      => $total,
+        'estado'     => 'pendiente_pago', // Cambiamos a pendiente para el flujo de pago
+        'fecha_entrada' => Carbon::parse(reset($carrito)['fecha_entrada'])->toDateString(),
+        'fecha_salida'  => Carbon::parse(end($carrito)['fecha_salida'])->toDateString(),
+    ];
+
+    // Creamos la reserva
+    $reserva = Reserva::create($reservaData);
+
+    // Creamos los detalles
+    foreach ($carrito as $item) {
+        DetalleReserva::create([
+            'reserva_id'      => $reserva->id,
+            'habitacion_id'   => $item['id'],
+            'precio_unitario' => $item['precio'],
+            'personas'        => $item['personas'] ?? 1,
+            'fecha_entrada'   => $item['fecha_entrada'],
+            'fecha_salida'    => $item['fecha_salida'],
+        ]);
+    }
+
+    // IMPORTANTE: No borramos el carrito ni hacemos flash todavía.
+    // Redirigimos al pago pasando el ID de la reserva.
+    return redirect()->route('reservas.pago', $reserva->id);
+}
 
     // Renderiza la tarjeta de éxito
     public function exito()
@@ -256,4 +240,24 @@ class CarritoController extends Controller
         $reserva = \App\Models\Reserva::with('detalles.habitacion', 'usuario')->findOrFail($id);
         return view('admin.reservas.detalle', compact('reserva'));
     }
+
+    public function procesarPago($id)
+{
+    $reserva = \App\Models\Reserva::findOrFail($id);
+    
+    // Aquí actualizamos el estado de la reserva
+    $reserva->update(['estado' => 'confirmada']);
+
+    // Limpiamos los datos de la sesión
+    session()->forget('carrito');
+    \App\Models\Carrito::where('usuario_id', auth()->id())->delete();
+
+    // Guardamos el mensaje de éxito para la siguiente vista
+    session()->flash('ultima_reserva', [
+        'codigo' => str_pad($reserva->id, 6, '0', STR_PAD_LEFT),
+        'total'  => $reserva->total,
+    ]);
+
+    return redirect()->route('reserva.exito');
+}
 }

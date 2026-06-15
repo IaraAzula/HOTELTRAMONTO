@@ -83,7 +83,15 @@
         <div>
             <h1 class="fw-bold text-gold-tramonto m-0"><i class="bi bi-people me-2"></i>Usuarios</h1>
         </div>
-        <span class="badge bg-outline-warning border border-warning text-warning px-3 py-2">Admin Mode</span>
+       <span style="display: inline-flex; align-items: center; gap: 4px;">
+    <div class="mb-4">
+    <span style="display: inline-flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.1); padding: 5px 10px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.2);">
+        <span class="text-white d-flex align-items-center" style="font-size: 0.9rem;">
+          <span style="height: 8px; width: 8px; background-color: #28a745; border-radius: 50%; display: inline-block; margin-right: 8px;"></span>
+            MODO ADMINISTRADOR
+     </span>
+    </span>
+</div>
     </div>
 
    <div class="container py-5">
@@ -271,7 +279,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="text-gold-tramonto">Nombre completo</label>
+                        <label class="text-gold-tramonto">Nombre</label>
                         <input type="text" name="nombre" class="form-control bg-dark text-white border-secondary" required>
                     </div>
                     <div class="mb-3">
@@ -282,6 +290,14 @@
                         <label class="text-gold-tramonto">Correo electrónico</label>
                         <input type="email" name="email" class="form-control bg-dark text-white border-secondary" required>
                     </div>
+                    <div class="mb-3">
+    <label class="text-gold-tramonto">Contraseña</label>
+    <input type="password" name="password" class="form-control bg-dark text-white border-secondary" required>
+</div>
+<div class="mb-3">
+    <label class="text-gold-tramonto">Confirmar Contraseña</label>
+    <input type="password" name="password_confirmation" class="form-control bg-dark text-white border-secondary" required>
+</div>
                 </div>
                 <div class="modal-footer modal-footer-tramonto">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

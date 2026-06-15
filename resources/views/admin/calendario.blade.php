@@ -1,27 +1,6 @@
 @extends('layouts.app')
 
 @section('contenido')
-<style>
-    body { background-color: #020617 !important; color: #ffffff; }
-    .text-gold-tramonto { color: #d4af37 !important; }
-    .card-tramonto { 
-        background-color: rgba(15, 23, 42, 0.6) !important; 
-        border: 1px solid rgba(212, 175, 55, 0.2) !important; 
-        border-radius: 12px; 
-    }
-    #calendario { max-width: 100%; }
-    .fc { color: #ffffff; }
-    .fc-toolbar-title { color: #d4af37 !important; }
-    .fc-button { background-color: transparent !important; border: 1px solid #d4af37 !important; color: #d4af37 !important; }
-    .fc-button:hover { background-color: #d4af37 !important; color: #020617 !important; }
-    .fc-button-active { background-color: #d4af37 !important; color: #020617 !important; }
-    .fc-daygrid-day { background-color: rgba(15, 23, 42, 0.4) !important; }
-    .fc-daygrid-day:hover { background-color: rgba(212, 175, 55, 0.05) !important; }
-    .fc-col-header-cell { background-color: rgba(15, 23, 42, 0.8) !important; color: #d4af37 !important; }
-    .fc-col-header-cell-cushion { color: #d4af37 !important; }
-    .fc-daygrid-day-number { color: #ffffff !important; }
-    .fc-day-today { background-color: rgba(212, 175, 55, 0.1) !important; }
-</style>
 
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">

@@ -34,6 +34,8 @@ class Usuario extends Authenticatable
         'password' => 'hashed',
     ];
 
+   
+
     /**
      * Relación: un Usuario pertenece a un Rol.
      */

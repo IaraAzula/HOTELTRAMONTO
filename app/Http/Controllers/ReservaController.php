@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Habitacion;
+use App\Models\Reserva;
 
 class ReservaController extends Controller
 {
@@ -40,4 +41,21 @@ class ReservaController extends Controller
 
         return view('carrito.index', compact('reserva'));
     }
+
+    // 4. Mostrar vista de pago
+   public function pago($id)
+{
+    $reserva = Reserva::find($id);
+    if (!$reserva || $reserva->usuario_id !== auth()->id()) {
+        return redirect()->route('catalogo')->with('error', 'Acceso denegado.');
+    }
+    return view('admin.reservas.pago', compact('reserva'));
+}
+
+public function datosPago($id)
+{
+    $reserva = \App\Models\Reserva::findOrFail($id);
+    return view('admin.reservas.datos_pago', compact('reserva'));
+}
+
 }

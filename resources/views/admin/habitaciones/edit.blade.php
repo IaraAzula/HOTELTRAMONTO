@@ -2,48 +2,6 @@
 
 @section('contenido')
 
-<style>
-    body { background-color: #020617 !important; color: #ffffff; }
-    .text-gold-tramonto { color: #d4af37 !important; letter-spacing: 1px; }
-    .card-tramonto { 
-        background-color: rgba(15, 23, 42, 0.6) !important; 
-        border: 1px solid rgba(212, 175, 55, 0.2) !important; 
-        border-radius: 12px; 
-    }
-    .metric-card { 
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8)); 
-        border: 1px solid rgba(212, 175, 55, 0.15); 
-        border-radius: 12px; 
-        transition: 0.3s; 
-    }
-    .metric-card:hover { border-color: #d4af37; transform: translateY(-3px); }
-    .metric-icon { font-size: 2rem; color: #d4af37; opacity: 0.8; }
-    .table-tramonto { 
-        background-color: transparent !important; 
-        color: #ffffff !important; 
-        border-collapse: collapse !important;
-    }
-    .table-tramonto th { 
-        color: #d4af37 !important; 
-        border-bottom: 2px solid #d4af37 !important; 
-        text-transform: uppercase; 
-        font-size: 0.8rem; 
-        padding: 1rem;
-    }
-    .table-tramonto tbody tr { 
-        background-color: transparent !important; 
-        border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important; 
-    }
-    .table-tramonto td, .table-tramonto th { 
-        background-color: transparent !important; 
-        color: #cbd5e1 !important;
-        padding: 1rem; 
-    }
-    .table-hover tbody tr:hover {
-        background-color: rgba(212, 175, 55, 0.1) !important;
-        color: #ffffff !important;
-    }
-</style>
 
 <div class="container py-5 text-white">
     <h1 class="fw-bold mb-4 text-gold-tramonto">Editar habitación</h1>

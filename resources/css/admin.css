@@ -1,0 +1,68 @@
+/* --- Aislamiento total: Solo afecta al panel de administración --- */
+
+/* Fondo específico para los contenedores de formularios y tablas */
+.form-container,
+.card,
+.table-container {
+    background-color: #0b0f19 !important;
+    border: 1px solid #334155 !important;
+    border-radius: 12px !important;
+    padding: 2rem !important;
+    color: #ffffff !important;
+}
+
+/* Inputs y Textareas */
+.form-control,
+input,
+textarea,
+select {
+    background-color: #020617 !important;
+    color: #ffffff !important;
+    border: 1px solid #334155 !important;
+}
+
+/* Tablas del panel */
+table {
+    background-color: #0b0f19 !important;
+    color: #ffffff !important;
+}
+
+th,
+td {
+    color: #ffffff !important;
+    border-color: #334155 !important;
+}
+
+/* Botones específicos del panel */
+.btn-gold {
+    background-color: transparent !important;
+    border: 1px solid #C7B25D !important;
+    color: #C7B25D !important;
+}
+
+.btn-gold:hover {
+    background-color: #C7B25D !important;
+    color: #020617 !important;
+}
+/* Forzar fondo oscuro en formularios y tarjetas del panel */
+.form-container,
+.card,
+.container .row .col-md-7 .form-container {
+    background-color: #0b0f19 !important;
+    border: 1px solid #1e293b !important;
+    color: #ffffff !important;
+    padding: 2rem !important;
+    border-radius: 12px !important;
+}
+
+/* Forzar que el texto de los labels también sea blanco */
+.form-container label,
+.card label {
+    color: #ffffff !important;
+}
+
+/* Corregir el título para que sea dorado como en Reservas */
+.form-container h2,
+.card h2 {
+    color: #C7B25D !important;
+}

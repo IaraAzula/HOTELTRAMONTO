@@ -92,7 +92,7 @@
         {{-- Encabezado de la sección --}}
         <h1 class="display-5 fw-bold mb-2 text-center text-gold-tramonto">Nuestras Habitaciones</h1>
         <p class="text-center text-light-muted mb-5">Exclusividad y confort frente a las barrancas del Paraná</p>
-
+     {{--
         @auth
             @if(auth()->user()->rol_id == 1)
                 <div class="text-end mb-4">
@@ -100,7 +100,7 @@
                 </div>
             @endif
         @endauth
-        
+--}}
         <div class="row g-4">
             {{-- BUCLE DINÁMICO: Recorre las habitaciones cargadas en MariaDB --}}
             @forelse($habitaciones as $habitacion)
@@ -116,7 +116,7 @@
                                 <p class="text-light-muted small mb-3">{{ $habitacion->descripcion }}</p>
                                 
                                 <p class="price-tag fw-bold">${{ number_format($habitacion->precio, 0, ',', '.') }} <span class="small text-light-muted">/ noche</span></p>
-                                <p class="text-light-muted small mb-0">Stock: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
+                                <p class="text-light-muted small mb-0">Disponibilidad: {{ (int) ($habitacion->stock ?? 1) }} habitaciones</p>
                             </div>
                             <div class="mt-4">
                                 {{-- Por ahora te redirige a una ruta genérica del recurso hasta armar los detalles dinámicos --}}

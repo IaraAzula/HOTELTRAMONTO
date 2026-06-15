@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -61,26 +62,31 @@ class UsuarioController extends Controller
        /**
      * Valida y registra un nuevo administrador (ADMIN)
      */
-    public function storeAdmin(Request $request)
-    {
-        $request->validate([
-            'nombre'   => 'required|string',
-            'apellido' => 'required|string',
-            'email'    => 'required|email|unique:usuarios,email',
-        ], [
-            'email.unique' => 'El correo electrónico ingresado ya se encuentra registrado.',
-        ]);
+   public function storeAdmin(Request $request)
+{
+    // 1. Validamos los nuevos campos de password
+    $request->validate([
+        'nombre'   => 'required|string|max:100',
+        'apellido' => 'required|string|max:100',
+        'email'    => 'required|email|unique:usuarios,email',
+        'password' => 'required|min:8|confirmed', // 'confirmed' valida que password == password_confirmation
+    ], [
+        'password.required' => 'La contraseña es obligatoria.',
+        'password.min'      => 'La contraseña debe tener al menos 8 caracteres.',
+        'password.confirmed'=> 'Las contraseñas no coinciden.',
+    ]);
 
-        Usuario::create([
-            'nombre'   => $request->nombre,
-            'apellido' => $request->apellido,
-            'email'    => $request->email,
-            'password' => bcrypt('password_temporal'), // Asegúrate de manejar la contraseña como necesites
-            'rol_id'   => 1, // Asumiendo que 1 es admin
-        ]);
+    // 2. Creamos el usuario con la contraseña encriptada
+    Usuario::create([
+        'nombre'   => $request->nombre,
+        'apellido' => $request->apellido,
+        'email'    => $request->email,
+        'password' => Hash::make($request->password), // Encriptación correcta
+        'rol_id'   => 1, // Administrador
+    ]);
 
-        return redirect()->route('admin.usuarios.index')->with('success', 'Administrador creado con éxito.');
-    }
+    return redirect()->route('admin.usuarios.index')->with('success', 'Administrador creado con éxito.');
+}
 
     public function show(Usuario $usuario) {}
     public function edit(Usuario $usuario) {}
