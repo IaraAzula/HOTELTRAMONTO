@@ -103,14 +103,5 @@ class UsuarioController extends Controller
     return redirect()->route('admin.usuarios.index')->with('success', 'Usuario eliminado correctamente.');
 }
 
-public function misReservas()
-{
-    // Buscamos las reservas del usuario autenticado
-    $reservas = Reserva::where('user_id', auth()->id())
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-
-    return view('reservas.historial', compact('reservas'));
-}
 
 }

@@ -11,8 +11,7 @@ class Habitacion extends Model
 
     protected $table = 'habitaciones';
 
-    // Asegúrate de que aquí diga 'stock' porque es el nombre 
-    // que usa tu controlador para guardar los datos.
+  
     protected $fillable = [
         'nombre', 
         'descripcion', 
