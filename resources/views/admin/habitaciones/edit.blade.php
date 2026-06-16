@@ -1,6 +1,27 @@
 @extends('layouts.app')
 
 @section('contenido')
+<style>
+    /* Fondo oscuro para la página */
+    body { background-color: #020617 !important; }
+
+    /* Estilo igual al de reservas */
+    .card-tramonto { 
+        background-color: #0b0f19 !important; 
+        border: 1px solid rgba(212, 175, 55, 0.2) !important; 
+        border-radius: 12px; 
+        padding: 2rem !important;
+        color: #ffffff !important;
+        
+    }
+
+    .text-gold-tramonto { color: #d4af37 !important; }
+
+    ::placeholder {
+  color: #ffffff !important;
+  opacity: 0.6; /* Un poco de transparencia para que se note que es un placeholder */
+}
+</style>
 
 
 <div class="container py-5 text-white">
