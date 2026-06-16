@@ -22,8 +22,10 @@ class Reserva extends Model
     {
         return $this->hasMany(DetalleReserva::class, 'reserva_id');
     }
-        public function usuario()
-    {
-        return $this->belongsTo(Usuario::class, 'usuario_id');
-    }
+
+    public function usuario()
+{
+    // Esto le dice a Laravel: "Mi llave foránea es 'usuario_id'"
+    return $this->belongsTo(Usuario::class, 'usuario_id');
+}
 }

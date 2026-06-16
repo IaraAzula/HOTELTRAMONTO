@@ -58,4 +58,24 @@ public function datosPago($id)
     return view('admin.reservas.datos_pago', compact('reserva'));
 }
 
+public function misReservas()
+{
+    // Buscamos las reservas del usuario autenticado
+    $reservas = Reserva::where('usuario_id', auth()->id())
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+
+    return view('admin.reservas.historial', compact('reservas'));
+}
+
+public function show($id)
+{
+    // Buscamos la reserva y verificamos que pertenezca al usuario logueado
+    $reserva = Reserva::where('id', $id)
+                      ->where('usuario_id', auth()->id())
+                      ->firstOrFail();
+
+    return view('admin.reservas.detalle', compact('reserva'));
+}
+
 }

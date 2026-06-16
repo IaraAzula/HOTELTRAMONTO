@@ -43,4 +43,9 @@ class Usuario extends Authenticatable
     {
         return $this->belongsTo(Rol::class, 'rol_id');
     }
+
+    public function reservas() {
+    return $this->hasMany(Reserva::class);
+}
+
 }

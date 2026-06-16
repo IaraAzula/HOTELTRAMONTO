@@ -106,7 +106,7 @@
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('consultas.index') ? 'active fw-bold' : '' }}" href="{{ route('consultas.index') }}">Consultas</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('terminos') ? 'active fw-bold' : '' }}" href="{{ route('terminos') }}">Términos y usos</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->routeIs('servicios') ? 'active fw-bold' : '' }}" href="{{ route('servicios') }}">Servicios</a></li>
-            
+
             {{-- 🛒 BOTÓN DINÁMICO DEL CARRITO --}}
             <li class="nav-item ms-lg-2">
                 <a class="nav-link position-relative {{ request()->routeIs('carrito.ver') ? 'active' : '' }}" href="{{ route('carrito.ver') }}" style="color: #C7B25D !important;">
@@ -118,7 +118,15 @@
                     @endif
                 </a>
             </li>
-
+               {{-- 🏨 NUEVO ENLACE: MIS RESERVAS --}}
+                    @auth
+                        <li class="nav-item ms-lg-2">
+                            <a class="nav-link {{ request()->routeIs('mis.reservas') ? 'active fw-bold' : '' }}" 
+                            href="{{ route('mis.reservas') }}">
+                            Mis Reservas
+                            </a>
+                        </li>
+                    @endauth
             {{-- Autenticación limpia --}}
             @guest
                 <li class="nav-item ms-lg-3">

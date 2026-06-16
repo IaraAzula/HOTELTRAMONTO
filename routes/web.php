@@ -75,7 +75,11 @@ Route::post('/consultas', [ConsultaController::class, 'store'])->name('consultas
 // 8. RUTAS DEL CARRITO DE RESERVAS
 Route::get('/carrito', [CarritoController::class, 'ver'])->name('carrito.ver');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-
+Route::get('/mis-reservas', [ReservaController::class, 'misReservas'])
+     ->middleware('auth')
+     ->name('mis.reservas');
+     // Ejemplo:
+Route::get('/reservas/detalles/{id}', [ReservaController::class, 'show'])->name('reservas.detalles');
 Route::middleware(['web', 'auth'])->group(function () {
     // --- RUTAS DEL CARRITO ---
     Route::delete('/carrito/quitar/{id}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
