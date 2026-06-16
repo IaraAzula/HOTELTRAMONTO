@@ -7,11 +7,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Habitacion extends Model
 {
-    use SoftDeletes; // Tu baja lógica obligatoria
+    use SoftDeletes;
 
     protected $table = 'habitaciones';
 
-    protected $fillable = ['nombre', 'descripcion', 'servicios', 'precio', 'capacidad', 'imagen'];
+    // Asegúrate de que aquí diga 'stock' porque es el nombre 
+    // que usa tu controlador para guardar los datos.
+    protected $fillable = [
+        'nombre', 
+        'descripcion', 
+        'servicios', 
+        'precio', 
+        'capacidad', 
+        'imagen', 
+        'stock' 
+    ];
 
     public function imagenes()
     {

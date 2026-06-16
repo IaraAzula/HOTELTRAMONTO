@@ -78,7 +78,7 @@ class HabitacionController extends Controller
             'servicios'   => $request->servicios,
             'precio'      => $request->precio,
             'capacidad'   => (int) ($request->capacidad ?? $habitacion->capacidad ?? 2),
-            'stock'       => (int) ($request->stock ?? $habitacion->stock ?? 1),
+            'stock' => (int) ($request->disponibilidad ?? $habitacion->stock ?? 1),
             'imagen'      => null,
         ]);
 
